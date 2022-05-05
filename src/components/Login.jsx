@@ -14,7 +14,7 @@ const Login = () => {
 	// context.token
 	// context.setToken
 
-	console.log('context:', context.token)
+	console.log('context:', context.token);
 
 	console.log(context.token);
 
@@ -27,39 +27,39 @@ const Login = () => {
 
 	return (
 		<StyledLogin>
-				<h2>Login</h2>
-				<form>
-					<input
-						name='username'
-						type='text'
-						required
-						placeholder='Username:'
-						value={loginForm.username}
-						onChange={(e) => handleInputChange(e)}
-					/>
-					<input
-						name='password'
-						type='password'
-						required
-						placeholder='Password:'
-						value={loginForm.password}
-						onChange={(e) => handleInputChange(e)}
-					/>
+			<h2>Login</h2>
+			<form>
+				<input
+					name='username'
+					type='text'
+					required
+					placeholder='Username:'
+					value={loginForm.username}
+					onChange={(e) => handleInputChange(e)}
+				/>
+				<input
+					name='password'
+					type='password'
+					required
+					placeholder='Password:'
+					value={loginForm.password}
+					onChange={(e) => handleInputChange(e)}
+				/>
 
-					<button
-						onClick={(e) => {
-							e.preventDefault();
-							if (!context.token) {
-								logUserIn(loginForm).then(({ data }) => {
-									console.log('data', data.user.token);
-									context.setToken(data[0].user.token);
-								});
-							}
-						}}
-					>
-						<Link to={context.token && '/home'}>Login</Link>
-					</button>
-				</form>
+				<button
+					onClick={(e) => {
+						e.preventDefault();
+						if (!context.token) {
+							logUserIn(loginForm).then(({ data }) => {
+								console.log('data', data.user.token);
+								context.setToken(data.user.token);
+							});
+						}
+					}}
+				>
+					<Link to={context.token && '/home'}>Login</Link>
+				</button>
+			</form>
 		</StyledLogin>
 	);
 };

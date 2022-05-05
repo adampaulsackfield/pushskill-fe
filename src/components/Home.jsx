@@ -18,7 +18,7 @@ const Home = () => {
 				})
 				.then(({ data }) => setUsers(data.users));
 		}
-	}, [context.token]);
+	}, [context]);
 
 	console.log('users:', users);
 
