@@ -36,15 +36,14 @@ const Login = () => {
 							});
 						}}
 					/>
-					{token(
-						<button
-							onSubmit={(e) => {
-								e.preventDefault();
-							}}
-						>
-							Login
-						</button>
-					)}
+
+					<button
+						onSubmit={(e) => {
+							e.preventDefault();
+						}}
+					>
+						Login
+					</button>
 				</form>
 			</main>
 		</StyledLogin>
