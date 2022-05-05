@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { StyledSignup } from '../styles/Signup.style';
+import { signUpUser } from '../utils/api';
 
 const Signup = () => {
 	const [signUpForm, setSignUpForm] = useState({
@@ -17,9 +18,14 @@ const Signup = () => {
 
 	return (
 		<StyledSignup>
+    	<main>
+				<h2>Sign up</h2>
 			<form
 				onSubmit={(e) => {
 					e.preventDefault();
+          signUpUser(username, password).then((userData) => {
+						console.log(userData + 'userdata');
+					});
 				}}
 			>
 				<input
@@ -47,7 +53,8 @@ const Signup = () => {
 					onChange={(e) => handleInputChange(e)}
 				/>
 				<button>Sign Up</button>
-			</form>
+			  </form>
+      </main>
 		</StyledSignup>
 	);
 };
