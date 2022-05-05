@@ -1,19 +1,16 @@
 import styled from 'styled-components';
 
-export const StyledLogin = styled.form`
+export const StyledLogin = styled.main`
 	background-color: ${({ theme }) => theme.colors.mainBg};
 
 	color: ${({ theme }) => theme.colors.mainText};
 	width: 40vw;
 	margin: 0;
 	padding-top: 20px;
-
-	div {
-		background-color: #222;
-		border-radius: 20px;
-		padding: 40px;
-		max-width: 1100px;
-	}
+	background-color: #222;
+	border-radius: 20px;
+	padding: 40px;
+	max-width: 1100px;
 
 	h2 {
 		margin: 10px;
