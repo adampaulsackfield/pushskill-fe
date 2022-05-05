@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { StyledLogin } from '../styles/Login.style';
 import { logUserIn } from '../utils/api';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { TokenContext } from '../context/TokenContext';
 
 const Login = () => {
@@ -10,9 +10,10 @@ const Login = () => {
 		password: '',
 	});
 
+	const navigate = useNavigate()
+
 	const context = useContext(TokenContext);
 	// context.token
-	// context.setToken
 
 	console.log('context:', context.token);
 
@@ -48,16 +49,16 @@ const Login = () => {
 
 				<button
 					onClick={(e) => {
-						e.preventDefault();
+						// e.preventDefault();
 						if (!context.token) {
 							logUserIn(loginForm).then(({ data }) => {
 								console.log('data', data.user.token);
 								context.setToken(data.user.token);
 							});
+							navigate('/home')
 						}
 					}}
-				>
-					<Link to={context.token && '/home'}>Login</Link>
+				>LOGIN
 				</button>
 			</form>
 		</StyledLogin>
