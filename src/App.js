@@ -2,14 +2,12 @@ import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import './App.css';
-
 import Nav from './components/Nav';
 import Home from './components/Home';
 import Room from './components/Socket/Room';
 import Client from './components/Socket/Client';
 import Signup from './components/Signup';
 import Login from './components/Login';
-
 import { Global } from './styles/Global';
 import Partner from './components/Partner';
 

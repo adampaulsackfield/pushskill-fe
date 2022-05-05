@@ -14,6 +14,8 @@ const Login = () => {
 	// context.token
 	// context.setToken
 
+	console.log('context:', context.token)
+
 	console.log(context.token);
 
 	const handleInputChange = (event) => {
@@ -25,7 +27,6 @@ const Login = () => {
 
 	return (
 		<StyledLogin>
-			<main>
 				<h2>Login</h2>
 				<form>
 					<input
@@ -59,7 +60,6 @@ const Login = () => {
 						<Link to={context.token && '/home'}>Login</Link>
 					</button>
 				</form>
-			</main>
 		</StyledLogin>
 	);
 };
