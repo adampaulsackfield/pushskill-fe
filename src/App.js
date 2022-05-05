@@ -1,6 +1,9 @@
 import { ThemeProvider } from 'styled-components';
 import './App.css';
+
+import Home from './components/Home';
 import Signup from './components/Signup';
+import { Global } from './styles/Global';
 
 const theme = {
 	colors: {
@@ -13,8 +16,9 @@ const theme = {
 function App() {
 	return (
 		<ThemeProvider theme={theme}>
-			{/* <Global /> */}
+			<Global />
 			<Signup />
+			<Home />
 		</ThemeProvider>
 	);
 }
