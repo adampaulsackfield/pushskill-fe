@@ -12,7 +12,7 @@ export const StyledHome = styled.main`
 	border-radius: 20px;
 
 	div {
-		background-color: #222;
+		background-color: ${({ theme }) => theme.colors.darkerBg};
 		border-radius: 20px;
 		padding: 60px;
 		max-width: 1100px;
@@ -30,6 +30,7 @@ export const StyledHome = styled.main`
 
 	section {
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		flex-wrap: wrap;
@@ -38,12 +39,14 @@ export const StyledHome = styled.main`
 		border-radius: 20px;
 		margin: 30px 0;
 		width: 800px;
+		margin: 30px 0;
 	}
 
 	section div {
-		display: flex;
+		display: grid;
 		justify-content: center;
 		align-items: flex-start;
+		grid-template-columns: 1fr 1fr;
 		gap: 30px;
 		padding: 30px;
 		background-color: ${({ theme }) => theme.colors.mainAccent};
