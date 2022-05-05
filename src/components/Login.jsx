@@ -14,6 +14,8 @@ const Login = () => {
 	// context.token
 	// context.setToken
 
+	console.log('context:', context.token)
+
 	console.log(context.token);
 
 	const handleInputChange = (event) => {

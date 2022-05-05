@@ -52,4 +52,11 @@ export const StyledLogin = styled.main`
 		color: ${({ theme }) => theme.colors.mainText};
 		font-size: 1.2rem;
 	}
+
+	a {
+		width: 200px;
+		height: 40px;
+		text-decoration: none;
+		color: ${({ theme }) => theme.colors.mainText};
+	}
 `;
