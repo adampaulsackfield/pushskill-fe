@@ -2,9 +2,21 @@ import { useState } from 'react';
 import { StyledSignup } from '../styles/Signup.style';
 
 const Signup = () => {
-	const [username, setUsername] = useState('');
-	const [password, setPassword] = useState('');
-	const [confirmPassword, setConfirmPassword] = useState('');
+	const [signUpForm, setSignUpForm] = useState({
+		username: '',
+		password: '',
+		confirmPassword: '',
+	});
+	// const [username, setUsername] = useState('');
+	// const [password, setPassword] = useState('');
+	// const [confirmPassword, setConfirmPassword] = useState('');
+
+	const handleInputChange = (event) => {
+		setSignUpForm((prev) => ({
+			...prev,
+			[event.target.name]: event.target.value,
+		}));
+	};
 
 	return (
 		<StyledSignup>
@@ -14,31 +26,28 @@ const Signup = () => {
 				}}
 			>
 				<input
+					name='username'
 					type='text'
 					required
 					placeholder='Username:'
-					value={username}
-					onChange={(e) => {
-						setUsername(e.target.value);
-					}}
+					value={signUpForm.username}
+					onChange={(e) => handleInputChange(e)}
 				/>
 				<input
+					name='password'
 					type='password'
 					required
 					placeholder='Password:'
-					value={password}
-					onChange={(e) => {
-						setPassword(e.target.value);
-					}}
+					value={signUpForm.password}
+					onChange={(e) => handleInputChange(e)}
 				/>
 				<input
+					name='confirmPassword'
 					type='password'
 					required
 					placeholder='Confirm Password:'
-					value={confirmPassword}
-					onChange={(e) => {
-						setConfirmPassword(e.target.value);
-					}}
+					value={signUpForm.confirmPassword}
+					onChange={(e) => handleInputChange(e)}
 				/>
 				<button>Sign Up</button>
 			</form>
