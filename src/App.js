@@ -7,8 +7,11 @@ import Home from './components/Home';
 import Room from './components/Socket/Room';
 import Client from './components/Socket/Client';
 import Signup from './components/Signup';
+import Login from './components/Login';
+
 import { Global } from './styles/Global';
 import Partner from './components/Partner';
+import { useState } from 'react';
 
 // Socket IO Client
 import { io } from 'socket.io-client';
@@ -33,6 +36,7 @@ const theme = {
 };
 
 function App() {
+	const [token, setToken] = useState('');
 	return (
 		<SocketContext.Provider value={{ socket }}>
 			<ThemeProvider theme={theme}>
@@ -45,6 +49,8 @@ function App() {
 						<Route path='/rooms/:room_name' element={<Room />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/partner' element={<Partner />} />
+            <Route path='/login' element={<Login token={token} setToken={setToken} />
+				/>
 					</Routes>
 			</ThemeProvider>
 		</SocketContext.Provider>

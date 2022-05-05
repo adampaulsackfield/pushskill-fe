@@ -1,13 +1,18 @@
+import axios from 'axios'
 import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { StyledHome } from '../styles/Home.style'
 
-const Home = () => {
+const Home = ({token}) => {
     const [name, setName] = useState('')
 
     useEffect(() => {
-        fetch('http://localhost:9090/api/users').then(res => res.json()).then(res => setName(res))
+        axios.get('http://localhost:9090/api/users', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(res => setName(res))
     }, [])
 
     console.log('name:', name)
