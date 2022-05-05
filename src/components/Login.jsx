@@ -1,46 +1,60 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { StyledLogin } from '../styles/Login.style';
 import { logUserIn } from '../utils/api';
 import { Link } from 'react-router-dom';
+import { TokenContext } from '../context/TokenContext';
 
-const Login = ({ token, setToken }) => {
-	const [username, setUsername] = useState('');
-	const [password, setPassword] = useState('');
-	console.log(token);
+const Login = () => {
+	const [loginForm, setLoginForm] = useState({
+		username: '',
+		password: '',
+	});
+
+	const context = useContext(TokenContext);
+	// context.token
+	// context.setToken
+
+	console.log(context.token);
+
+	const handleInputChange = (event) => {
+		setLoginForm((prev) => ({
+			...prev,
+			[event.target.name]: event.target.value,
+		}));
+	};
+
 	return (
 		<StyledLogin>
 			<main>
 				<h2>Login</h2>
 				<form>
 					<input
+						name='username'
 						type='text'
 						required
 						placeholder='Username:'
-						value={username}
-						onChange={(e) => {
-							setUsername(e.target.value);
-						}}
+						value={loginForm.username}
+						onChange={(e) => handleInputChange(e)}
 					/>
 					<input
+						name='password'
 						type='password'
 						required
 						placeholder='Password:'
-						value={password}
-						onChange={(e) => {
-							setPassword(e.target.value);
-						}}
+						value={loginForm.password}
+						onChange={(e) => handleInputChange(e)}
 					/>
 
 					<button
 						onMouseOver={(e) => {
-							if (!token) {
-								logUserIn(username, password).then(({ data }) => {
-									setToken(data.user.token);
+							if (!context.token) {
+								logUserIn(loginForm).then(({ data }) => {
+									context.setToken(data.user.token);
 								});
 							}
 						}}
 					>
-						<Link to={token && '/home'}>Login</Link>
+						<Link to={context.token && '/home'}>Login</Link>
 					</button>
 				</form>
 			</main>
