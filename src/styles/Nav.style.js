@@ -13,6 +13,7 @@ export const StyledNav = styled.nav`
 	text-align: center;
 	border-radius: 50px;
 	padding: 10px;
+	z-index: 1000;
 
 	div {
 		display: flex;

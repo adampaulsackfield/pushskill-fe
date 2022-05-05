@@ -9,15 +9,8 @@ const Login = () => {
 		username: '',
 		password: '',
 	});
-
 	const navigate = useNavigate()
-
 	const context = useContext(TokenContext);
-	// context.token
-
-	console.log('context:', context.token);
-
-	console.log(context.token);
 
 	const handleInputChange = (event) => {
 		setLoginForm((prev) => ({
@@ -46,6 +39,10 @@ const Login = () => {
 					value={loginForm.password}
 					onChange={(e) => handleInputChange(e)}
 				/>
+
+				{!context.token && loginForm.password && (
+					<p>enter a valid username and password</p>
+				)}
 
 				<button
 					onClick={(e) => {

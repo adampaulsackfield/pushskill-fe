@@ -43,9 +43,10 @@ export const StyledHome = styled.main`
 	}
 
 	section div {
-		display: grid;
+		width: 600px;
+		display: flex;
 		justify-content: center;
-		align-items: flex-start;
+		align-items: center;
 		grid-template-columns: 1fr 1fr;
 		gap: 30px;
 		padding: 30px;
@@ -53,8 +54,25 @@ export const StyledHome = styled.main`
 	}
 
 	section div img {
-		width: 200px;
-		border-radius: 20px;
+		width: 100px;
+		border-radius: 50px;
+	}
+
+	section div span {
+		background-color: ${({ theme }) => theme.colors.darkerBg};
+		opacity: 0.3;
+		width: 2px;
+		height: 100px;
+		transform: translateX(20px);
+	}
+
+	p {
+		text-align: center;
+	}
+
+	ul {
+		text-align: center;
+		list-style: none;
 	}
 
 	.h3-title {

@@ -22,7 +22,7 @@ const Home = () => {
 
 	console.log('users:', users);
 
-	return (
+	if(users) {return (
 		<StyledHome>
 			<main>
 				<header>
@@ -35,13 +35,14 @@ const Home = () => {
 							return (
 								<section>
 									<div>
-										<img src={user.avatarUrl} alt='cat' />
+										<img src={user.avatarUrl} alt={`${user.username}'s avatar`} />
+                                        <span></span>
 										<div>
-											<p>{user.username}</p>
-											<p>{user.firstName}</p>
+											<p>Username: {user.username}</p>
+											<p>Name: {user.firstName}</p>
 											<ul>
 												{user.traits.map((trait) => {
-													return <li>{trait}</li>;
+													return <li key={trait}>Trait: {trait}</li>;
 												})}
 											</ul>
 										</div>
@@ -52,7 +53,10 @@ const Home = () => {
 				</div>
 			</main>
 		</StyledHome>
-	);
+	)
+    } else if(!context.token) {
+        return <h1>You must login to see this page!</h1>
+    }
 };
 
 export default Home;
