@@ -1,8 +1,10 @@
+import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import './App.css';
 
 import Home from './components/Home';
 import Signup from './components/Signup';
+import Nav from './components/Nav';
 import { Global } from './styles/Global';
 
 const theme = {
@@ -18,7 +20,10 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<Global />
 			<Signup />
-			<Home />
+			<Nav />
+			<Routes>
+				<Route path='/home' element={<Home />} />
+			</Routes>
 		</ThemeProvider>
 	);
 }
