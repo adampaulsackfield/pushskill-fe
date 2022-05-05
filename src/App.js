@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import './App.css';
@@ -11,14 +12,15 @@ import Login from './components/Login';
 
 import { Global } from './styles/Global';
 import Partner from './components/Partner';
-import { useState } from 'react';
 
 // Socket IO Client
 import { io } from 'socket.io-client';
 
 // Context
 import { SocketContext } from './context/SocketContext';
-import { Route, Routes } from 'react-router-dom';
+
+import { TokenContext } from './context/TokenContext';
+
 const socket = io.connect('http://localhost:9090');
 
 const theme = {
@@ -35,24 +37,24 @@ const theme = {
 
 function App() {
 	const [token, setToken] = useState('');
+
 	return (
 		<SocketContext.Provider value={{ socket }}>
-			<ThemeProvider theme={theme}>
-				<Global />
-				<Nav />
+			<TokenContext.Provider value={{ token, setToken }}>
+				<ThemeProvider theme={theme}>
+					<Global />
+					<Nav />
 
-				<Routes>
-					<Route path='/home' element={<Home />} />
-					<Route path='/client' element={<Client />} />
-					<Route path='/rooms/:room_name' element={<Room />} />
-					<Route path='/signup' element={<Signup />} />
-					<Route path='/partner' element={<Partner />} />
-					<Route
-						path='/login'
-						element={<Login token={token} setToken={setToken} />}
-					/>
-				</Routes>
-			</ThemeProvider>
+					<Routes>
+						<Route path='/home' element={<Home />} />
+						<Route path='/client' element={<Client />} />
+						<Route path='/rooms/:room_name' element={<Room />} />
+						<Route path='/signup' element={<Signup />} />
+						<Route path='/partner' element={<Partner />} />
+						<Route path='/login' element={<Login />} />
+					</Routes>
+				</ThemeProvider>
+			</TokenContext.Provider>
 		</SocketContext.Provider>
 	);
 }
