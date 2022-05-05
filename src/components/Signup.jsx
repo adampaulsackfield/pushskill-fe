@@ -18,7 +18,6 @@ const Signup = () => {
 
 	return (
 		<StyledSignup>
-			<main>
 				<h2>Sign up</h2>
 				<form
 					onSubmit={(e) => {
@@ -56,7 +55,6 @@ const Signup = () => {
 					/>
 					<button>Sign Up</button>
 				</form>
-			</main>
 		</StyledSignup>
 	);
 };

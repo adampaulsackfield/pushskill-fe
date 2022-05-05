@@ -25,7 +25,6 @@ const Login = () => {
 
 	return (
 		<StyledLogin>
-			<main>
 				<h2>Login</h2>
 				<form>
 					<input
@@ -57,7 +56,6 @@ const Login = () => {
 						<Link to={context.token && '/home'}>Login</Link>
 					</button>
 				</form>
-			</main>
 		</StyledLogin>
 	);
 };

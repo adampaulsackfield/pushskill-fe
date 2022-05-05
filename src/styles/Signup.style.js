@@ -2,15 +2,22 @@ import styled from 'styled-components';
 
 export const StyledSignup = styled.main`
 	background-color: ${({ theme }) => theme.colors.mainBg};
-
 	color: ${({ theme }) => theme.colors.mainText};
 	width: 40vw;
 	margin: 0;
 	padding-top: 20px;
 	background-color: #222;
 	border-radius: 20px;
-	padding: 40px;
+	padding: 30px;
 	max-width: 1100px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 
 	h2 {
 		margin: 10px;
