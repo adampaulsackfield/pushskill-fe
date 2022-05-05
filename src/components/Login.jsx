@@ -12,7 +12,7 @@ const Login = () => {
 		<StyledLogin>
 			<main>
 				<h2>Login</h2>
-				<form action={'/home'}>
+				<form>
 					<input
 						type='text'
 						required
@@ -30,19 +30,18 @@ const Login = () => {
 						onChange={(e) => {
 							setPassword(e.target.value);
 						}}
-						onBlur={() => {
-							logUserIn(username, password).then(({ data }) => {
-								setToken(data.user.token);
-							});
-						}}
 					/>
 
 					<button
-						onSubmit={(e) => {
-							e.preventDefault();
+						onMouseOver={(e) => {
+							if (!token) {
+								logUserIn(username, password).then(({ data }) => {
+									setToken(data.user.token);
+								});
+							}
 						}}
 					>
-						Login
+						<Link to={token && '/home'}>Login</Link>
 					</button>
 				</form>
 			</main>
