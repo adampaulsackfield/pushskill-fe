@@ -3,10 +3,9 @@ import { StyledLogin } from '../styles/Login.style';
 import { logUserIn } from '../utils/api';
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ token, setToken }) => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
-	const [token, setToken] = useState('');
 	console.log(token);
 	return (
 		<StyledLogin>

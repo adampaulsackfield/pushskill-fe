@@ -22,16 +22,19 @@ const theme = {
 };
 
 function App() {
+	const [token, setToken] = useState('');
 	return (
 		<ThemeProvider theme={theme}>
 			<Global />
 			<Nav />
 			<Routes>
-				<Route path='/home' element={<Home />} />
+				<Route path='/home' element={<Home token={token} />} />
 				<Route path='/signup' element={<Signup />} />
-				<Route path='/login' element={<Login />} />
-				<Route path='/partner' element={<Partner />} />
-
+				<Route
+					path='/login'
+					element={<Login token={token} setToken={setToken} />}
+				/>
+				<Route path='/partner' element={<Partner token={token} />} />
 			</Routes>
 		</ThemeProvider>
 	);
