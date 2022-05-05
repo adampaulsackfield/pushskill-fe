@@ -36,6 +36,7 @@ export const StyledLogin = styled.form`
 		width: 90%;
 		border-radius: 5px;
 		font-size: 1.2rem;
+		padding-left: 10px;
 	}
 
 	button {

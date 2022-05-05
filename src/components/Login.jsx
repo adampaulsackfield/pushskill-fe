@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { StyledLogin } from '../styles/Login.style';
+import { logUserIn } from '../utils/api';
 
 const Login = () => {
 	const [username, setUsername] = useState('');
@@ -13,6 +14,9 @@ const Login = () => {
 					<form
 						onSubmit={(e) => {
 							e.preventDefault();
+							logUserIn(username, password).then((data) => {
+								console.log(data);
+							});
 						}}
 					>
 						<input

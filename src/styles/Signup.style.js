@@ -1,19 +1,16 @@
 import styled from 'styled-components';
 
-export const StyledSignup = styled.form`
+export const StyledSignup = styled.main`
 	background-color: ${({ theme }) => theme.colors.mainBg};
 
 	color: ${({ theme }) => theme.colors.mainText};
 	width: 40vw;
 	margin: 0;
 	padding-top: 20px;
-
-	div {
-		background-color: #222;
-		border-radius: 20px;
-		padding: 40px;
-		max-width: 1100px;
-	}
+	background-color: #222;
+	border-radius: 20px;
+	padding: 40px;
+	max-width: 1100px;
 
 	h2 {
 		margin: 10px;
@@ -36,6 +33,7 @@ export const StyledSignup = styled.form`
 		width: 90%;
 		border-radius: 5px;
 		font-size: 1.2rem;
+		padding-left: 10px;
 	}
 
 	button {
