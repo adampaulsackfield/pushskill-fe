@@ -46,10 +46,12 @@ const Login = () => {
 					/>
 
 					<button
-						onMouseOver={(e) => {
+						onClick={(e) => {
+							e.preventDefault();
 							if (!context.token) {
 								logUserIn(loginForm).then(({ data }) => {
-									context.setToken(data.user.token);
+									console.log('data', data.user.token);
+									context.setToken(data[0].user.token);
 								});
 							}
 						}}

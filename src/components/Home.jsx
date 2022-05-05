@@ -8,14 +8,17 @@ const Home = () => {
 	const [users, setUsers] = useState('');
 
 	useEffect(() => {
-		axios
-			.get('http://localhost:9090/api/users', {
-				headers: {
-					Authorization: `Bearer ${context.token}`,
-				},
-			})
-			.then(({ data }) => setUsers(data.users));
-	}, []);
+		console.log('token', context);
+		if (context.token) {
+			axios
+				.get('http://localhost:9090/api/users', {
+					headers: {
+						Authorization: `Bearer ${context.token}`,
+					},
+				})
+				.then(({ data }) => setUsers(data.users));
+		}
+	}, [context.token]);
 
 	console.log('users:', users);
 

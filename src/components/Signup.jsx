@@ -23,11 +23,9 @@ const Signup = () => {
 				<form
 					onSubmit={(e) => {
 						e.preventDefault();
-						signUpUser(signUpForm.username, signUpForm.password).then(
-							(userData) => {
-								console.log(userData + 'userdata');
-							}
-						);
+						signUpUser(signUpForm).then((userData) => {
+							console.log(userData + 'userdata');
+						});
 					}}
 				>
 					<input
