@@ -1,16 +1,15 @@
 import { useState } from 'react';
-import { StyledSignup } from '../styles/Signup.style';
+import { StyledLogin } from '../styles/Login.style';
 
-const Signup = () => {
+const Login = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
-	const [confirmPassword, setConfirmPassword] = useState('');
 
 	return (
-		<StyledSignup>
+		<StyledLogin>
 			<main>
 				<div>
-					<h2>Sign up</h2>
+					<h2>Login</h2>
 					<form
 						onSubmit={(e) => {
 							e.preventDefault();
@@ -34,21 +33,12 @@ const Signup = () => {
 								setPassword(e.target.value);
 							}}
 						/>
-						<input
-							type='password'
-							required
-							placeholder='Confirm Password:'
-							value={confirmPassword}
-							onChange={(e) => {
-								setConfirmPassword(e.target.value);
-							}}
-						/>
-						<button>Sign Up</button>
+						<button>Login</button>
 					</form>
 				</div>
 			</main>
-		</StyledSignup>
+		</StyledLogin>
 	);
 };
 
-export default Signup;
+export default Login;

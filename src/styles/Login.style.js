@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledSignup = styled.form`
+export const StyledLogin = styled.form`
 	background-color: ${({ theme }) => theme.colors.mainBg};
 
 	color: ${({ theme }) => theme.colors.mainText};

@@ -5,6 +5,7 @@ import './App.css';
 import Home from './components/Home';
 import Signup from './components/Signup';
 import Nav from './components/Nav';
+import Login from './components/Login';
 import { Global } from './styles/Global';
 
 const theme = {
@@ -27,6 +28,7 @@ function App() {
 			<Routes>
 				<Route path='/home' element={<Home />} />
 				<Route path='/signup' element={<Signup />} />
+				<Route path='/login' element={<Login />} />
 			</Routes>
 		</ThemeProvider>
 	);
