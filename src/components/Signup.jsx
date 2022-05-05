@@ -7,9 +7,6 @@ const Signup = () => {
 		password: '',
 		confirmPassword: '',
 	});
-	// const [username, setUsername] = useState('');
-	// const [password, setPassword] = useState('');
-	// const [confirmPassword, setConfirmPassword] = useState('');
 
 	const handleInputChange = (event) => {
 		setSignUpForm((prev) => ({
