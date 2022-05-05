@@ -6,8 +6,12 @@ import { Global } from './styles/Global';
 const theme = {
 	colors: {
 		mainBg: '#353535',
+		darkderBg: '#222',
 		mainAccent: '#ff7477',
 		mainText: '#ebebeb',
+	},
+	borders: {
+		borderRadius: '20px',
 	},
 };
 
