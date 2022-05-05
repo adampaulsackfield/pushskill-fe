@@ -7,7 +7,7 @@ const Home = () => {
     const [name, setName] = useState('')
 
     useEffect(() => {
-        fetch('https://pushskill.herokuapp.com/api/users').then(res => res.json()).then(res => setName(res))
+        fetch('http://localhost:9090/api/users').then(res => res.json()).then(res => setName(res))
     }, [])
 
     console.log('name:', name)
