@@ -23,10 +23,10 @@ function App() {
 	return (
 		<ThemeProvider theme={theme}>
 			<Global />
-			<Signup />
 			<Nav />
 			<Routes>
 				<Route path='/home' element={<Home />} />
+				<Route path='/signup' element={<Signup />} />
 			</Routes>
 		</ThemeProvider>
 	);
