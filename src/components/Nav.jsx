@@ -1,21 +1,21 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import {StyledNav} from '../styles/Nav.style'
+import React from 'react';
+import { StyledNav } from '../styles/Nav.style';
+import { NavLink } from 'react-router-dom';
 
 const Nav = () => {
-  return (
-    <StyledNav>
-        <nav>
-            <div>
-                <Link to='/home'>Home</Link>
-                <Link to='/partner'>Partner</Link>
-                <Link to='/about'>About</Link>
-                <Link to='/help'>Help</Link>
-                <Link to='/faq'>FAQs</Link>
-            </div>
-        </nav>
-    </StyledNav>
-  )
-}
+	return (
+		<StyledNav>
+			<nav>
+				<div>
+					<NavLink to='/home'>Home</NavLink>
+					<NavLink to='/partner'>Partner</NavLink>
+					<NavLink to='/about'>About</NavLink>
+					<NavLink to='/help'>Help</NavLink>
+					<NavLink to='/faq'>FAQs</NavLink>
+				</div>
+			</nav>
+		</StyledNav>
+	);
+};
 
-export default Nav
+export default Nav;
