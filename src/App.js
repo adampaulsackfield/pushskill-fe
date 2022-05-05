@@ -8,6 +8,7 @@ import Nav from './components/Nav';
 import Login from './components/Login';
 import { Global } from './styles/Global';
 import Partner from './components/Partner';
+import { useState } from 'react';
 
 const theme = {
 	colors: {
