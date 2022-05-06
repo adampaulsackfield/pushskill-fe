@@ -13,6 +13,8 @@ const Signup = () => {
 			toast('Thanks for signing up!');
 		}
 	}
+	const [learningInterests, setLearningInterests] = useState('Knitting');
+	const [traits, setTraits] = useState('Supportive');
 
 	const [signUpForm, setSignUpForm] = useState({
 		username: '',
@@ -20,13 +22,12 @@ const Signup = () => {
 		confirmPassword: '',
 		avatarUrl: '',
 	});
-	const [learningInterests, setLearningInterests] = useState([]);
-	const [traits, setTraits] = useState([]);
+
 	const handleInterests = (e) => {
-		setLearningInterests([e.target.value]);
+		setLearningInterests(e.target.value);
 	};
 	const handleTraits = (e) => {
-		setTraits([e.target.value]);
+		setTraits(e.target.value);
 	};
 
 	const handleInputChange = (event) => {
@@ -55,6 +56,13 @@ const Signup = () => {
 					value={signUpForm.username}
 					onChange={(e) => handleInputChange(e)}
 				/>
+				{/* <input
+					name='firstName'
+					type='text'
+					placeholder='Name:'
+					value={signUpForm.firstName}
+					onChange={(e) => handleInputChange(e)}
+				/> */}
 				<input
 					name='password'
 					type='password'

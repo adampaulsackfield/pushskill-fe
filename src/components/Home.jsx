@@ -11,6 +11,8 @@ const Home = () => {
 	const [users, setUsers] = useState('');
 	const socket = useContext(SocketContext).socket
 
+	console.log('users:', users)
+
 	useEffect(() => {
 		if (token) {
 			axios
