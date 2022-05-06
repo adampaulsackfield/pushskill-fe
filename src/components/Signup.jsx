@@ -4,7 +4,15 @@ import { signUpUser } from '../utils/api';
 import { toast } from 'react-toastify';
 
 const Signup = () => {
-	const notify = () => toast('Thanks for signing up!');
+	const notify = () => {
+		if(!signUpForm.password) {
+			toast('Please enter a password!');
+		} else if (signUpForm.password !== signUpForm.confirmPassword) {
+			toast('Make sure both passwords match!');
+		} else if(signUpForm.password === signUpForm.confirmPassword) {
+			toast('Thanks for signing up!');
+		}
+	}
 
 	const [signUpForm, setSignUpForm] = useState({
 		username: '',
