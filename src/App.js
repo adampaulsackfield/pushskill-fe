@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import './App.css';
-
 import Home from './components/Home';
 import Signup from './components/Signup';
+import { Profile } from './components/Profile';
 import Nav from './components/Nav';
 import { Global } from './styles/Global';
 
@@ -27,6 +27,8 @@ function App() {
 			<Routes>
 				<Route path='/home' element={<Home />} />
 				<Route path='/signup' element={<Signup />} />
+				
+				<Route path='/profile/:user_id' element={<Profile />} />
 			</Routes>
 		</ThemeProvider>
 	);
