@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { StyledPartner } from '../styles/Partner.style';
 import { useContext } from 'react';
 import { TokenContext } from '../context/TokenContext';
-import { getMessages, getRooms, createMessage } from '../utils/api';
 import { RoomsContext } from '../context/RoomsContext';
 import { SocketContext } from '../context/SocketContext';
 
