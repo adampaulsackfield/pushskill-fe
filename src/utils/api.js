@@ -4,10 +4,24 @@ const pushSkillApi = axios.create({
 	baseURL: 'http://localhost:9090/api',
 });
 
-export const signUpUser = ({ username, password }) => {
-	return pushSkillApi.post('/users', { username, password }).then((data) => {
-		return data;
-	});
+export const signUpUser = (
+	{ username, password, confirmPassword, avatarUrl },
+	traits,
+	learningInterests
+) => {
+	if (password === confirmPassword) {
+		return pushSkillApi
+			.post('/users', {
+				username,
+				password,
+				avatarUrl,
+				traits,
+				learningInterests,
+			})
+			.then((data) => {
+				return data;
+			});
+	}
 };
 
 export const logUserIn = ({ username, password }) => {
