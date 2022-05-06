@@ -16,9 +16,9 @@ const Partner = () => {
 	useEffect(() => {
 		socket.on('receive_message', (data) => {
 			console.log('data:', data);
-			setMessages(data);
+			setMessages((prev) => [...prev, data]);
 		});
-	}, []);
+	}, [socket]);
 
 	console.log('rooms:', rooms);
 
@@ -39,6 +39,8 @@ const Partner = () => {
 
 	console.log('rooms:', rooms);
 
+	console.log('message:', message);
+
 	console.log('messages:', messages);
 
 	return (
@@ -47,6 +49,13 @@ const Partner = () => {
 				<section>
 					<h1>{rooms ? rooms._id : 'No room'}</h1>
 					<div>
+						<ul>
+							{messages &&
+								messages.map((message) => {
+									return <li>{message.message}</li>;
+								})}
+						</ul>
+
 						<form>
 							<input
 								type='text'
