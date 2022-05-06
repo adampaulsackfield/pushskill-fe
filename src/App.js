@@ -53,7 +53,7 @@ function App() {
 						<Route path='/partner' element={<Partner />} />
 						<Route path='/login' element={<Login />} />
 					</Routes>
-					<ToastContainer />
+					<ToastContainer position='top-center' />
 				</ThemeProvider>
 			</TokenContext.Provider>
 		</SocketContext.Provider>
