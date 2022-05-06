@@ -19,11 +19,8 @@ import { io } from 'socket.io-client';
 
 // Context
 import { SocketContext } from './context/SocketContext';
-
 import { TokenContext } from './context/TokenContext';
-
 import { UserContext } from './context/UserContext';
-
 import { RoomsContext } from './context/RoomsContext';
 
 const socket = io.connect('http://localhost:9090');
