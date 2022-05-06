@@ -21,6 +21,8 @@ import { SocketContext } from './context/SocketContext';
 
 import { TokenContext } from './context/TokenContext';
 
+import { RoomsContext } from './context/RoomsContext';
+
 const socket = io.connect('http://localhost:9090');
 
 const theme = {
@@ -37,24 +39,26 @@ const theme = {
 
 function App() {
 	const [token, setToken] = useState('');
+	const [rooms, setRooms] = useState([]);
 
 	return (
 		<SocketContext.Provider value={{ socket }}>
 			<TokenContext.Provider value={{ token, setToken }}>
-				<ThemeProvider theme={theme}>
-					<Global />
-					<Nav />
-
-					<Routes>
-						<Route path='/home' element={<Home />} />
-						<Route path='/client' element={<Client />} />
-						<Route path='/rooms/:room_name' element={<Room />} />
-						<Route path='/signup' element={<Signup />} />
-						<Route path='/partner' element={<Partner />} />
-						<Route path='/login' element={<Login />} />
-					</Routes>
-					<ToastContainer position='top-center' />
-				</ThemeProvider>
+				<RoomsContext.Provider value={{ rooms, setRooms }}>
+					<ThemeProvider theme={theme}>
+						<Global />
+						<Nav />
+						<Routes>
+							<Route path='/home' element={<Home />} />
+							<Route path='/client' element={<Client />} />
+							<Route path='/rooms/:room_name' element={<Room />} />
+							<Route path='/signup' element={<Signup />} />
+							<Route path='/partner' element={<Partner />} />
+							<Route path='/login' element={<Login />} />
+						</Routes>
+						<ToastContainer position='top-center' />
+					</ThemeProvider>
+				</RoomsContext.Provider>
 			</TokenContext.Provider>
 		</SocketContext.Provider>
 	);

@@ -16,7 +16,7 @@ export const StyledPartner = styled.main`
 	}
 
 	section div {
-		width: 700px;
+		width: 900px;
 		height: 500px;
 		background-color: ${({ theme }) => theme.colors.mainAccent};
 		margin-bottom: 20px;
