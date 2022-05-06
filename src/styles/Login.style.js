@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 
-export const StyledSignup = styled.main`
+export const StyledLogin = styled.main`
 	background-color: ${({ theme }) => theme.colors.mainBg};
 	color: ${({ theme }) => theme.colors.mainText};
 	width: 40vw;
-	margin: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	padding-top: 20px;
 	background-color: #222;
 	border-radius: 20px;
@@ -14,10 +17,6 @@ export const StyledSignup = styled.main`
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 
 	h2 {
 		margin: 10px;
@@ -52,5 +51,12 @@ export const StyledSignup = styled.main`
 		background-color: ${({ theme }) => theme.colors.mainAccent};
 		color: ${({ theme }) => theme.colors.mainText};
 		font-size: 1.2rem;
+	}
+
+	a {
+		width: 200px;
+		height: 40px;
+		text-decoration: none;
+		color: ${({ theme }) => theme.colors.mainText};
 	}
 `;

@@ -18,10 +18,15 @@ export const logUserIn = ({ username, password }) => {
 		});
 };
 
-export const getProfile = (user_id) => {
-
-    return pushSkillApi.get(`/users/${user_id}`).then((user) => {
-        return user;
-    })
-
-}
+export const getProfile = (user_id, context) => {
+	const token = context.token;
+	return pushSkillApi
+		.get(`/users/${user_id}`, {
+			headers: {
+				Authorization: `Bearer ${context.token}`,
+			},
+		})
+		.then((user) => {
+			return user;
+		});
+};

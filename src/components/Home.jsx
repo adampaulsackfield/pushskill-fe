@@ -1,47 +1,62 @@
-import React from 'react'
-import { useState } from 'react'
-import { useEffect } from 'react'
-import { StyledHome } from '../styles/Home.style'
+import axios from 'axios';
+import { useState, useContext, useEffect } from 'react';
+import { TokenContext } from '../context/TokenContext';
+import { StyledHome } from '../styles/Home.style';
 
 const Home = () => {
-    const [name, setName] = useState('')
+	const context = useContext(TokenContext);
+	const [users, setUsers] = useState('');
 
-    useEffect(() => {
-        fetch('https://pushskill.herokuapp.com/api/users').then(res => res.json()).then(res => setName(res))
-    }, [])
+	useEffect(() => {
+		console.log('token', context);
+		if (context.token) {
+			axios
+				.get('http://localhost:9090/api/users', {
+					headers: {
+						Authorization: `Bearer ${context.token}`,
+					},
+				})
+				.then(({ data }) => setUsers(data.users));
+		}
+	}, [context]);
 
-    console.log('name:', name)
+	console.log('users:', users);
 
-  return (
-    <StyledHome>
-        <main>
-            <header>
-                <h1>Welcome back {'${user}'}</h1>
-            </header>
-            <div>
-                <h3>Here's some people we think you'll love!</h3>
-                <section>
-                    <div>
-                        <img src="https://images.theconversation.com/files/443350/original/file-20220131-15-1ndq1m6.jpg?ixlib=rb-1.1.0&rect=0%2C0%2C3354%2C2464&q=45&auto=format&w=926&fit=clip" alt="cat" />
-                        <p>Here's some info about the person you'll like</p>
-                    </div>
-                </section>
-                <section>
-                    <div>
-                        <img src="https://images.theconversation.com/files/443350/original/file-20220131-15-1ndq1m6.jpg?ixlib=rb-1.1.0&rect=0%2C0%2C3354%2C2464&q=45&auto=format&w=926&fit=clip" alt="cat" />
-                        <p>Here's some info about the person you'll like</p>
-                    </div>
-                </section>
-                <section>
-                    <div>
-                        <img src="https://images.theconversation.com/files/443350/original/file-20220131-15-1ndq1m6.jpg?ixlib=rb-1.1.0&rect=0%2C0%2C3354%2C2464&q=45&auto=format&w=926&fit=clip" alt="cat" />
-                        <p>Here's some info about the person you'll like</p>
-                    </div>
-                </section>
-            </div>
-        </main>
-    </StyledHome>
-  )
-}
+	if(users) {return (
+		<StyledHome>
+			<main>
+				<header>
+					<h1>Welcome back {'${user}'}</h1>
+				</header>
+				<div>
+					<h3>Here's some people we think you'll love!</h3>
+					{users &&
+						users.map((user) => {
+							return (
+								<section>
+									<div>
+										<img src={user.avatarUrl} alt={`${user.username}'s avatar`} />
+                                        <span></span>
+										<div>
+											<p>Username: {user.username}</p>
+											<p>Name: {user.firstName}</p>
+											<ul>
+												{user.traits.map((trait) => {
+													return <li key={trait}>Trait: {trait}</li>;
+												})}
+											</ul>
+										</div>
+									</div>
+								</section>
+							);
+						})}
+				</div>
+			</main>
+		</StyledHome>
+	)
+    } else if(!context.token) {
+        return <h1>You must login to see this page!</h1>
+    }
+};
 
-export default Home
+export default Home;
