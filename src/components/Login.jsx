@@ -51,7 +51,6 @@ const Login = () => {
 						// e.preventDefault();
 						if (!context.token) {
 							logUserIn(loginForm).then(({ data }) => {
-								console.log('data', data.user.token);
 								context.setToken(data.user.token);
 								userContext.setUser(data.user);
 							});
