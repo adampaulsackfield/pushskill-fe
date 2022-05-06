@@ -32,7 +32,7 @@ const Partner = () => {
 		e.preventDefault();
 		socket.emit('chat_message', {
 			token,
-			roomId: '6272ee2109c3dd977e39ab9c',
+			roomId: room_id,
 			recipientId,
 			message,
 		});
