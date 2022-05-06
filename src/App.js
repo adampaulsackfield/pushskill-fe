@@ -10,6 +10,8 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import { Global } from './styles/Global';
 import Partner from './components/Partner';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Socket IO Client
 import { io } from 'socket.io-client';
@@ -51,6 +53,7 @@ function App() {
 						<Route path='/partner' element={<Partner />} />
 						<Route path='/login' element={<Login />} />
 					</Routes>
+					<ToastContainer />
 				</ThemeProvider>
 			</TokenContext.Provider>
 		</SocketContext.Provider>

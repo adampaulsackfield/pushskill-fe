@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { StyledSignup } from '../styles/Signup.style';
 import { signUpUser } from '../utils/api';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 const Signup = () => {
 	const notify = () => toast("Thanks for signing up!");
@@ -56,7 +55,6 @@ const Signup = () => {
 						onChange={(e) => handleInputChange(e)}
 					/>
 					<button onClick={notify}>Sign Up</button>
-					<ToastContainer />
 				</form>
 		</StyledSignup>
 	);
