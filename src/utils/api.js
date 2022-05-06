@@ -5,9 +5,12 @@ const pushSkillApi = axios.create({
 });
 
 export const signUpUser = ({ username, password }) => {
-	return pushSkillApi.post('/users', { username, password }).then((data) => {
-		return data;
-	});
+	return pushSkillApi
+		.post('/users', { username, password })
+		.then((data) => {
+			return data;
+		})
+		.catch((err) => console.error('err', err));
 };
 
 export const logUserIn = ({ username, password }) => {
