@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Room from './components/Socket/Room';
 import Client from './components/Socket/Client';
 import Signup from './components/Signup';
+import { Profile } from './components/Profile';
 import Login from './components/Login';
 import { Global } from './styles/Global';
 import Partner from './components/Partner';
@@ -21,7 +22,11 @@ import { SocketContext } from './context/SocketContext';
 
 import { TokenContext } from './context/TokenContext';
 
+
+import { UserContext } from './context/UserContext';
+
 import { RoomsContext } from './context/RoomsContext';
+
 
 const socket = io.connect('http://localhost:9090');
 
@@ -39,15 +44,29 @@ const theme = {
 
 function App() {
 	const [token, setToken] = useState('');
-	const [rooms, setRooms] = useState([]);
+	const [user, setUser] = useState('');
+  const [rooms, setRooms] = useState([]);
+  
+	return (
+		<SocketContext.Provider value={{ socket }}>
+			<UserContext.Provider value={{ user, setUser }}>
+				<TokenContext.Provider value={{ token, setToken }}>
+					<ThemeProvider theme={theme}>
+						<Global />
+						<Nav />
+
+
+
 
 	return (
 		<SocketContext.Provider value={{ socket }}>
 			<TokenContext.Provider value={{ token, setToken }}>
+        <UserContext.Provider value={{ user, setUser }}>
 				<RoomsContext.Provider value={{ rooms, setRooms }}>
 					<ThemeProvider theme={theme}>
 						<Global />
 						<Nav />
+
 						<Routes>
 							<Route path='/home' element={<Home />} />
 							<Route path='/client' element={<Client />} />
@@ -55,11 +74,14 @@ function App() {
 							<Route path='/signup' element={<Signup />} />
 							<Route path='/partner' element={<Partner />} />
 							<Route path='/login' element={<Login />} />
+							<Route path='/profile/:user_id' element={<Profile />} />
 						</Routes>
 						<ToastContainer position='top-center' />
 					</ThemeProvider>
 				</RoomsContext.Provider>
+		    </UserContext.Provider>
 			</TokenContext.Provider>
+
 		</SocketContext.Provider>
 	);
 }

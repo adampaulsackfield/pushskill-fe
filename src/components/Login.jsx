@@ -3,14 +3,16 @@ import { StyledLogin } from '../styles/Login.style';
 import { logUserIn } from '../utils/api';
 import { Link, useNavigate } from 'react-router-dom';
 import { TokenContext } from '../context/TokenContext';
+import { UserContext } from '../context/UserContext';
 
 const Login = () => {
 	const [loginForm, setLoginForm] = useState({
 		username: '',
 		password: '',
 	});
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	const context = useContext(TokenContext);
+	const userContext = useContext(UserContext);
 
 	const handleInputChange = (event) => {
 		setLoginForm((prev) => ({
@@ -50,11 +52,13 @@ const Login = () => {
 						if (!context.token) {
 							logUserIn(loginForm).then(({ data }) => {
 								context.setToken(data.user.token);
+								userContext.setUser(data.user);
 							});
-							navigate('/home')
+							navigate('/home');
 						}
 					}}
-				>LOGIN
+				>
+					LOGIN
 				</button>
 			</form>
 		</StyledLogin>
