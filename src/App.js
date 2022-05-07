@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Room from './components/Socket/Room';
 import Client from './components/Socket/Client';
 import Signup from './components/Signup';
+import LandingPage from './components/LandingPage';
 import { Profile } from './components/Profile';
 import Login from './components/Login';
 import { Global } from './styles/Global';
@@ -52,6 +53,7 @@ function App() {
 							<Nav />
 
 							<Routes>
+								<Route path='/' element={<LandingPage />} />
 								<Route path='/home' element={<Home />} />
 								<Route path='/client' element={<Client />} />
 								<Route path='/rooms/:room_name' element={<Room />} />
