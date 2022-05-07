@@ -1,18 +1,22 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { StyledSignup } from '../styles/Signup.style';
 import { signUpUser } from '../utils/api';
 import { toast } from 'react-toastify';
+import { TokenContext } from '../context/TokenContext';
+import { UserContext } from '../context/UserContext';
+import { logUserIn } from '../utils/api';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
 	const notify = () => {
-		if(!signUpForm.password) {
+		if (!signUpForm.password) {
 			toast('Please enter a password!');
 		} else if (signUpForm.password !== signUpForm.confirmPassword) {
 			toast('Make sure both passwords match!');
-		} else if(signUpForm.password === signUpForm.confirmPassword) {
+		} else if (signUpForm.password === signUpForm.confirmPassword) {
 			toast('Thanks for signing up!');
 		}
-	}
+	};
 	const [learningInterests, setLearningInterests] = useState('Knitting');
 	const [traits, setTraits] = useState('Supportive');
 
@@ -37,6 +41,10 @@ const Signup = () => {
 		}));
 	};
 
+	const context = useContext(TokenContext);
+	const userContext = useContext(UserContext);
+	const navigate = useNavigate();
+
 	return (
 		<StyledSignup>
 			<h2>Sign up</h2>
@@ -45,7 +53,12 @@ const Signup = () => {
 					e.preventDefault();
 					signUpUser(signUpForm, traits, learningInterests).then((userData) => {
 						console.log(userData + 'userdata');
+						logUserIn(signUpForm).then(({ data }) => {
+							context.setToken(data.user.token);
+							userContext.setUser(data.user);
+						});
 					});
+					navigate('/home');
 				}}
 			>
 				<input
