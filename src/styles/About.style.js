@@ -3,7 +3,9 @@ import styled from 'styled-components';
 export const StyledAbout = styled.main`
 	height: 100vh;
 	width: 100%;
+	padding: 30px;
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
 
@@ -16,7 +18,7 @@ export const StyledAbout = styled.main`
 		display: grid;
 		justify-content: center;
 		align-items: center;
-		grid-template-rows: 1fr 6fr;
+		grid-template-rows: 1fr 3fr 3fr;
 	}
 
 	h1 {
@@ -32,5 +34,21 @@ export const StyledAbout = styled.main`
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: center;
+	}
+
+	a {
+		text-decoration: none;
+		color: ${({ theme }) => theme.colors.mainAccent};
+	}
+
+	.social-links {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	section div p span {
+		color: ${({ theme }) => theme.colors.mainAccent};
 	}
 `;
