@@ -3,11 +3,13 @@ import styled from 'styled-components';
 export const StyledNav = styled.nav`
 	position: fixed;
 	bottom: 30px;
+	top: 50%;
 	left: 50%;
-	transform: translateX(-50%);
+	transform: translate(-750px, -50%);
 	background-color: ${({ theme }) => theme.colors.mainBg};
-	height: 60px;
+	height: 100%;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
@@ -17,6 +19,7 @@ export const StyledNav = styled.nav`
 
 	div {
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		gap: 15px;

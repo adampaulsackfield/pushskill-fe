@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { StyledNav } from '../styles/Nav.style';
 import { AiFillHome, AiFillInfoCircle } from 'react-icons/ai';
-import { FaUserFriends } from 'react-icons/fa';
+import { FaUserFriends, FaHouseUser } from 'react-icons/fa';
 import { MdOutlineHelp } from 'react-icons/md';
 import { UserContext } from '../context/UserContext';
 
@@ -19,7 +19,7 @@ const Nav = () => {
 						<FaUserFriends />
 					</Link>
 					<Link to={`/profile/${context.user.id}`}>
-						<AiFillHome />
+						<FaHouseUser />
 					</Link>
 					<Link to='/about'>
 						<AiFillInfoCircle />
