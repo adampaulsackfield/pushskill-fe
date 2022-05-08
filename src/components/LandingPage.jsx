@@ -4,22 +4,21 @@ import { StyledLanding } from '../styles/Landing.style';
 const LandingPage = () => {
 	return (
 		<StyledLanding>
-			<main>
-				<div id='container'>
+				<section>
 					<div id='heading'>
-						<h1>Welcome to</h1>
-						<h1 id='accentHead'>.push(skill)</h1>
+						<h1>Welcome to <span>.push(skill)</span></h1>
 					</div>
-					<div id='content'>
-						<img
-							src={require('../images/achievements/The Completionist.png')}
-						/>
-						<p>
-							<Link to='/signup'>Sign up</Link> /<Link to='/login'> Login</Link>
-						</p>
+					<div id='signup-details'>
+						<h3>Things look a bit empty here...</h3>
+						<p>Sign up for free today!</p>
+						<p>Already have an account? <Link to='/login'><span>Login now!</span></Link></p>
 					</div>
-				</div>
-			</main>
+					<div id='content'>						
+						<div>
+							<Link to='/signup'><button>Sign up</button></Link><Link to='/login'><button>Login</button></Link>
+						</div>
+					</div>
+				</section>
 		</StyledLanding>
 	);
 };

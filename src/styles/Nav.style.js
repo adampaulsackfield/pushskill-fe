@@ -14,7 +14,6 @@ export const StyledNav = styled.nav`
 	border-radius: 50px;
 	padding: 10px;
 	z-index: 1000;
-	opacity: 0.6;
 
 	div {
 		display: flex;
@@ -38,7 +37,7 @@ export const StyledNav = styled.nav`
 	}
 
 	a:hover {
-		background-color: #000;
+		background-color: ${({ theme }) => theme.colors.mainAccent};
 	}
 
 	a:active,
