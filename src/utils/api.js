@@ -36,7 +36,7 @@ export const getProfile = (user_id, context) => {
 	return pushSkillApi
 		.get(`/users/${user_id}`, {
 			headers: {
-				Authorization: `Bearer ${token}`,
+				Authorization: `Bearer ${context.token}`,
 			},
 		})
 		.then((user) => {

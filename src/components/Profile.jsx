@@ -8,12 +8,10 @@ import { UserContext } from '../context/UserContext';
 export const Profile = () => {
 	const { user_id } = useParams();
 	const context = useContext(TokenContext);
-	const {user, setUser} = useContext(UserContext);
-
-
+	const { user, setUser } = useContext(UserContext);
 
 	useEffect(() => {
-		getProfile(user_id, context).then(({data}) => {
+		getProfile(user_id, context).then(({ data }) => {
 			setUser(data.user);
 		});
 	}, []);
@@ -25,14 +23,26 @@ export const Profile = () => {
 				<div className='card'>
 					<img src={user && user.avatarUrl} alt='' />
 					<div className='card-detials'>
-
-						<p><span>Traits: </span> {user.traits && user.traits.map(trait => trait)}</p>
-                    	<p><span>Interests: </span> {user.learningInterests && user.learningInterests.map(interest => interest)}</p>
+						<p>
+							<span>Traits: </span>{' '}
+							{user.traits && user.traits.map((trait) => trait)}
+						</p>
+						<p>
+							<span>Interests: </span>{' '}
+							{user.learningInterests &&
+								user.learningInterests.map((interest) => interest)}
+						</p>
 					</div>
 				</div>
 				<div className='achievements'>
-					<p><span>Achievements:</span> {user.achievements && user.achievements.map(achievement => achievement.name && achievement.description)}</p>
-					
+					<p>
+						<span>Achievements:</span>{' '}
+						{user.achievements &&
+							user.achievements.map(
+								(achievement) => achievement.name && achievement.description
+							)}
+					</p>
+
 					<div>
 						<img
 							src={require('../images/achievements/Extremist.png')}
