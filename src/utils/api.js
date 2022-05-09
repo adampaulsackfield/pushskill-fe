@@ -15,8 +15,8 @@ export const signUpUser = (
 				username,
 				password,
 				avatarUrl,
-				traits,
-				learningInterests,
+				traits: [traits],
+				learningInterests: [learningInterests],
 			})
 			.then((data) => {
 				return data;

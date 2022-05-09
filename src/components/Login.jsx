@@ -58,6 +58,9 @@ const Login = () => {
 								userContext.setUserId(data.user.id);
 								localStorage.setItem('id', data.user.id);
 								localStorage.setItem('token', data.user.token);
+								// if(data.user.isPaired) {
+								// 	localStorage.setItem('roomId', res.data.user.room._id);
+								// }
 							});
 							navigate('/home');
 						}

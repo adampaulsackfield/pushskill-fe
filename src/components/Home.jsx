@@ -19,7 +19,8 @@ const Home = () => {
 				},
 			})
 			.then((res) => {
-				console.log('data', res.data.room);
+				console.log('data***', res.data.room);
+				localStorage.setItem('roomId', res.data.room._id);
 				navigate(`/partner`);
 			})
 			.catch((err) => {
