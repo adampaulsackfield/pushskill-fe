@@ -9,7 +9,6 @@ import { TokenContext } from '../context/TokenContext';
 import { SocketContext } from '../context/SocketContext';
 import { RoomContext, RoomsContext } from '../context/RoomsContext';
 
-import './Partner.css';
 
 const Partner = () => {
 	const context = useContext(TokenContext);
@@ -96,23 +95,10 @@ const Partner = () => {
 
 	return (
 		<StyledPartner>
-			<main>
+				<h1>{roomId && `Room Name: ${roomId}`}</h1>
 				<section>
-					<h1>{roomId && `Room Name: ${roomId}`}</h1>
-					<div>
-						<form>
-							<input
-								type='text'
-								value={message}
-								placeholder='say something...'
-								onChange={(e) => setMessage(e.target.value)}
-							/>
-							<button onClick={handleSendMsg}>SEND</button>
-						</form>
-
+						<h1>Messages</h1>
 						<div>
-							<h1>Messages</h1>
-							<button onClick={listRooms}>CLICK ME</button>
 							<ul>
 								{messages &&
 									messages.map((message) => {
@@ -129,9 +115,17 @@ const Partner = () => {
 									})}
 							</ul>
 						</div>
-					</div>
+
+						<form>
+							<input
+								type='text'
+								value={message}
+								placeholder='say something...'
+								onChange={(e) => setMessage(e.target.value)}
+							/>
+							<button onClick={handleSendMsg}>SEND</button>
+						</form>
 				</section>
-			</main>
 		</StyledPartner>
 	);
 };
