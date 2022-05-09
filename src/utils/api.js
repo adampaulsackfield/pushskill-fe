@@ -33,7 +33,6 @@ export const logUserIn = ({ username, password }) => {
 };
 
 export const getProfile = (user_id, context) => {
-	const token = context.token;
 	return pushSkillApi
 		.get(`/users/${user_id}`, {
 			headers: {
@@ -42,5 +41,21 @@ export const getProfile = (user_id, context) => {
 		})
 		.then((user) => {
 			return user;
+		});
+};
+
+export const getMatches = (token) => {
+	return pushSkillApi
+		.get('/api/users/matches', {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		})
+		.then((users) => {
+			console.log('us', users);
+			return users;
+		})
+		.catch((err) => {
+			return 'Failed to get matches';
 		});
 };

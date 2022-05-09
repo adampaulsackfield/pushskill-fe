@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import './App.css';
@@ -38,16 +38,34 @@ const theme = {
 	},
 };
 
+const jwtToken = localStorage.getItem('token');
+const userIdLocal = localStorage.getItem('id');
+const roomIdLocal = localStorage.getItem('roomId');
+
 function App() {
 	const [token, setToken] = useState('');
 	const [user, setUser] = useState('');
+	const [userId, setUserId] = useState('');
 	const [rooms, setRooms] = useState([]);
+	const [roomId, setRoomId] = useState('');
+
+	useEffect(() => {
+		if (jwtToken) {
+			setToken(jwtToken);
+		}
+		if (userIdLocal) {
+			setUserId(userIdLocal);
+		}
+		if (roomIdLocal) {
+			setRoomId(roomIdLocal);
+		}
+	}, []);
 
 	return (
 		<SocketContext.Provider value={{ socket }}>
 			<TokenContext.Provider value={{ token, setToken }}>
-				<UserContext.Provider value={{ user, setUser }}>
-					<RoomsContext.Provider value={{ rooms, setRooms }}>
+				<UserContext.Provider value={{ user, setUser, userId, setUserId }}>
+					<RoomsContext.Provider value={{ rooms, setRooms, roomId }}>
 						<ThemeProvider theme={theme}>
 							<Global />
 							<Nav />

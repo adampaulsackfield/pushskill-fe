@@ -10,9 +10,7 @@ export const Profile = () => {
 	const context = useContext(TokenContext);
 	const {user, setUser} = useContext(UserContext);
 
-	console.log('context:', context)
 
-	console.log('user:', user)
 
 	useEffect(() => {
 		getProfile(user_id, context).then(({data}) => {
@@ -27,6 +25,7 @@ export const Profile = () => {
 				<div className='card'>
 					<img src={user && user.avatarUrl} alt='' />
 					<div className='card-detials'>
+
 						<p><span>Traits: </span> {user.traits && user.traits.map(trait => trait)}</p>
                     	<p><span>Interests: </span> {user.learningInterests && user.learningInterests.map(interest => interest)}</p>
 					</div>
@@ -35,7 +34,10 @@ export const Profile = () => {
 					<p><span>Achievements:</span> {user.achievements && user.achievements.map(achievement => achievement.name && achievement.description)}</p>
 					
 					<div>
-						<img src={require('../images/achievements/Extremist.png')} alt='achievement' />
+						<img
+							src={require('../images/achievements/Extremist.png')}
+							alt='achievement'
+						/>
 					</div>
 				</div>
 			</section>

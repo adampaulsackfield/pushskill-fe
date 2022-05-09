@@ -1,7 +1,9 @@
 import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { StyledLogin } from '../styles/Login.style';
 import { logUserIn } from '../utils/api';
-import { Link, useNavigate } from 'react-router-dom';
+
 import { TokenContext } from '../context/TokenContext';
 import { UserContext } from '../context/UserContext';
 
@@ -53,6 +55,9 @@ const Login = () => {
 							logUserIn(loginForm).then(({ data }) => {
 								context.setToken(data.user.token);
 								userContext.setUser(data.user);
+								userContext.setUserId(data.user.id);
+								localStorage.setItem('id', data.user.id);
+								localStorage.setItem('token', data.user.token);
 							});
 							navigate('/home');
 						}
