@@ -16,6 +16,7 @@ const Partner = () => {
 	const token = context.token;
 	const [messages, setMessages] = useState([]);
 	const [message, setMessage] = useState('');
+
 	const { userId } = useContext(UserContext);
 	const { socket } = useContext(SocketContext);
 	const { roomId } = useContext(RoomsContext);
