@@ -84,4 +84,10 @@ export const StyledPartner = styled.main`
 		border-radius: 2px;
 		padding: 5px;
 	}
+
+	li div {
+		background-color: white;
+		width: 30px;
+		height: 30px;
+	}
 `;

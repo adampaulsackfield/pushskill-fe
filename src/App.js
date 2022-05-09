@@ -24,7 +24,7 @@ import { TokenContext } from './context/TokenContext';
 import { UserContext } from './context/UserContext';
 import { RoomsContext } from './context/RoomsContext';
 
-const socket = io.connect('http://localhost:9090');
+const socket = io.connect('https://pushskill.herokuapp.com');
 
 const theme = {
 	colors: {
