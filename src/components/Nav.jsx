@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useId } from 'react';
 import { Link } from 'react-router-dom';
 import { StyledNav } from '../styles/Nav.style';
 import { AiFillHome, AiFillInfoCircle } from 'react-icons/ai';
@@ -7,7 +7,8 @@ import { MdOutlineHelp } from 'react-icons/md';
 import { UserContext } from '../context/UserContext';
 
 const Nav = () => {
-	const context = useContext(UserContext);
+	const { userId } = useContext(UserContext);
+
 	return (
 		<StyledNav>
 			<nav>
@@ -18,7 +19,7 @@ const Nav = () => {
 					<Link to='/partner'>
 						<FaUserFriends />
 					</Link>
-					<Link to={`/profile/${context.user.id}`}>
+					<Link to={`/profile/${userId}`}>
 						<AiFillHome />
 					</Link>
 					<Link to='/about'>

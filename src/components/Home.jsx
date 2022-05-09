@@ -37,10 +37,12 @@ const Home = () => {
 					},
 				})
 				.then((res) => {
+					console.log('here we are');
 					setUsers(res.data.users);
 					console.log(users);
 				})
 				.catch((err) => {
+					console.log('here we are 2');
 					console.log(err);
 				});
 		}

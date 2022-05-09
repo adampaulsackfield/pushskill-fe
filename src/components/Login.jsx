@@ -47,27 +47,25 @@ const Login = () => {
 				{!context.token && loginForm.password && (
 					<p>enter a valid username and password</p>
 				)}
-
-				<button
-					onClick={(e) => {
-						e.preventDefault();
-						if (!context.token) {
-							logUserIn(loginForm).then(({ data }) => {
-								context.setToken(data.user.token);
-								userContext.setUser(data.user);
-								userContext.setUserId(data.user.id);
-								localStorage.setItem('id', data.user.id);
-								localStorage.setItem('token', data.user.token);
-								console.log('user---', data.user);
-								localStorage.setItem('roomId', data.user?.roomId);
-							});
-							navigate('/home');
-						}
-					}}
-				>
-					LOGIN
-				</button>
 			</form>
+			<button
+				onClick={(e) => {
+					if (!context.token) {
+						logUserIn(loginForm).then(({ data }) => {
+							context.setToken(data.user.token);
+							userContext.setUser(data.user);
+							userContext.setUserId(data.user.id);
+							localStorage.setItem('id', data.user.id);
+							localStorage.setItem('token', data.user.token);
+							console.log('user---', data.user);
+							localStorage.setItem('roomId', data.user?.roomId);
+						});
+						navigate('/home');
+					}
+				}}
+			>
+				LOGIN
+			</button>
 		</StyledLogin>
 	);
 };
