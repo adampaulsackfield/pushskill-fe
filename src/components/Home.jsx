@@ -1,70 +1,108 @@
-import axios from 'axios';
 import { useState, useContext, useEffect } from 'react';
-import { RoomsContext } from '../context/RoomsContext';
-import { SocketContext } from '../context/SocketContext';
-import { TokenContext } from '../context/TokenContext';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 import { StyledHome } from '../styles/Home.style';
 
-const Home = () => {
-	const token = useContext(TokenContext).token;
-	const {rooms, setRooms} = useContext(RoomsContext)
-	const [users, setUsers] = useState('');
-	const socket = useContext(SocketContext).socket
+import { TokenContext } from '../context/TokenContext';
 
-	console.log('users:', users)
+const Home = () => {
+	const navigate = useNavigate();
+	const token = useContext(TokenContext).token;
+	const [users, setUsers] = useState('');
+
+	const handleJoinPair = (id) => {
+		axios
+			.get(`http://localhost:9090/api/users/matches/${id}`, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			})
+			.then((res) => {
+				console.log('data', res.data.room);
+				navigate(`/partner`);
+			})
+			.catch((err) => {
+				console.log('err', err);
+			});
+	};
 
 	useEffect(() => {
 		if (token) {
 			axios
-				.get('http://localhost:9090/api/users', {
+				.get('http://localhost:9090/api/users/matches', {
 					headers: {
 						Authorization: `Bearer ${token}`,
 					},
 				})
-				.then(({ data }) => setUsers(data.users));
+				.then((res) => {
+					setUsers(res.data.users);
+					console.log(users);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
 		}
-		socket.emit('list_rooms', {token})
-
-		socket.on('rooms_list', (data) => {
-			setRooms(data[0])
-		})
 	}, [token]);
 
-	if(users) {return (
-		<StyledHome>
-			<main>
-				<header>
-					<h1>Welcome back $User</h1>
-				</header>
-				<div>
-					<h3>Here's some people we think you'll love!</h3>
-					{users &&
-						users.map((user) => {
-							return (
-								<section>
-									<div>
-										<img src={user.avatarUrl} alt={`${user.username}'s avatar`} />
-                                        <span></span>
-										<div>
-											<p>Username: {user.username}</p>
-											<p>Name: {user.firstName}</p>
-											<ul>
-												{user.traits.map((trait) => {
-													return <li key={user.id}>Trait: {trait}</li>;
-												})}
-											</ul>
-										</div>
-									</div>
-								</section>
-							);
-						})}
-				</div>
-			</main>
-		</StyledHome>
-	)
-    } else if(!token) {
-        return <h1>You must login to see this page!</h1>
-    }
-}
+	if (users) {
+		return (
+			<StyledHome>
+				<main>
+					<header>
+						<h1>Welcome back $User</h1>
+
+						<button
+							onClick={() => {
+								localStorage.removeItem('token');
+								localStorage.removeItem('id');
+								localStorage.removeItem('roomId');
+							}}
+						>
+							LOGOUT - TEMP FOR DEV PURPOSES
+						</button>
+					</header>
+					<div>
+						<h3>Here's some people we think you'll love!</h3>
+						<ul>
+							{users &&
+								users.map((user) => {
+									return (
+										<li key={user._id}>
+											<section>
+												<div>
+													<img
+														src={user.avatarUrl}
+														alt={`${user.username}'s avatar`}
+													/>
+													<span></span>
+													<div>
+														<p>Username: {user.username}</p>
+														<p>Name: {user.firstName}</p>
+														<ul>
+															Traits:{' '}
+															{user.traits.map((trait) => {
+																return <li key={user._id + trait}>{trait}</li>;
+															})}
+														</ul>
+
+														<button onClick={() => handleJoinPair(user._id)}>
+															Pair
+														</button>
+													</div>
+												</div>
+											</section>
+										</li>
+									);
+								})}
+						</ul>
+					</div>
+				</main>
+			</StyledHome>
+		);
+	} else if (!token) {
+		return <h1>You must login to see this page!</h1>;
+	}
+};
 
 export default Home;
