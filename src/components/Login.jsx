@@ -50,7 +50,7 @@ const Login = () => {
 
 				<button
 					onClick={(e) => {
-						// e.preventDefault();
+						e.preventDefault();
 						if (!context.token) {
 							logUserIn(loginForm).then(({ data }) => {
 								context.setToken(data.user.token);
@@ -58,9 +58,8 @@ const Login = () => {
 								userContext.setUserId(data.user.id);
 								localStorage.setItem('id', data.user.id);
 								localStorage.setItem('token', data.user.token);
-								// if(data.user.isPaired) {
-								// 	localStorage.setItem('roomId', res.data.user.room._id);
-								// }
+								console.log('user---', data.user);
+								localStorage.setItem('roomId', data.user?.roomId);
 							});
 							navigate('/home');
 						}

@@ -19,7 +19,7 @@ const Partner = () => {
 
 	const { userId } = useContext(UserContext);
 	const { socket } = useContext(SocketContext);
-	const { roomId } = useContext(RoomsContext);
+	const roomId = localStorage.getItem('roomId');
 
 	const [room, setRoom] = useState('');
 	const [roomRegistered, setRoomRegistered] = useState(false);
@@ -33,11 +33,12 @@ const Partner = () => {
 					},
 				})
 				.then((res) => {
+					console.log('rooomio', room);
 					setRoom(res.data.rooms[0]);
 
-					console.log('ROOM ID ._id', room._id);
+					console.log('ROOM ID .id', roomId);
 					axios
-						.get(`http://localhost:9090/api/rooms/${room._id}/messages`, {
+						.get(`http://localhost:9090/api/rooms/${roomId}/messages`, {
 							headers: {
 								Authorization: `Bearer ${token}`,
 							},
@@ -54,6 +55,8 @@ const Partner = () => {
 	}, []);
 
 	useEffect(() => {
+		socket.emit('join_room', { room_id: roomId });
+
 		socket.on('receive_message', (data) => {
 			console.log('1,000,001', data);
 			setMessages([...messages, data]);
@@ -68,11 +71,21 @@ const Partner = () => {
 		e.preventDefault();
 
 		socket.emit('chat_message', {
-			senderId: room.creator === userId ? userId : room.member,
-			room_id: room?._id,
-			recipientId: room.creator === userId ? room.member : userId,
+			senderId: room.creator === userId ? room.creator : room.member,
+			room_id: roomId,
+			recipientId: room.creator !== userId ? room.creator : room.member,
 			message,
 		});
+
+		setMessages([
+			...messages,
+			{
+				senderId: room.creator === userId ? room.creator : room.member,
+				room_id: roomId,
+				recipientId: room.creator !== userId ? room.creator : room.member,
+				message,
+			},
+		]);
 
 		setMessage('');
 	};
@@ -85,7 +98,7 @@ const Partner = () => {
 		<StyledPartner>
 			<main>
 				<section>
-					<h1>{room?._id && `Room Name: ${room?._id}`}</h1>
+					<h1>{roomId && `Room Name: ${roomId}`}</h1>
 					<div>
 						<form>
 							<input
