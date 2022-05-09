@@ -2,10 +2,15 @@ import styled from 'styled-components';
 
 export const StyledPartner = styled.main`
 	padding: 30px;
-	width: 100%;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
 	section {
-		width: 100%;
+		width: 80vw;
+		height: 100%;
 		background-color: ${({ theme }) => theme.colors.mainAccent};
 		border-radius: ${({ theme }) => theme.borders.borderRadius};
 		display: grid;
@@ -16,17 +21,11 @@ export const StyledPartner = styled.main`
 		grid-template-rows: 1fr 8fr 1fr;
 		padding: 40px;
 		border-radius: ${({ theme }) => theme.borders.borderRadius};
-		height: 100%;
 	}
 
 	section div {
 		width: 100%;
 		margin-bottom: 20px;
-	}
-
-	form,
-	input {
-		width: 100%;
 	}
 
 	div,
@@ -39,37 +38,36 @@ export const StyledPartner = styled.main`
 		width: 100%;
 	}
 
-	li {
-		width: 100%;
-	}
-
 	form {
 		display: flex;
+		flex-direction: row;
 		justify-content: center;
 		align-items: center;
 	}
 
-	input {
-		border-radius: 2px;
-		border: none;
-		background-color: #eee;
-		padding: 5px;
+	li {
+		width: auto;
+		margin: 10px 0;
+		padding: 10px;
+		border-radius: 6px;
 	}
 
-	input:active,
-	input:focus {
-		outline: none;
-		background-color: #fff;
+	ul {
+		display: flex;
+		justify-content: flex-end;
+		align-items: flex-start;
 	}
 
 	.left {
 		text-align: left;
-		color: green;
+		background-color: green;
+		width: auto;
 	}
 
 	.right {
 		text-align: right;
-		color: blue;
+		background-color: blue;
+		width: auto;
 	}
 
 	div h1 {
@@ -78,16 +76,23 @@ export const StyledPartner = styled.main`
 	}
 
 	button {
-		background-color: ${({ theme }) => theme.colors.mainText};
-		border: none;
-		color: ${({ theme }) => theme.colors.mainAccent};
-		border-radius: 2px;
-		padding: 5px;
-	}
-
-	li div {
-		background-color: white;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		margin: 0;
+		padding: 0;
 		width: 30px;
 		height: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transform: rotate(45deg);
+		font-size: 30px;
+		transition: all 0.6s ease;
+	}
+
+	button:hover {
+		background-color: ${({ theme }) => theme.colors.mainAccent};
+		color: ${({ theme }) => theme.colors.mainText};
+		transform: rotate(10deg);
 	}
 `;

@@ -99,21 +99,39 @@ export const StyledLanding = styled.main`
 		color: ${({ theme }) => theme.colors.mainAccent};
 	}
 
-	button {
-		background-color: ${({ theme }) => theme.colors.mainAccent};
-		color: ${({ theme }) => theme.colors.mainText};
-		border-radius: 8px;
-		padding: 10px;
-		font-size: 20px;
-		border: none;
-		width: 120px;
-		cursor: pointer;
-		transition: all 0.3s ease;
-	}
+	@media screen and (max-width: 950px) {
+		font-size: 10px;
+		width: 650px;
+		height: 100vh;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
-	button:hover {
-		background-color: ${({ theme }) => theme.colors.mainText};
-		color: ${({ theme }) => theme.colors.mainAccent};
-		/* box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.5); */
+		section {
+			height: 50vh;
+		}
+
+		h1 {
+			font-size: 26px;
+		}
+
+		h3 {
+			font-size: 20px;
+		}
+
+		p {
+			font-size: 16px;
+		}
+
+		button {
+			width: 80px;
+			padding: 3px;
+			font-size: 16px;
+		}
+
+		#content div {
+			gap: 40px;
+		}
 	}
 `;

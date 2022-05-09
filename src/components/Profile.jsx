@@ -45,7 +45,7 @@ export const Profile = () => {
 
 					<div>
 						<img
-							src={require('../images/achievements/OG.png')}
+							src={require(`../images/achievements/${user.ach}.png`)}
 							alt='achievement'
 						/>
 					</div>

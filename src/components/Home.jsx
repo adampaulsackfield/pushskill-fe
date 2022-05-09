@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import { StyledHome } from '../styles/Home.style';
@@ -21,7 +21,7 @@ const Home = () => {
 			.then((res) => {
 				console.log('data***', res.data.room);
 				localStorage.setItem('roomId', res.data.room._id);
-				navigate(`/partner`);
+				// navigate(`/partner`);
 			})
 			.catch((err) => {
 				console.log('err', err);
@@ -62,7 +62,7 @@ const Home = () => {
 								localStorage.removeItem('roomId');
 							}}
 						>
-							LOGOUT - TEMP FOR DEV PURPOSES
+							LOGOUT
 						</button>
 					</header>
 					<div>
@@ -71,31 +71,29 @@ const Home = () => {
 							{users &&
 								users.map((user) => {
 									return (
-										<li key={user._id}>
-											<section>
-												<div>
-													<img
-														src={user.avatarUrl}
-														alt={`${user.username}'s avatar`}
-													/>
-													<span></span>
+										<section>
+											<Link to='/partner'>
+											<li key={user._id}>
 													<div>
-														<p>Username: {user.username}</p>
-														<p>Name: {user.firstName}</p>
-														<ul>
-															Traits:{' '}
-															{user.traits.map((trait) => {
-																return <li key={user._id + trait}>{trait}</li>;
-															})}
-														</ul>
-
-														<button onClick={() => handleJoinPair(user._id)}>
-															Pair
-														</button>
+														<img
+															src={user.avatarUrl}
+															alt={`${user.username}'s avatar`}
+														/>
+														<span></span>
+														<div>
+															<p>Username: {user.username}</p>
+															<p>Name: {user.firstName}</p>
+															<ul>
+																Traits:{' '}
+																{user.traits.map((trait) => {
+																	return <li key={user._id + trait}>{trait}</li>;
+																})}
+															</ul>
+														</div>
 													</div>
-												</div>
-											</section>
-										</li>
+											</li>
+											</Link>
+										</section>
 									);
 								})}
 						</ul>

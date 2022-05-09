@@ -69,13 +69,6 @@ const Signup = () => {
 					value={signUpForm.username}
 					onChange={(e) => handleInputChange(e)}
 				/>
-				{/* <input
-					name='firstName'
-					type='text'
-					placeholder='Name:'
-					value={signUpForm.firstName}
-					onChange={(e) => handleInputChange(e)}
-				/> */}
 				<input
 					name='password'
 					type='password'
@@ -99,16 +92,20 @@ const Signup = () => {
 					value={signUpForm.avatarUrl}
 					onChange={(e) => handleInputChange(e)}
 				/>
-				<select onChange={handleInterests}>
-					<option value='Knitting'>Knitting</option>
-					<option value='Karate'>Karate</option>
-					<option value='Interpretive Dance'>Interpretive Dance</option>
-				</select>
-				<select onChange={handleTraits}>
-					<option value='Supportive'>Supportive</option>
-					<option value='Empathetic'>Empathetic</option>
-					<option value='Super Violent'>Super Violent</option>
-				</select>
+				<div>
+					<label>Learning interests: </label>
+					<select onChange={handleInterests}>
+						<option value='Knitting'>Knitting</option>
+						<option value='Karate'>Karate</option>
+						<option value='Interpretive Dance'>Interpretive Dance</option>
+					</select>
+					<label>Personal Traits: </label>
+					<select onChange={handleTraits}>
+						<option value='Supportive'>Supportive</option>
+						<option value='Empathetic'>Empathetic</option>
+						<option value='Super Violent'>Super Violent</option>
+					</select>
+				</div>
 				<button onClick={notify}>Sign Up</button>
 			</form>
 		</StyledSignup>

@@ -25,32 +25,8 @@ export const StyledLogin = styled.main`
 		font-size: 2rem;
 	}
 
-	form {
-		width: 80%;
-		margin: auto;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-
-	input {
-		margin: 10px;
-		height: 40px;
-		width: 90%;
-		border-radius: 5px;
-		font-size: 1.2rem;
-		padding-left: 10px;
-	}
-
 	button {
-		margin-top: 20px;
-		width: 200px;
-		height: 40px;
-		border: 0px;
-		border-radius: 10px;
-		background-color: ${({ theme }) => theme.colors.mainAccent};
-		color: ${({ theme }) => theme.colors.mainText};
-		font-size: 1.2rem;
+		margin: 30px 0;
 	}
 
 	a {

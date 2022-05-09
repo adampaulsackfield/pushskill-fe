@@ -35,11 +35,8 @@ export const StyledHome = styled.main`
 		align-items: center;
 		flex-wrap: wrap;
 		padding: 30px;
-		background-color: ${({ theme }) => theme.colors.mainAccent};
 		border-radius: 20px;
-		margin: 30px 0;
 		width: 800px;
-		margin: 30px 0;
 	}
 
 	section div {
@@ -77,6 +74,20 @@ export const StyledHome = styled.main`
 
 	.h3-title {
 		color: yellow;
+	}
+
+	a {
+		text-decoration: none;
+		color: ${({ theme }) => theme.colors.mainText};
+		transition: all 0.4s ease;
+	}
+
+	a:hover {
+		transform: scale(1.01);
+	}
+
+	li {
+		height: 100%;
 	}
 
 	@media screen and (max-width: 1000px) {

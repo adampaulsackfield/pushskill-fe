@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+import {RiSendPlaneFill} from 'react-icons/ri'
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -109,8 +110,6 @@ const Partner = () => {
 														message.senderId === userId ? 'right' : 'left'
 													}
 												>
-												<div></div>
-
 													{message.message}
 												</li>
 										);
@@ -125,7 +124,7 @@ const Partner = () => {
 								placeholder='say something...'
 								onChange={(e) => setMessage(e.target.value)}
 							/>
-							<button onClick={handleSendMsg}>SEND</button>
+							<button onClick={handleSendMsg}><RiSendPlaneFill/></button>
 						</form>
 				</section>
 		</StyledPartner>
