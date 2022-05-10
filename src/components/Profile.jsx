@@ -5,11 +5,13 @@ import { useParams } from 'react-router-dom';
 import { StyledProfile } from '../styles/Profile.style';
 
 // API
-import { getProfile } from '../utils/api';
+import { acceptMatch, getProfile } from '../utils/api';
 
 // Context
 import { TokenContext } from '../context/TokenContext';
 import { UserContext } from '../context/UserContext';
+
+import { toast } from 'react-toastify';
 
 const Profile = () => {
 	const { user_id } = useParams();
@@ -20,18 +22,22 @@ const Profile = () => {
 		getProfile(user_id, context).then((user) => {
 			setUser(user);
 		});
-
 	}, []);
+	console.log(user)
 
 	const handleAccept = () => {
-		user.isPaired = true
+		acceptMatch(context.token, user_id).then((room) => {
+			if (room.id) {
+				return toast.success('Successfully paired!');
+			} else {
+				return toast.error('Error with pairing!');
+			}
+		})
 	}
 
 	// const handleDecline = () => {
 	// 	user.isPaired = true
 	// }
-
-
 
 	return (
 		<StyledProfile>
@@ -81,7 +87,9 @@ const Profile = () => {
 								<li key={notification.id}>
 									<h3>{`${notification.username} wants to pair up`}</h3>
 									<button onClick={handleAccept}>Accept</button>
-									<button onClick={handleDecline}>Decline</button>
+									<button 
+									// onClick={handleDecline}
+									>Decline</button>
 								</li>
 							);
 						})}

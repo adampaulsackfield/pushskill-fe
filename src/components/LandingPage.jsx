@@ -15,7 +15,6 @@ const onConfirm = () => {
 
 const LandingPage = () => {
 	const userContext = useContext(UserContext);
-	console.log('user:', userContext);
 
 	return (
 		<StyledLanding>

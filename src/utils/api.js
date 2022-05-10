@@ -89,7 +89,7 @@ export const handleGetMatches = (token) => {
 
 export const getRooms = (token) => {
 	return pushSkillApi
-		.get(`http://localhost:9090/api/rooms`, {
+		.get(`/rooms`, {
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
@@ -102,3 +102,19 @@ export const getRooms = (token) => {
 			return err;
 		});
 };
+
+// ACCEPT MATCH
+export const acceptMatch = (token, user_id) => {
+	return pushSkillApi.patch(`/matches/${user_id}`, {
+		headers: {
+			Authorization: `Bearer ${token}`
+		}
+	}).then((res) => {
+		console.log('res', res)
+		return res.data.room;
+	})
+	.catch((err) => {
+		console.log('acceptMatch', err);
+		return err;
+	});
+}
