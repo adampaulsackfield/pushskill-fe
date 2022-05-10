@@ -13,7 +13,7 @@ const Home = () => {
 
 	const handleJoinPair = (id) => {
 		axios
-			.get(`http://localhost:3000/api/users/matches/${id}`, {
+			.get(`http://localhost:9090/api/users/matches/${id}`, {
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},
@@ -31,7 +31,7 @@ const Home = () => {
 	useEffect(() => {
 		if (token) {
 			axios
-				.get('http://localhost:3000/api/users/matches', {
+				.get('http://localhost:9090/api/users/matches', {
 					headers: {
 						Authorization: `Bearer ${token}`,
 					},
@@ -47,8 +47,6 @@ const Home = () => {
 				});
 		}
 	}, [token]);
-
-	 
 
 	if (users) {
 		return (
@@ -74,7 +72,7 @@ const Home = () => {
 									return (
 										<section>
 											<Link to='/partner'>
-											<li key={user._id}>
+												<li key={user._id}>
 													<div>
 														<img
 															src={user.avatarUrl}
@@ -87,12 +85,14 @@ const Home = () => {
 															<ul>
 																Traits:{' '}
 																{user.traits.map((trait) => {
-																	return <li key={user._id + trait}>{trait}</li>;
+																	return (
+																		<li key={user._id + trait}>{trait}</li>
+																	);
 																})}
 															</ul>
 														</div>
 													</div>
-											</li>
+												</li>
 											</Link>
 										</section>
 									);

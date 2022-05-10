@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const pushSkillApi = axios.create({
-	baseURL: 'http://localhost:3000/api',
+	baseURL: 'http://localhost:9090/api',
 });
 
 export const signUpUser = (
