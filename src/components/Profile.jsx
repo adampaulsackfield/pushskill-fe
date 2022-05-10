@@ -22,22 +22,22 @@ const Profile = () => {
 		getProfile(user_id, context).then((user) => {
 			setUser(user);
 		});
-	}, []);
-	console.log(user)
+	});
 
 	const handleAccept = () => {
 		acceptMatch(context.token, user_id).then((room) => {
+			console.log('*', room);
 			if (room.id) {
 				return toast.success('Successfully paired!');
 			} else {
 				return toast.error('Error with pairing!');
 			}
-		})
-	}
+		});
+	};
 
 	// const handleDecline = () => {
 	// 	user.isPaired = true
-	// }
+	// }npm
 
 	return (
 		<StyledProfile>
@@ -72,7 +72,9 @@ const Profile = () => {
 								user.achievements.map((achievement) => {
 									return (
 										<li key={achievement.id}>
-											<img src={`/images/achievements/${achievement.name}.png`} />
+											<img
+												src={`/images/achievements/${achievement.name}.png`}
+											/>
 										</li>
 									);
 								})}
@@ -80,20 +82,22 @@ const Profile = () => {
 					</div>
 				</div>
 				<div>
-
 					<ul>
-						{user.notifications && user.notifications.map((notification) => {
-							return (
-								<li key={notification.id}>
-									<h3>{`${notification.username} wants to pair up`}</h3>
-									<button onClick={handleAccept}>Accept</button>
-									<button 
-									// onClick={handleDecline}
-									>Decline</button>
-								</li>
-							);
-						})}
-					</ul> 
+						{user.notifications &&
+							user.notifications.map((notification) => {
+								return (
+									<li key={notification.id}>
+										<h3>{`${notification.username} wants to pair up`}</h3>
+										<button onClick={handleAccept}>Accept</button>
+										<button
+										// onClick={handleDecline}
+										>
+											Decline
+										</button>
+									</li>
+								);
+							})}
+					</ul>
 				</div>
 			</section>
 		</StyledProfile>
