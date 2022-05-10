@@ -14,13 +14,13 @@ const Home = () => {
 	const [users, setUsers] = useState('');
 
 	const handleJoinPair = (id, username) => {
-		handleSendMatchRequest(token, id)
+		handleSendMatchRequest(token, id, username)
 			.then((res) => {
 				console.log('handleSendMatchRequest: .then()', res);
 
 				toast.success(`Pair request sent to: ${username}`);
-				localStorage.setItem('roomId', res.room._id);
-				navigate('/partner');
+				// localStorage.setItem('roomId', res.room._id);
+				// navigate('/partner');
 			})
 			.catch((err) => {
 				console.log('handleSendMatchRequest: .catch()', err);

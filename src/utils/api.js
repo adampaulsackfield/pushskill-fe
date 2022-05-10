@@ -52,13 +52,18 @@ export const getProfile = (user_id, context) => {
 		});
 };
 
-export const handleSendMatchRequest = (token, id) => {
+export const handleSendMatchRequest = (token, id, username) => {
+	console.log(token);
 	return pushSkillApi
-		.get(`/users/matches/${id}`, {
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		})
+		.post(
+			`/users/matches/${id}`,
+			{ username },
+			{
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}
+		)
 		.then((res) => {
 			return res.data;
 		})

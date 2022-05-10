@@ -45,7 +45,6 @@ export const Profile = () => {
 					</p>
 
 					<div>
-
 						<ul>
 							{user.achievements &&
 								user.achievements.map((achievement) => {
@@ -63,7 +62,7 @@ export const Profile = () => {
 						{user.notifications.map((notification) => {
 							return (
 								<li key={notification.id}>
-									{`${notification.sender} wants to pair up`}
+									{`${notification.username} wants to pair up`}
 									<button>Accept</button>
 									<button>Decline</button>
 								</li>
