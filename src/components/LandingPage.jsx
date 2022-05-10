@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { StyledLanding } from '../styles/Landing.style';
 
 // Context
-import { UserContext } from '../context/UserContext';
 import { TokenContext } from '../context/TokenContext';
 
 const onConfirm = () => {
