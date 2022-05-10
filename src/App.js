@@ -19,6 +19,7 @@ import { SocketContext } from './context/SocketContext';
 import { TokenContext } from './context/TokenContext';
 import { UserContext } from './context/UserContext';
 import { RoomsContext } from './context/RoomsContext';
+import About from './components/About';
 
 // Theme
 import { ThemeProvider } from 'styled-components';
@@ -82,6 +83,7 @@ function App() {
 								<Route path='/partner' element={<Partner />} />
 								<Route path='/login' element={<Login />} />
 								<Route path='/profile/:user_id' element={<Profile />} />
+								<Route path='/about' element={<About />} />
 							</Routes>
 							<ToastContainer position='top-center' />
 						</ThemeProvider>
