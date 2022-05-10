@@ -22,11 +22,12 @@ const Profile = () => {
 		getProfile(user_id, context).then((user) => {
 			setUser(user);
 		});
-	});
+	}, []);
 
-	const handleAccept = () => {
-		acceptMatch(context.token, user_id).then((room) => {
-			console.log('*', room);
+	console.log('text');
+
+	const handleAccept = (sender_id) => {
+		acceptMatch(context.token, user_id, sender_id).then((room) => {
 			if (room.id) {
 				return toast.success('Successfully paired!');
 			} else {
@@ -88,7 +89,9 @@ const Profile = () => {
 								return (
 									<li key={notification.id}>
 										<h3>{`${notification.username} wants to pair up`}</h3>
-										<button onClick={handleAccept}>Accept</button>
+										<button onClick={() => handleAccept(notification.user_id)}>
+											Accept
+										</button>
 										<button
 										// onClick={handleDecline}
 										>

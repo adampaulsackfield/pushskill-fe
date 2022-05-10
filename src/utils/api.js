@@ -104,13 +104,17 @@ export const getRooms = (token) => {
 };
 
 // ACCEPT MATCH
-export const acceptMatch = (token, user_id) => {
+export const acceptMatch = (token, user_id, sender_id) => {
 	return pushSkillApi
-		.get(`/users/matches/${user_id}`, {
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		})
+		.patch(
+			`/users/matches/${user_id}`,
+			{ sender_id },
+			{
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}
+		)
 		.then((res) => {
 			console.log('res', res);
 			return res.data.room;
