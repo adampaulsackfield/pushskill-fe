@@ -20,7 +20,18 @@ const Profile = () => {
 		getProfile(user_id, context).then((user) => {
 			setUser(user);
 		});
-	});
+
+	}, []);
+
+	const handleAccept = () => {
+		user.isPaired = true
+	}
+
+	// const handleDecline = () => {
+	// 	user.isPaired = true
+	// }
+
+
 
 	return (
 		<StyledProfile>
@@ -69,8 +80,8 @@ const Profile = () => {
 							return (
 								<li key={notification.id}>
 									<h3>{`${notification.username} wants to pair up`}</h3>
-									<button>Accept</button>
-									<button>Decline</button>
+									<button onClick={handleAccept}>Accept</button>
+									<button onClick={handleDecline}>Decline</button>
 								</li>
 							);
 						})}
