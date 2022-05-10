@@ -48,13 +48,14 @@ const Home = () => {
 		}
 	}, [token]);
 
+	 
+
 	if (users) {
 		return (
 			<StyledHome>
 				<main>
 					<header>
 						<h1>Welcome back $User</h1>
-
 						<button
 							onClick={() => {
 								localStorage.removeItem('token');
