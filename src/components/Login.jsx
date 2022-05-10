@@ -1,12 +1,16 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
+// Theme
 import { StyledLogin } from '../styles/Login.style';
+
+// API
 import { logUserIn } from '../utils/api';
 
+// Context
 import { TokenContext } from '../context/TokenContext';
 import { UserContext } from '../context/UserContext';
-import { toast } from 'react-toastify';
 
 const Login = () => {
 	const [loginForm, setLoginForm] = useState({

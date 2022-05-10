@@ -2,14 +2,17 @@ import React, { useEffect, useState, useContext } from 'react';
 import { RiSendPlaneFill } from 'react-icons/ri';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { getRooms } from '../utils/api';
 
+// Theme
 import { StyledPartner } from '../styles/Partner.style';
 
+// API
+import { getRooms } from '../utils/api';
+
+// Context
 import { UserContext } from '../context/UserContext';
 import { TokenContext } from '../context/TokenContext';
 import { SocketContext } from '../context/SocketContext';
-import { RoomContext, RoomsContext } from '../context/RoomsContext';
 
 const Partner = () => {
 	const context = useContext(TokenContext);
@@ -22,7 +25,6 @@ const Partner = () => {
 	const roomId = localStorage.getItem('roomId');
 
 	const [room, setRoom] = useState('');
-	const [roomRegistered, setRoomRegistered] = useState(false);
 
 	useEffect(() => {
 		if (token && userId) {

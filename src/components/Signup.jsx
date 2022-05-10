@@ -1,10 +1,16 @@
 import { useState, useContext } from 'react';
-import { StyledSignup } from '../styles/Signup.style';
-import { signUpUser } from '../utils/api';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
+// Theme
+import { StyledSignup } from '../styles/Signup.style';
+
+// API
+import { signUpUser } from '../utils/api';
+
+// Context
 import { TokenContext } from '../context/TokenContext';
 import { UserContext } from '../context/UserContext';
-import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
 	const navigate = useNavigate();
