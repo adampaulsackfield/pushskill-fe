@@ -57,6 +57,19 @@ export const Profile = () => {
 						</ul>
 					</div>
 				</div>
+				<div>
+					<ul>
+						{user.notifications.map((notification) => {
+							return (
+								<li key={notification.id}>
+									{`${notification.sender} wants to pair up`}
+									<button>Accept</button>
+									<button>Decline</button>
+								</li>
+							);
+						})}
+					</ul>
+				</div>
 			</section>
 		</StyledProfile>
 	);
