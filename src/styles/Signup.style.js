@@ -34,4 +34,9 @@ export const StyledSignup = styled.main`
 		flex-direction: column;
 		width: 100%;
 	}
+
+	form p {
+		color: red;
+		font-size: 0.75rem;
+	}
 `;

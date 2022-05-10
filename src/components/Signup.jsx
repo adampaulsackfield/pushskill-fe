@@ -25,6 +25,11 @@ const Signup = () => {
 		confirmPassword: '',
 		avatarUrl: '',
 	});
+	const [errors, setErrors] = useState({
+		username: null,
+		password: null,
+		confirmPassword: null,
+	});
 
 	const handleInterests = (e) => {
 		setLearningInterests(e.target.value);
@@ -35,6 +40,30 @@ const Signup = () => {
 	};
 
 	const handleInputChange = (event) => {
+		if (signUpForm.username.length < 7) {
+			setErrors((prev) => ({
+				...prev,
+				username: 'Username must be at least 8 characters long',
+			}));
+		} else {
+			setErrors((prev) => ({
+				...prev,
+				username: null,
+			}));
+		}
+
+		if (signUpForm.password.length < 7) {
+			setErrors((prev) => ({
+				...prev,
+				password: 'Password must be at least 8 characters long',
+			}));
+		} else {
+			setErrors((prev) => ({
+				...prev,
+				password: null,
+			}));
+		}
+
 		setSignUpForm((prev) => ({
 			...prev,
 			[event.target.name]: event.target.value,
@@ -43,29 +72,29 @@ const Signup = () => {
 
 	const handleSignUp = async (e) => {
 		e.preventDefault();
-		if (!signUpForm.username || !signUpForm.password) {
-			return toast.warning('Please complete all required fields');
-		}
 
-		if (signUpForm.password !== signUpForm.confirmPassword) {
-			return toast.warning('Passwords do not match');
-		}
+		if (signUpForm.password === signUpForm.confirmPassword) {
+			const res = await signUpUser(signUpForm, traits, learningInterests);
 
-		const res = await signUpUser(signUpForm, traits, learningInterests);
+			if (res.message) {
+				toast.warning(res.data.user.message);
+			} else {
+				context.setToken(res.data.user.token);
+				userContext.setUser(res.data.user);
+				userContext.setUserId(res.data.user.id);
+				localStorage.setItem('id', res.data.user.id);
+				localStorage.setItem('token', res.data.user.token);
+				localStorage.setItem('roomId', res.data.user?.roomId);
 
-		if (res.message) {
-			toast.warning(res.data.user.message);
+				toast.success(`Hi ${res.data.user.username}`);
+
+				navigate('/home');
+			}
 		} else {
-			context.setToken(res.data.user.token);
-			userContext.setUser(res.data.user);
-			userContext.setUserId(res.data.user.id);
-			localStorage.setItem('id', res.data.user.id);
-			localStorage.setItem('token', res.data.user.token);
-			localStorage.setItem('roomId', res.data.user?.roomId);
-
-			toast.success(`Hi ${res.data.user.username}`);
-
-			navigate('/home');
+			setErrors((prev) => ({
+				...prev,
+				confirmPassword: 'Passwords do not match',
+			}));
 		}
 	};
 
@@ -81,6 +110,8 @@ const Signup = () => {
 					value={signUpForm.username}
 					onChange={(e) => handleInputChange(e)}
 				/>
+				<p>{errors.username}</p>
+
 				<input
 					name='password'
 					type='password'
@@ -89,6 +120,8 @@ const Signup = () => {
 					value={signUpForm.password}
 					onChange={(e) => handleInputChange(e)}
 				/>
+				<p>{errors.password}</p>
+
 				<input
 					name='confirmPassword'
 					type='password'
@@ -97,6 +130,8 @@ const Signup = () => {
 					value={signUpForm.confirmPassword}
 					onChange={(e) => handleInputChange(e)}
 				/>
+				<p>{errors.confirmPassword}</p>
+
 				<input
 					name='avatarUrl'
 					type='input'
@@ -111,6 +146,7 @@ const Signup = () => {
 						<option value='Karate'>Karate</option>
 						<option value='Interpretive Dance'>Interpretive Dance</option>
 					</select>
+
 					<label>Personal Traits: </label>
 					<select onChange={handleTraits}>
 						<option value='Supportive'>Supportive</option>
@@ -118,7 +154,20 @@ const Signup = () => {
 						<option value='Super Violent'>Super Violent</option>
 					</select>
 				</div>
-				<button onClick={(e) => handleSignUp(e)}>Sign Up</button>
+
+				<button
+					onClick={(e) => handleSignUp(e)}
+					disabled={
+						errors.username || errors.password || errors.confirmPassword
+					}
+					style={
+						errors.username || errors.password || errors.confirmPassword
+							? { cursor: 'not-allowed' }
+							: { cursor: 'pointer' }
+					}
+				>
+					Sign Up
+				</button>
 			</form>
 		</StyledSignup>
 	);
