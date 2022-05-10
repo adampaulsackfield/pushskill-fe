@@ -103,6 +103,21 @@ export const getRooms = (token) => {
 		});
 };
 
+export const getMessages = (token, roomId) => {
+	return pushSkillApi
+		.get(`/rooms/${roomId}/messages`, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		})
+		.then((res) => {
+			return res.data.messages;
+		})
+		.catch((err) => {
+			return err;
+		});
+};
+
 // ACCEPT MATCH
 export const acceptMatch = (token, user_id, sender_id) => {
 	return pushSkillApi

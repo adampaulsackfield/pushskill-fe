@@ -8,7 +8,7 @@ import { TiMessageTyping } from 'react-icons/ti';
 import { StyledPartner } from '../styles/Partner.style';
 
 // API
-import { getRooms } from '../utils/api';
+import { getMessages, getRooms } from '../utils/api';
 
 // Context
 import { UserContext } from '../context/UserContext';
@@ -64,27 +64,17 @@ const Partner = () => {
 
 	useEffect(() => {
 		if (token && userId) {
-			axios
-				.get(`http://localhost:9090/api/rooms`, {
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
-				})
-				.then((res) => {
-					setRoom(res.data.rooms[0]);
+			getRooms(token)
+				.then((room) => {
+					setRoom(room);
 
-					axios
-						.get(`http://localhost:9090/api/rooms/${roomId}/messages`, {
-							headers: {
-								Authorization: `Bearer ${token}`,
-							},
-						})
-						.then((res) => {
-							setMessages(res.data.messages);
-						});
+					return room;
+				})
+				.then((room) => {
+					getMessages(token, roomId);
 				})
 				.catch((err) => {
-					console.log('err', err);
+					console.log('useEffect: ', err);
 				});
 		} else {
 			navigate('/');
