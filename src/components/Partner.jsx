@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { RiSendPlaneFill } from 'react-icons/ri';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import { TiMessageTyping } from 'react-icons/ti';
 
