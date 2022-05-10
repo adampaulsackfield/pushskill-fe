@@ -15,7 +15,15 @@ export const Profile = () => {
 			setUser(data.user);
 		});
 	}, []);
-	console.log(user.notifcations);
+
+	const handleAccept = () => {
+		user.isPaired = true
+	}
+
+	// const handleDecline = () => {
+	// 	user.isPaired = true
+	// }
+
 	return (
 		<StyledProfile>
 			<section>
@@ -62,8 +70,8 @@ export const Profile = () => {
 							return (
 								<li key={notification.id}>
 									<h3>{`${notification.username} wants to pair up`}</h3>
-									<button>Accept</button>
-									<button>Decline</button>
+									<button onClick={handleAccept}>Accept</button>
+									<button onClick={handleDecline}>Decline</button>
 								</li>
 							);
 						})}
