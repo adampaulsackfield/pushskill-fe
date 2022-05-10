@@ -13,11 +13,15 @@ import { TokenContext } from '../context/TokenContext';
 import { UserContext } from '../context/UserContext';
 
 const Login = () => {
+	const navigate = useNavigate();
 	const [loginForm, setLoginForm] = useState({
 		username: '',
 		password: '',
 	});
-	const navigate = useNavigate();
+	const [errors, setErrors] = useState({
+		username: '',
+		password: '',
+	});
 	const context = useContext(TokenContext);
 	const userContext = useContext(UserContext);
 
@@ -29,7 +33,25 @@ const Login = () => {
 	};
 
 	const handleLogin = async (e) => {
-		if (!context.token) {
+		if (loginForm.username.length < 8) {
+			setErrors((prev) => ({
+				...prev,
+				username: 'Username must be at least 8 characters long',
+			}));
+		}
+
+		if (loginForm.password.length < 8) {
+			setErrors((prev) => ({
+				...prev,
+				password: 'Password must be at least 8 characters long',
+			}));
+		}
+
+		if (
+			!context.token &&
+			loginForm.username.length > 7 &&
+			loginForm.password.length > 7
+		) {
 			const res = await logUserIn(loginForm);
 			if (res.message) {
 				toast.warning(res.message);
@@ -60,6 +82,8 @@ const Login = () => {
 					value={loginForm.username}
 					onChange={(e) => handleInputChange(e)}
 				/>
+				<p>{errors.username}</p>
+
 				<input
 					name='password'
 					type='password'
@@ -68,6 +92,7 @@ const Login = () => {
 					value={loginForm.password}
 					onChange={(e) => handleInputChange(e)}
 				/>
+				<p>{errors.password}</p>
 
 				{!context.token && !loginForm.password && (
 					<p>enter a valid username and password</p>
