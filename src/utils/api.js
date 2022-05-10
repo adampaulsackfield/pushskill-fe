@@ -124,3 +124,20 @@ export const acceptMatch = (token, user_id, sender_id) => {
 			return err;
 		});
 };
+
+export const declineMatch = (token, user_id, sender_id) => {
+	return pushSkillApi
+		.patch(
+			`/users/matches/${user_id}/decline`,
+			{ sender_id },
+			{ headers: { Authorization: `Bearer ${token}` } }
+		)
+		.then((res) => {
+			console.log('declineMatch', res);
+			return res.data.message;
+		})
+		.catch((err) => {
+			console.log('declineMatch', err);
+			return err;
+		});
+};

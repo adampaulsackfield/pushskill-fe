@@ -1,17 +1,16 @@
 import { useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // Theme
 import { StyledProfile } from '../styles/Profile.style';
 
 // API
-import { acceptMatch, getProfile } from '../utils/api';
+import { getProfile, acceptMatch, declineMatch } from '../utils/api';
 
 // Context
 import { TokenContext } from '../context/TokenContext';
 import { UserContext } from '../context/UserContext';
-
-import { toast } from 'react-toastify';
 
 const Profile = () => {
 	const { user_id } = useParams();
@@ -24,8 +23,6 @@ const Profile = () => {
 		});
 	}, []);
 
-	console.log('text');
-
 	const handleAccept = (sender_id) => {
 		acceptMatch(context.token, user_id, sender_id).then((room) => {
 			if (room.id) {
@@ -36,9 +33,16 @@ const Profile = () => {
 		});
 	};
 
-	// const handleDecline = () => {
-	// 	user.isPaired = true
-	// }npm
+	const handleDecline = (sender_id) => {
+		declineMatch(context.token, user_id, sender_id)
+			.then((message) => {
+				console.log('mess', message);
+				return toast.success(`${message}`);
+			})
+			.catch((err) => {
+				console.log('Profile.jsx: handleDecline .catch()', err);
+			});
+	};
 
 	return (
 		<StyledProfile>
@@ -92,9 +96,7 @@ const Profile = () => {
 										<button onClick={() => handleAccept(notification.user_id)}>
 											Accept
 										</button>
-										<button
-										// onClick={handleDecline}
-										>
+										<button onClick={() => handleDecline(notification.user_id)}>
 											Decline
 										</button>
 									</li>
