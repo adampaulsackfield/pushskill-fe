@@ -55,7 +55,7 @@ const Profile = () => {
 								user.achievements.map((achievement) => {
 									return (
 										<li key={achievement.id}>
-											<img src={`../images/OG.png`} />
+											<img src={`/images/achievements/${achievement.name}.png`} />
 										</li>
 									);
 								})}
@@ -63,17 +63,18 @@ const Profile = () => {
 					</div>
 				</div>
 				<div>
-					{/* <ul>
-						{user.notifications.map((notification) => {
+
+					<ul>
+						{user.notifications && user.notifications.map((notification) => {
 							return (
 								<li key={notification.id}>
-									{`${notification.username} wants to pair up`}
+									<h3>{`${notification.username} wants to pair up`}</h3>
 									<button>Accept</button>
 									<button>Decline</button>
 								</li>
 							);
 						})}
-					</ul> */}
+					</ul> 
 				</div>
 			</section>
 		</StyledProfile>

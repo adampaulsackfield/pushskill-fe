@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import bg from '../images/empty.jpg';
 
 export const StyledLanding = styled.main`
 	padding: 30px;
@@ -11,7 +10,7 @@ export const StyledLanding = styled.main`
 	height: 100vh;
 
 	section {
-		background-image: url(${bg});
+		background-image: url(/images/empty.jpg);
 		background-position: center;
 		background-size: cover;
 		border-radius: 20px;
