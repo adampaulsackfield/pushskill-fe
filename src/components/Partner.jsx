@@ -78,7 +78,7 @@ const Partner = () => {
 		} else {
 			navigate('/');
 		}
-	});
+	}, [token, userId]);
 
 	useEffect(() => {
 		socket.emit('join_room', { room_id: roomId });
