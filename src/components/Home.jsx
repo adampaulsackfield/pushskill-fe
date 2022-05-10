@@ -13,7 +13,7 @@ const Home = () => {
 
 	const handleJoinPair = (id) => {
 		axios
-			.get(`https://pushskill.herokuapp.com/api/users/matches/${id}`, {
+			.get(`http://localhost:3000/api/users/matches/${id}`, {
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},
@@ -31,7 +31,7 @@ const Home = () => {
 	useEffect(() => {
 		if (token) {
 			axios
-				.get('https://pushskill.herokuapp.com/api/users/matches', {
+				.get('http://localhost:3000/api/users/matches', {
 					headers: {
 						Authorization: `Bearer ${token}`,
 					},

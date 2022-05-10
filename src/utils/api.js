@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const pushSkillApi = axios.create({
-	baseURL: 'https://pushskill.herokuapp.com/api',
+	baseURL: 'http://localhost:3000/api',
 });
 
 export const signUpUser = (

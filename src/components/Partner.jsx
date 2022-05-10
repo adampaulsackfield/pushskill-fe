@@ -27,7 +27,7 @@ const Partner = () => {
 	useEffect(() => {
 		if (token && userId) {
 			axios
-				.get(`https://pushskill.herokuapp.com/api/rooms`, {
+				.get(`http://localhost:3000/api/rooms`, {
 					headers: {
 						Authorization: `Bearer ${token}`,
 					},
@@ -38,7 +38,7 @@ const Partner = () => {
 
 					console.log('ROOM ID .id', roomId);
 					axios
-						.get(`https://pushskill.herokuapp.com/api/rooms/${roomId}/messages`, {
+						.get(`http://localhost:3000/api/rooms/${roomId}/messages`, {
 							headers: {
 								Authorization: `Bearer ${token}`,
 							},
