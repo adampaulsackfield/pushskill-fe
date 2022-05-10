@@ -50,7 +50,7 @@ export const Profile = () => {
 								user.achievements.map((achievement) => {
 									return (
 										<li key={achievement.id}>
-											<img src={`../images/${achievement.name}.png`} />
+											<img src={`../images/OG.png`} />
 										</li>
 									);
 								})}
