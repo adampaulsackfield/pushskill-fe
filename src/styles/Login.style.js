@@ -35,4 +35,8 @@ export const StyledLogin = styled.main`
 		text-decoration: none;
 		color: ${({ theme }) => theme.colors.mainText};
 	}
+	form p {
+		color: red;
+		font-size: 0.75rem;
+	}
 `;

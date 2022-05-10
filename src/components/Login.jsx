@@ -19,13 +19,37 @@ const Login = () => {
 		password: '',
 	});
 	const [errors, setErrors] = useState({
-		username: '',
-		password: '',
+		username: null,
+		password: null,
 	});
 	const context = useContext(TokenContext);
 	const userContext = useContext(UserContext);
 
 	const handleInputChange = (event) => {
+		if (loginForm.username.length < 7) {
+			setErrors((prev) => ({
+				...prev,
+				username: 'Username must be at least 8 characters long',
+			}));
+		} else {
+			setErrors((prev) => ({
+				...prev,
+				username: null,
+			}));
+		}
+
+		if (loginForm.password.length < 7) {
+			setErrors((prev) => ({
+				...prev,
+				password: 'Password must be at least 8 characters long',
+			}));
+		} else {
+			setErrors((prev) => ({
+				...prev,
+				password: null,
+			}));
+		}
+
 		setLoginForm((prev) => ({
 			...prev,
 			[event.target.name]: event.target.value,
@@ -33,25 +57,7 @@ const Login = () => {
 	};
 
 	const handleLogin = async (e) => {
-		if (loginForm.username.length < 8) {
-			setErrors((prev) => ({
-				...prev,
-				username: 'Username must be at least 8 characters long',
-			}));
-		}
-
-		if (loginForm.password.length < 8) {
-			setErrors((prev) => ({
-				...prev,
-				password: 'Password must be at least 8 characters long',
-			}));
-		}
-
-		if (
-			!context.token &&
-			loginForm.username.length > 7 &&
-			loginForm.password.length > 7
-		) {
+		if (!context.token) {
 			const res = await logUserIn(loginForm);
 			if (res.message) {
 				toast.warning(res.message);
@@ -93,12 +99,18 @@ const Login = () => {
 					onChange={(e) => handleInputChange(e)}
 				/>
 				<p>{errors.password}</p>
-
-				{!context.token && !loginForm.password && (
-					<p>enter a valid username and password</p>
-				)}
 			</form>
-			<button onClick={(e) => handleLogin(e)}>LOGIN</button>
+			<button
+				onClick={(e) => handleLogin(e)}
+				disabled={errors.username || errors.password}
+				style={
+					errors.username || errors.password
+						? { cursor: 'not-allowed' }
+						: { cursor: 'pointer' }
+				}
+			>
+				LOGIN
+			</button>
 		</StyledLogin>
 	);
 };
