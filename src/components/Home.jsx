@@ -50,7 +50,6 @@ const Home = () => {
 				<main>
 					<header>
 						<h1>Welcome back $User</h1>
-
 						<button
 							onClick={() => {
 								localStorage.removeItem('token');

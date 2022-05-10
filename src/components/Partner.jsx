@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { RiSendPlaneFill } from 'react-icons/ri';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { getRooms } from '../utils/api';
 
 import { StyledPartner } from '../styles/Partner.style';
 
@@ -9,7 +10,6 @@ import { UserContext } from '../context/UserContext';
 import { TokenContext } from '../context/TokenContext';
 import { SocketContext } from '../context/SocketContext';
 import { RoomContext, RoomsContext } from '../context/RoomsContext';
-import { getRooms } from '../utils/api';
 
 const Partner = () => {
 	const context = useContext(TokenContext);

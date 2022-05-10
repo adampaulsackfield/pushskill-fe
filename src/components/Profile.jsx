@@ -13,9 +13,10 @@ export const Profile = () => {
 	useEffect(() => {
 		getProfile(user_id, context).then(({ data }) => {
 			setUser(data.user);
+			console.log(data);
 		});
 	}, []);
-
+	console.log(user);
 	return (
 		<StyledProfile>
 			<section>
@@ -44,13 +45,31 @@ export const Profile = () => {
 					</p>
 
 					<div>
-						{/* <img
-							src={require(`../images/achievements/${user.achievements.map(
-								(achievement) => achievement.url
-							)}.png`)}
-							alt='achievement'
-						/> */}
+
+						<ul>
+							{user.achievements &&
+								user.achievements.map((achievement) => {
+									return (
+										<li key={achievement.id}>
+											<img src={`../images/OG.png`} />
+										</li>
+									);
+								})}
+						</ul>
 					</div>
+				</div>
+				<div>
+					<ul>
+						{user.notifications.map((notification) => {
+							return (
+								<li key={notification.id}>
+									{`${notification.sender} wants to pair up`}
+									<button>Accept</button>
+									<button>Decline</button>
+								</li>
+							);
+						})}
+					</ul>
 				</div>
 			</section>
 		</StyledProfile>
