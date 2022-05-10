@@ -14,8 +14,10 @@ import { getRooms } from '../utils/api';
 import { UserContext } from '../context/UserContext';
 import { TokenContext } from '../context/TokenContext';
 import { SocketContext } from '../context/SocketContext';
+import { useNavigate } from 'react-router-dom';
 
 const Partner = () => {
+	const navigate = useNavigate();
 	const context = useContext(TokenContext);
 	const token = context.token;
 	const [messages, setMessages] = useState([]);
@@ -84,8 +86,10 @@ const Partner = () => {
 				.catch((err) => {
 					console.log('err', err);
 				});
+		} else {
+			navigate('/');
 		}
-	}, []);
+	});
 
 	useEffect(() => {
 		socket.emit('join_room', { room_id: roomId });

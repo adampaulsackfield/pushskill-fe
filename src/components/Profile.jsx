@@ -1,5 +1,5 @@
 import { useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 // Theme
@@ -13,18 +13,27 @@ import { TokenContext } from '../context/TokenContext';
 import { UserContext } from '../context/UserContext';
 
 const Profile = () => {
+	const navigate = useNavigate();
 	const { user_id } = useParams();
-	const context = useContext(TokenContext);
+	const { token } = useContext(TokenContext);
 	const { user, setUser } = useContext(UserContext);
 
 	useEffect(() => {
-		getProfile(user_id, context).then((user) => {
-			setUser(user);
-		});
-	}, []);
+		if (user_id && token) {
+			getProfile(user_id, token).then((user) => {
+				setUser(user);
+			});
+		}
+	});
+
+	useEffect(() => {
+		if (!token) {
+			navigate('/');
+		}
+	});
 
 	const handleAccept = (sender_id) => {
-		acceptMatch(context.token, user_id, sender_id).then((room) => {
+		acceptMatch(token, user_id, sender_id).then((room) => {
 			if (room.id) {
 				return toast.success('Successfully paired!');
 			} else {
@@ -34,7 +43,7 @@ const Profile = () => {
 	};
 
 	const handleDecline = (sender_id) => {
-		declineMatch(context.token, user_id, sender_id)
+		declineMatch(token, user_id, sender_id)
 			.then((message) => {
 				console.log('mess', message);
 				return toast.success(`${message}`);

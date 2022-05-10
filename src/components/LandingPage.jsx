@@ -7,12 +7,6 @@ import { StyledLanding } from '../styles/Landing.style';
 // Context
 import { TokenContext } from '../context/TokenContext';
 
-const onConfirm = () => {
-	if (window.confirm(`Do you want to pair with ...`)) {
-		alert('Thanks for pairing!');
-	}
-};
-
 const LandingPage = () => {
 	const navigate = useNavigate();
 	const { token } = useContext(TokenContext);
@@ -27,7 +21,6 @@ const LandingPage = () => {
 		<StyledLanding>
 			<section>
 				<div id='heading'>
-					<button onClick={onConfirm}> TEST </button>
 					<h1>
 						Welcome to <span>.push(skill)</span>
 					</h1>

@@ -40,11 +40,11 @@ export const logUserIn = ({ username, password }) => {
 		});
 };
 
-export const getProfile = (user_id, context) => {
+export const getProfile = (user_id, token) => {
 	return pushSkillApi
 		.get(`/users/${user_id}`, {
 			headers: {
-				Authorization: `Bearer ${context.token}`,
+				Authorization: `Bearer ${token}`,
 			},
 		})
 		.then((res) => {
