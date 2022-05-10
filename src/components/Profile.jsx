@@ -44,10 +44,12 @@ export const Profile = () => {
 					</p>
 
 					<div>
-						<img
-							src={require(`../images/achievements/${user.ach}.png`)}
+						{/* <img
+							src={require(`../images/achievements/${user.achievements.map(
+								(achievement) => achievement.url
+							)}.png`)}
 							alt='achievement'
-						/>
+						/> */}
 					</div>
 				</div>
 			</section>

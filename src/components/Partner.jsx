@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import {RiSendPlaneFill} from 'react-icons/ri'
+import { RiSendPlaneFill } from 'react-icons/ri';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -9,7 +9,7 @@ import { UserContext } from '../context/UserContext';
 import { TokenContext } from '../context/TokenContext';
 import { SocketContext } from '../context/SocketContext';
 import { RoomContext, RoomsContext } from '../context/RoomsContext';
-
+import { getRooms } from '../utils/api';
 
 const Partner = () => {
 	const context = useContext(TokenContext);
@@ -27,7 +27,7 @@ const Partner = () => {
 	useEffect(() => {
 		if (token && userId) {
 			axios
-				.get(`https://pushskill.herokuapp.com/api/rooms`, {
+				.get(`http://localhost:9090/api/rooms`, {
 					headers: {
 						Authorization: `Bearer ${token}`,
 					},
@@ -38,7 +38,7 @@ const Partner = () => {
 
 					console.log('ROOM ID .id', roomId);
 					axios
-						.get(`https://pushskill.herokuapp.com/api/rooms/${roomId}/messages`, {
+						.get(`http://localhost:9090/api/rooms/${roomId}/messages`, {
 							headers: {
 								Authorization: `Bearer ${token}`,
 							},
@@ -96,37 +96,37 @@ const Partner = () => {
 
 	return (
 		<StyledPartner>
-				<h1>{roomId && `Room Name: ${roomId}`}</h1>
-				<section>
-						<h1>Messages</h1>
-						<div>
-							<ul>
-								{messages &&
-									messages.map((message) => {
-										return (
-												<li
-													key={message._id}
-													className={
-														message.senderId === userId ? 'right' : 'left'
-													}
-												>
-													{message.message}
-												</li>
-										);
-									})}
-							</ul>
-						</div>
+			<h1>{roomId && `Room Name: ${roomId}`}</h1>
+			<section>
+				<h1>Messages</h1>
+				<div>
+					<ul>
+						{messages &&
+							messages.map((message) => {
+								return (
+									<li
+										key={message._id}
+										className={message.senderId === userId ? 'right' : 'left'}
+									>
+										{message.message}
+									</li>
+								);
+							})}
+					</ul>
+				</div>
 
-						<form>
-							<input
-								type='text'
-								value={message}
-								placeholder='say something...'
-								onChange={(e) => setMessage(e.target.value)}
-							/>
-							<button onClick={handleSendMsg}><RiSendPlaneFill/></button>
-						</form>
-				</section>
+				<form>
+					<input
+						type='text'
+						value={message}
+						placeholder='say something...'
+						onChange={(e) => setMessage(e.target.value)}
+					/>
+					<button onClick={handleSendMsg}>
+						<RiSendPlaneFill />
+					</button>
+				</form>
+			</section>
 		</StyledPartner>
 	);
 };
