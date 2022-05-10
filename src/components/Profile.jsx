@@ -88,6 +88,7 @@ const Profile = () => {
 										<li key={achievement.id}>
 											<img
 												src={`/images/achievements/${achievement.name}.png`}
+												alt={`${achievement.name} icon`}
 											/>
 										</li>
 									);

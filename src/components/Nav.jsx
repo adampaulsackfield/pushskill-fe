@@ -18,7 +18,8 @@ import { UserContext } from '../context/UserContext';
 import { TokenContext } from '../context/TokenContext';
 
 const Nav = () => {
-	const { userId } = useContext(UserContext);
+	const { userId, user } = useContext(UserContext);
+
 	const { token } = useContext(TokenContext);
 
 	const handleLogoutUser = async () => {
@@ -45,7 +46,11 @@ const Nav = () => {
 							<Link to='/partner'>
 								<FaUserFriends />
 							</Link>
-							<Link to={`/profile/${userId}`}>
+							<Link
+								to={`/profile/${userId}`}
+								data-count={user.notifications && user.notifications.length}
+								className='badge'
+							>
 								<AiFillHome />
 							</Link>
 							<Link to='#' onClick={handleLogoutUser}>
@@ -57,7 +62,7 @@ const Nav = () => {
 							<Link to='/signup'>
 								<AiOutlineUserAdd />
 							</Link>
-							<Link to={`/login/`}>
+							<Link to={`/login`}>
 								<AiOutlineLogin />
 							</Link>
 						</>
