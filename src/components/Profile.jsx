@@ -13,10 +13,9 @@ export const Profile = () => {
 	useEffect(() => {
 		getProfile(user_id, context).then(({ data }) => {
 			setUser(data.user);
-			console.log(data);
 		});
 	}, []);
-	console.log(user);
+	console.log(user.notifcations);
 	return (
 		<StyledProfile>
 			<section>
@@ -50,7 +49,7 @@ export const Profile = () => {
 								user.achievements.map((achievement) => {
 									return (
 										<li key={achievement.id}>
-											<img src={`../images/OG.png`} />
+											<img src={`/images/achievements/${achievement.name}.png`} />
 										</li>
 									);
 								})}
@@ -59,10 +58,10 @@ export const Profile = () => {
 				</div>
 				<div>
 					<ul>
-						{user.notifications.map((notification) => {
+						{user.notifications && user.notifications.map((notification) => {
 							return (
 								<li key={notification.id}>
-									{`${notification.username} wants to pair up`}
+									<h3>{`${notification.username} wants to pair up`}</h3>
 									<button>Accept</button>
 									<button>Decline</button>
 								</li>
