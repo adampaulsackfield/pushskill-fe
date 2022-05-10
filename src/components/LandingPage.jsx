@@ -1,11 +1,12 @@
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 // Theme
 import { StyledLanding } from '../styles/Landing.style';
 
 // Context
 import { UserContext } from '../context/UserContext';
+import { TokenContext } from '../context/TokenContext';
 
 const onConfirm = () => {
 	if (window.confirm(`Do you want to pair with ...`)) {
@@ -14,7 +15,14 @@ const onConfirm = () => {
 };
 
 const LandingPage = () => {
-	const userContext = useContext(UserContext);
+	const navigate = useNavigate();
+	const { token } = useContext(TokenContext);
+
+	useEffect(() => {
+		if (token) {
+			navigate('/home');
+		}
+	}, [token]);
 
 	return (
 		<StyledLanding>
