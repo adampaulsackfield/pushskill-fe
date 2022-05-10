@@ -5,45 +5,41 @@ import axios from 'axios';
 import { StyledHome } from '../styles/Home.style';
 
 import { TokenContext } from '../context/TokenContext';
+import { handleGetMatches, handleSendMatchRequest } from '../utils/api';
+import { toast } from 'react-toastify';
 
 const Home = () => {
 	const navigate = useNavigate();
 	const token = useContext(TokenContext).token;
 	const [users, setUsers] = useState('');
 
-	const handleJoinPair = (id) => {
-		axios
-			.get(`http://localhost:9090/api/users/matches/${id}`, {
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
-			})
+	const handleJoinPair = (id, username) => {
+		handleSendMatchRequest(token, id)
 			.then((res) => {
-				console.log('data***', res.data.room);
-				localStorage.setItem('roomId', res.data.room._id);
-				// navigate(`/partner`);
+				console.log('handleSendMatchRequest: .then()', res);
+
+				toast.success(`Pair request sent to: ${username}`);
+				localStorage.setItem('roomId', res.room._id);
+				navigate('/partner');
 			})
 			.catch((err) => {
-				console.log('err', err);
+				console.log('handleSendMatchRequest: .catch()', err);
+				toast.danger(err?.message);
 			});
 	};
 
 	useEffect(() => {
 		if (token) {
-			axios
-				.get('http://localhost:9090/api/users/matches', {
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
-				})
+			handleGetMatches(token)
 				.then((res) => {
-					console.log('here we are');
-					setUsers(res.data.users);
-					console.log(users);
+					console.log('handleGetMatches: .then()', res);
+
+					toast.success('Matches generated');
+					setUsers(res.users);
 				})
 				.catch((err) => {
-					console.log('here we are 2');
-					console.log(err);
+					console.log('handleGetMatches: .catch()', err);
+					toast.danger(err?.message);
 				});
 		}
 	}, [token]);
@@ -71,6 +67,11 @@ const Home = () => {
 								users.map((user) => {
 									return (
 										<section>
+											<button
+												onClick={() => handleJoinPair(user._id, user.username)}
+											>
+												Send Pair Request
+											</button>
 											<Link to='/partner'>
 												<li key={user._id}>
 													<div>

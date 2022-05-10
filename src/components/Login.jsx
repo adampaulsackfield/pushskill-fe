@@ -6,6 +6,7 @@ import { logUserIn } from '../utils/api';
 
 import { TokenContext } from '../context/TokenContext';
 import { UserContext } from '../context/UserContext';
+import { toast } from 'react-toastify';
 
 const Login = () => {
 	const [loginForm, setLoginForm] = useState({
@@ -21,6 +22,26 @@ const Login = () => {
 			...prev,
 			[event.target.name]: event.target.value,
 		}));
+	};
+
+	const handleLogin = async (e) => {
+		if (!context.token) {
+			const res = await logUserIn(loginForm);
+			if (res.message) {
+				toast.warning(res.message);
+			} else {
+				context.setToken(res.data.user.token);
+				userContext.setUser(res.data.user);
+				userContext.setUserId(res.data.user.id);
+				localStorage.setItem('id', res.data.user.id);
+				localStorage.setItem('token', res.data.user.token);
+				localStorage.setItem('roomId', res.data.user?.roomId);
+
+				toast.success(`Hi ${res.data.user.username}`);
+
+				navigate('/home');
+			}
+		}
 	};
 
 	return (
@@ -44,28 +65,11 @@ const Login = () => {
 					onChange={(e) => handleInputChange(e)}
 				/>
 
-				{!context.token && loginForm.password && (
+				{!context.token && !loginForm.password && (
 					<p>enter a valid username and password</p>
 				)}
 			</form>
-			<button
-				onClick={(e) => {
-					if (!context.token) {
-						logUserIn(loginForm).then(({ data }) => {
-							context.setToken(data.user.token);
-							userContext.setUser(data.user);
-							userContext.setUserId(data.user.id);
-							localStorage.setItem('id', data.user.id);
-							localStorage.setItem('token', data.user.token);
-							console.log('user---', data.user);
-							localStorage.setItem('roomId', data.user?.roomId);
-						});
-						navigate('/home');
-					}
-				}}
-			>
-				LOGIN
-			</button>
+			<button onClick={(e) => handleLogin(e)}>LOGIN</button>
 		</StyledLogin>
 	);
 };

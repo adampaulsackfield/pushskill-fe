@@ -45,6 +45,7 @@ export const Profile = () => {
 					</p>
 
 					<div>
+
 						<ul>
 							{user.achievements &&
 								user.achievements.map((achievement) => {
