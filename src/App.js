@@ -1,22 +1,18 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
-import './App.css';
-import Nav from './components/Nav';
-import Home from './components/Home';
-import Room from './components/Socket/Room';
-import Client from './components/Socket/Client';
-import Signup from './components/Signup';
-import LandingPage from './components/LandingPage';
-import { Profile } from './components/Profile';
-import Login from './components/Login';
-import { Global } from './styles/Global';
-import Partner from './components/Partner';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Socket IO Client
-import { io } from 'socket.io-client';
+// Components
+import Nav from './components/Nav';
+import Home from './components/Home';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import Partner from './components/Partner';
+import LandingPage from './components/LandingPage';
+import Profile from './components/Profile';
+import Client from './components/Socket/Client';
+import Room from './components/Socket/Room';
 
 // Context
 import { SocketContext } from './context/SocketContext';
@@ -24,10 +20,14 @@ import { TokenContext } from './context/TokenContext';
 import { UserContext } from './context/UserContext';
 import { RoomsContext } from './context/RoomsContext';
 
+// Theme
+import { ThemeProvider } from 'styled-components';
+import { Global } from './styles/Global';
 
+// Socket IO Client
+import { io } from 'socket.io-client';
 // const socket = io.connect('https://pushskill.herokuapp.com');
 const socket = io.connect('http://localhost:9090');
-
 
 const theme = {
 	colors: {
@@ -76,8 +76,8 @@ function App() {
 							<Routes>
 								<Route path='/' element={<LandingPage />} />
 								<Route path='/home' element={<Home />} />
-								<Route path='/client' element={<Client />} />
-								<Route path='/rooms/:room_name' element={<Room />} />
+								{/* <Route path='/client' element={<Client />} />
+								<Route path='/rooms/:room_name' element={<Room />} /> */}
 								<Route path='/signup' element={<Signup />} />
 								<Route path='/partner' element={<Partner />} />
 								<Route path='/login' element={<Login />} />

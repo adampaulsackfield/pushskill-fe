@@ -1,12 +1,15 @@
 import { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { toast } from 'react-toastify';
 
+// Theme
 import { StyledHome } from '../styles/Home.style';
 
+// Context
 import { TokenContext } from '../context/TokenContext';
+
+// API
 import { handleGetMatches, handleSendMatchRequest } from '../utils/api';
-import { toast } from 'react-toastify';
 
 const Home = () => {
 	const navigate = useNavigate();
@@ -24,22 +27,22 @@ const Home = () => {
 			})
 			.catch((err) => {
 				console.log('handleSendMatchRequest: .catch()', err);
-				toast.danger(err?.message);
+				toast.error(err?.message);
 			});
 	};
 
 	useEffect(() => {
 		if (token) {
 			handleGetMatches(token)
-				.then((res) => {
-					console.log('handleGetMatches: .then()', res);
+				.then((users) => {
+					console.log('handleGetMatches: .then()', users);
 
 					toast.success('Matches generated');
-					setUsers(res.users);
+					setUsers(users);
 				})
 				.catch((err) => {
 					console.log('handleGetMatches: .catch()', err);
-					toast.danger(err?.message);
+					toast.error(err?.message);
 				});
 		}
 	}, [token]);
