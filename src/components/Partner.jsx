@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { RiSendPlaneFill } from 'react-icons/ri';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { TiMessageTyping } from 'react-icons/ti';
 
 // Theme
 import { StyledPartner } from '../styles/Partner.style';
@@ -19,6 +20,7 @@ const Partner = () => {
 	const token = context.token;
 	const [messages, setMessages] = useState([]);
 	const [message, setMessage] = useState('');
+	const [isTyping, setIsTyping] = useState(false);
 
 	const { userId } = useContext(UserContext);
 	const { socket } = useContext(SocketContext);
@@ -26,48 +28,14 @@ const Partner = () => {
 
 	const [room, setRoom] = useState('');
 
-	useEffect(() => {
-		if (token && userId) {
-			axios
-				.get(`http://localhost:9090/api/rooms`, {
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
-				})
-				.then((res) => {
-					console.log('rooomio', room);
-					setRoom(res.data.rooms[0]);
+	const handleStartTypingEvent = () => {
+		console.log('user typing event');
+		socket.emit('user_typing_start', { room_id: roomId });
+	};
 
-					console.log('ROOM ID .id', roomId);
-					axios
-						.get(`http://localhost:9090/api/rooms/${roomId}/messages`, {
-							headers: {
-								Authorization: `Bearer ${token}`,
-							},
-						})
-						.then((res) => {
-							console.log('1,000,000', res.data);
-							setMessages(res.data.messages);
-						});
-				})
-				.catch((err) => {
-					console.log('err', err);
-				});
-		}
-	}, []);
-
-	useEffect(() => {
-		socket.emit('join_room', { room_id: roomId });
-
-		socket.on('receive_message', (data) => {
-			console.log('1,000,001', data);
-			setMessages([...messages, data]);
-		});
-
-		socket.on('rooms_list', (data) => {
-			console.log('listrooms', data);
-		});
-	});
+	const handleEndTypingEvent = (e) => {
+		socket.emit('user_typing_end', { room_id: roomId });
+	};
 
 	const handleSendMsg = (e) => {
 		e.preventDefault();
@@ -92,9 +60,52 @@ const Partner = () => {
 		setMessage('');
 	};
 
-	const listRooms = () => {
-		socket.emit('list_rooms');
-	};
+	useEffect(() => {
+		if (token && userId) {
+			axios
+				.get(`http://localhost:9090/api/rooms`, {
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				})
+				.then((res) => {
+					setRoom(res.data.rooms[0]);
+
+					axios
+						.get(`http://localhost:9090/api/rooms/${roomId}/messages`, {
+							headers: {
+								Authorization: `Bearer ${token}`,
+							},
+						})
+						.then((res) => {
+							setMessages(res.data.messages);
+						});
+				})
+				.catch((err) => {
+					console.log('err', err);
+				});
+		}
+	}, []);
+
+	useEffect(() => {
+		socket.emit('join_room', { room_id: roomId });
+
+		socket.on('receive_message', (data) => {
+			setMessages([...messages, data]);
+		});
+
+		socket.on('rooms_list', (data) => {
+			console.log('listrooms', data);
+		});
+
+		socket.on('user_typing', () => {
+			setIsTyping(true);
+		});
+
+		socket.on('stop_typing', () => {
+			setIsTyping(false);
+		});
+	}, [socket]);
 
 	return (
 		<StyledPartner>
@@ -102,6 +113,9 @@ const Partner = () => {
 			<section>
 				<h1>Messages</h1>
 				<div>
+					<p hidden={!isTyping}>
+						<TiMessageTyping color='green' size='32px' />
+					</p>
 					<ul>
 						{messages &&
 							messages.map((message) => {
@@ -123,6 +137,8 @@ const Partner = () => {
 						value={message}
 						placeholder='say something...'
 						onChange={(e) => setMessage(e.target.value)}
+						onFocus={handleStartTypingEvent}
+						onBlur={(e) => handleEndTypingEvent(e)}
 					/>
 					<button onClick={handleSendMsg}>
 						<RiSendPlaneFill />

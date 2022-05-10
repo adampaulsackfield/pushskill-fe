@@ -26,10 +26,10 @@ const Login = () => {
 	const userContext = useContext(UserContext);
 
 	const handleInputChange = (event) => {
-		if (loginForm.username.length < 7) {
+		if (!loginForm.username) {
 			setErrors((prev) => ({
 				...prev,
-				username: 'Username must be at least 8 characters long',
+				username: "User can't be empty",
 			}));
 		} else {
 			setErrors((prev) => ({
@@ -38,10 +38,10 @@ const Login = () => {
 			}));
 		}
 
-		if (loginForm.password.length < 7) {
+		if (!loginForm.password) {
 			setErrors((prev) => ({
 				...prev,
-				password: 'Password must be at least 8 characters long',
+				password: "Password can't be empty",
 			}));
 		} else {
 			setErrors((prev) => ({
