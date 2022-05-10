@@ -1,22 +1,27 @@
-import { useEffect, useState, useContext } from 'react';
-import { StyledProfile } from '../styles/Profile.style';
+import { useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
+
+// Theme
+import { StyledProfile } from '../styles/Profile.style';
+
+// API
 import { getProfile } from '../utils/api';
+
+// Context
 import { TokenContext } from '../context/TokenContext';
 import { UserContext } from '../context/UserContext';
 
-export const Profile = () => {
+const Profile = () => {
 	const { user_id } = useParams();
 	const context = useContext(TokenContext);
 	const { user, setUser } = useContext(UserContext);
 
 	useEffect(() => {
-		getProfile(user_id, context).then(({ data }) => {
-			setUser(data.user);
-			console.log(data);
+		getProfile(user_id, context).then((user) => {
+			setUser(user);
 		});
-	}, []);
-	console.log(user);
+	});
+
 	return (
 		<StyledProfile>
 			<section>
@@ -45,7 +50,6 @@ export const Profile = () => {
 					</p>
 
 					<div>
-
 						<ul>
 							{user.achievements &&
 								user.achievements.map((achievement) => {
@@ -59,19 +63,21 @@ export const Profile = () => {
 					</div>
 				</div>
 				<div>
-					<ul>
+					{/* <ul>
 						{user.notifications.map((notification) => {
 							return (
 								<li key={notification.id}>
-									{`${notification.sender} wants to pair up`}
+									{`${notification.username} wants to pair up`}
 									<button>Accept</button>
 									<button>Decline</button>
 								</li>
 							);
 						})}
-					</ul>
+					</ul> */}
 				</div>
 			</section>
 		</StyledProfile>
 	);
 };
+
+export default Profile;

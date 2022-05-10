@@ -47,18 +47,23 @@ export const getProfile = (user_id, context) => {
 				Authorization: `Bearer ${context.token}`,
 			},
 		})
-		.then((user) => {
-			return user;
+		.then((res) => {
+			return res.data.user;
 		});
 };
 
-export const handleSendMatchRequest = (token, id) => {
+export const handleSendMatchRequest = (token, id, username) => {
+	console.log(token);
 	return pushSkillApi
-		.get(`/users/matches/${id}`, {
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		})
+		.post(
+			`/users/matches/${id}`,
+			{ username },
+			{
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}
+		)
 		.then((res) => {
 			return res.data;
 		})
@@ -75,14 +80,14 @@ export const handleGetMatches = (token) => {
 			},
 		})
 		.then((res) => {
-			return res.data;
+			return res.data.users;
 		})
 		.catch((err) => {
 			return err;
 		});
 };
 
-export const getRooms = (token, roomId) => {
+export const getRooms = (token) => {
 	return pushSkillApi
 		.get(`http://localhost:9090/api/rooms`, {
 			headers: {
