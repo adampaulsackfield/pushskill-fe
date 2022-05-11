@@ -40,7 +40,7 @@ const Signup = () => {
 	};
 
 	const handleInputChange = (event) => {
-		if (signUpForm.username.length < 7) {
+		if (signUpForm.username.length <= 7) {
 			setErrors((prev) => ({
 				...prev,
 				username: 'Username must be at least 8 characters long',
@@ -52,7 +52,7 @@ const Signup = () => {
 			}));
 		}
 
-		if (signUpForm.password.length < 7) {
+		if (signUpForm.password.length <= 7) {
 			setErrors((prev) => ({
 				...prev,
 				password: 'Password must be at least 8 characters long',
