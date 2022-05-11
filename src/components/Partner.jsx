@@ -30,7 +30,6 @@ const Partner = () => {
 	const [room, setRoom] = useState('');
 
 	const handleStartTypingEvent = () => {
-		console.log('user typing event');
 		socket.emit('user_typing_start', { room_id: roomId });
 	};
 
@@ -98,7 +97,7 @@ const Partner = () => {
 		socket.on('stop_typing', () => {
 			setIsTyping(false);
 		});
-	}, [socket]);
+	});
 
 	return (
 		<StyledPartner>
