@@ -46,6 +46,7 @@ const Profile = () => {
 			})
 			.then(() => {
 				addAchievement(
+					token,
 					{
 						name: 'Partnered',
 						description: 'This is a description',

@@ -158,10 +158,11 @@ export const declineMatch = (token, user_id, sender_id) => {
 };
 
 export const addAchievement = (token, achievement, sender_id) => {
+	console.log('ran addAchievement', token);
 	return pushSkillApi
 		.patch(
 			`/users/${sender_id}/achievements`,
-			{ achievement },
+			{ achievement, both: true },
 			{ headers: { Authorization: `Bearer ${token}` } }
 		)
 		.then((res) => {

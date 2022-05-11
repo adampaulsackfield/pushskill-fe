@@ -11,8 +11,6 @@ import Signup from './components/Signup';
 import Partner from './components/Partner';
 import LandingPage from './components/LandingPage';
 import Profile from './components/Profile';
-import Client from './components/Socket/Client';
-import Room from './components/Socket/Room';
 
 // Context
 import { SocketContext } from './context/SocketContext';
@@ -85,7 +83,12 @@ function App() {
 								<Route path='/profile/:user_id' element={<Profile />} />
 								<Route path='/about' element={<About />} />
 							</Routes>
-							<ToastContainer position='top-center' />
+							<ToastContainer
+								position='top-center'
+								closeOnClick
+								pauseOnHover
+								theme='dark'
+							/>
 						</ThemeProvider>
 					</RoomsContext.Provider>
 				</UserContext.Provider>
