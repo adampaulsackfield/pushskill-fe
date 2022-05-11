@@ -16,7 +16,6 @@ Team members:
 
 Adam Sackfield - github: adampaulsackfield
 Dane Whitfield - github: danewhitfield
-Abdirasak Ahmed - github: abdirasak
 Owen Corrigan - github: ojcorrigan
 
 ---

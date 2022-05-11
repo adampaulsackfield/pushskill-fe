@@ -142,16 +142,30 @@ const Signup = () => {
 				<div>
 					<label>Learning interests: </label>
 					<select onChange={handleInterests}>
-						<option value='Knitting'>Knitting</option>
-						<option value='Karate'>Karate</option>
+						<option value='Botany'>Botany</option>
+						<option value='Cooking'>Cooking</option>
+						<option value='Guitar'>Guitar</option>
 						<option value='Interpretive Dance'>Interpretive Dance</option>
+						<option value='JavaScript'>JavaScript</option>
+						<option value='Karate'>Karate</option>
+						<option value='Knitting'>Knitting</option>
+						<option value='Life Drawing'>Life Drawing</option>
+						<option value='Podcasting'>Podcasting</option>
+						<option value='Pro Wrestling'>Pro Wrestling</option>
 					</select>
 
 					<label>Personal Traits: </label>
 					<select onChange={handleTraits}>
-						<option value='Supportive'>Supportive</option>
+						<option value='Class Clown'>Class Clown</option>
+						<option value='Disorganised'>Disorganised</option>
 						<option value='Empathetic'>Empathetic</option>
+						<option value='Erratic'>Erratic</option>
+						<option value='Lazy'>Lazy</option>
+						<option value='Sarcastic'>Sarcastic</option>
+						<option value='Shy'>Shy</option>
 						<option value='Super Violent'>Super Violent</option>
+						<option value='Supportive'>Supportive</option>
+						<option value='Talkative'>Talkative</option>
 					</select>
 				</div>
 

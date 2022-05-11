@@ -99,30 +99,32 @@ const Partner = () => {
 		});
 	});
 
+	// FIXME: broken isTyping
+
 	return (
 		<StyledPartner>
-			<h1>{roomId && `Room Name: ${roomId}`}</h1>
+			{/* <h1>{roomId && `Room Name: ${roomId}`}</h1> */}
 			<section>
 				<h1>Messages</h1>
+				{/* <p hidden={!isTyping}>
+					<TiMessageTyping color='green' size='32px' />
+				</p> */}
 				<div>
-					<p hidden={!isTyping}>
-						<TiMessageTyping color='green' size='32px' />
-					</p>
-					<ul>
-						{messages &&
-							messages.map((message) => {
-								return (
-									<li
-										key={message._id}
-										className={message.senderId === userId ? 'right' : 'left'}
-									>
-										{message.message}
-									</li>
-								);
-							})}
-					</ul>
+					{messages &&
+						messages.map((message) => {
+							return (
+								<p>
+									<span key={message._id}>
+										<p
+											className={message.senderId === userId ? 'right' : 'left'}
+										>
+											{message.message}
+										</p>
+									</span>
+								</p>
+							);
+						})}
 				</div>
-
 				<form>
 					<input
 						type='text'
