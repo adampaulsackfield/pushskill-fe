@@ -48,11 +48,7 @@ const Nav = () => {
 							</Link>
 							<Link
 								to={`/profile/${userId}`}
-								data-count={
-									user.notifications.length > 0
-										? user.notifications.length
-										: null
-								}
+								data-count={user.notifications && user.notifications.length}
 								className='badge'
 							>
 								<AiFillHome />

@@ -5,57 +5,50 @@ export const StyledPartner = styled.main`
 	width: 100vw;
 	height: 100vh;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	overflow: hidden;
 
 	section {
-		width: 80vw;
+		width: 40vw;
 		height: 80%;
 		background-color: ${({ theme }) => theme.colors.mainAccent};
 		border-radius: ${({ theme }) => theme.borders.borderRadius};
 		display: grid;
 		justify-content: center;
 		align-items: center;
-		text-align: center;
 		grid-template-columns: 1fr;
 		grid-template-rows: 1fr 8fr 1fr;
-		padding: 40px;
+		padding: 30px;
 		border-radius: ${({ theme }) => theme.borders.borderRadius};
+		overflow: hidden;
 	}
 
-	section div {
+	h1 {
+		text-align: center;
+	}
+
+	div {
 		width: 100%;
-		margin-bottom: 20px;
-	}
-
-	div,
-	ul {
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
-		align-items: center;
 		height: 100%;
-		width: 100%;
+		overflow-y: scroll;
+		padding-right: 60px;
+		box-sizing: content-box;
 	}
 
 	form {
+		width: 90%;
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
 	}
 
-	li {
-		width: auto;
-		margin: 10px 0;
+	p {
 		padding: 10px;
+		margin: 5px 0;
 		border-radius: 6px;
-	}
-
-	ul {
-		display: flex;
-		justify-content: flex-end;
-		align-items: flex-start;
 	}
 
 	.left {
@@ -68,11 +61,6 @@ export const StyledPartner = styled.main`
 		text-align: right;
 		background-color: blue;
 		width: auto;
-	}
-
-	div h1 {
-		text-align: center;
-		height: 100%;
 	}
 
 	button {
@@ -94,5 +82,10 @@ export const StyledPartner = styled.main`
 		background-color: ${({ theme }) => theme.colors.mainAccent};
 		color: ${({ theme }) => theme.colors.mainText};
 		transform: rotate(10deg);
+	}
+
+	button:active,
+	button:focus {
+		outline: none;
 	}
 `;
