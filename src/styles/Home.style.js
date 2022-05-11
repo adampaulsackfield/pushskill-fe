@@ -42,6 +42,7 @@ export const StyledHome = styled.main`
 	section div {
 		width: 600px;
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		grid-template-columns: 1fr 1fr;
@@ -56,11 +57,15 @@ export const StyledHome = styled.main`
 	}
 
 	section div span {
+		content: '';
+		position: relative;
+		top: 50%;
+		left: 50%;
 		background-color: ${({ theme }) => theme.colors.darkerBg};
 		opacity: 0.3;
-		width: 2px;
-		height: 100px;
-		transform: translateX(20px);
+		width: 200px;
+		height: 2px;
+		transform: translate(-50%, -50%);
 	}
 
 	p {
@@ -89,6 +94,15 @@ export const StyledHome = styled.main`
 
 	li {
 		height: 100%;
+	}
+
+	ul > li {
+		background: white;
+		margin: 2px;
+		padding: 2px 4px;
+		border-radius: 6px;
+		display: inline;
+		color: ${({ theme }) => theme.colors.mainAccent};
 	}
 
 	@media screen and (max-width: 1000px) {

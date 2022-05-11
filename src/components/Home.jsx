@@ -72,15 +72,13 @@ const Home = () => {
 														<div>
 															<p>Username: {user.username}</p>
 															<p>Name: {user.firstName}</p>
-															<ul>
-																Traits:{' '}
-																{user.traits.map((trait) => {
-																	return (
-																		<li key={user._id + trait}>{trait}</li>
-																	);
-																})}
-															</ul>
 														</div>
+														<ul>
+															Traits:{' '}
+															{user.traits.map((trait) => {
+																return <li key={user._id + trait}>{trait}</li>;
+															})}
+														</ul>
 													</div>
 												</li>
 											</span>
