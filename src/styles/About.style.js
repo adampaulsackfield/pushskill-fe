@@ -14,7 +14,7 @@ export const StyledAbout = styled.main`
 		border-radius: ${({ theme }) => theme.borders.borderRadius};
 		padding: 30px;
 		width: 100%;
-		height: 60vh;
+		height: 80vh;
 		display: grid;
 		justify-content: center;
 		align-items: center;

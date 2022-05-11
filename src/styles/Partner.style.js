@@ -10,7 +10,7 @@ export const StyledPartner = styled.main`
 
 	section {
 		width: 80vw;
-		height: 100%;
+		height: 80%;
 		background-color: ${({ theme }) => theme.colors.mainAccent};
 		border-radius: ${({ theme }) => theme.borders.borderRadius};
 		display: grid;

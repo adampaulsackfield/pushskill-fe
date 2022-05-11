@@ -7,6 +7,7 @@ import { StyledHome } from '../styles/Home.style';
 
 // Context
 import { TokenContext } from '../context/TokenContext';
+import { UserContext } from '../context/UserContext';
 
 // API
 import { handleGetMatches, handleSendMatchRequest } from '../utils/api';
@@ -15,12 +16,11 @@ const Home = () => {
 	const navigate = useNavigate();
 	const token = useContext(TokenContext).token;
 	const [users, setUsers] = useState('');
+	const { user } = useContext(UserContext);
 
 	const handleJoinPair = (id, username) => {
 		handleSendMatchRequest(token, id, username)
 			.then((res) => {
-				console.log('handleSendMatchRequest: .then()', res);
-
 				toast.success(`Pair request sent to: ${username}`);
 				// localStorage.setItem('roomId', res.room._id);
 				// navigate('/partner');
@@ -35,8 +35,6 @@ const Home = () => {
 		if (token) {
 			handleGetMatches(token)
 				.then((users) => {
-					console.log('handleGetMatches: .then()', users);
-
 					toast.success('Matches generated');
 					setUsers(users);
 				})
@@ -52,16 +50,7 @@ const Home = () => {
 			<StyledHome>
 				<main>
 					<header>
-						<h1>Welcome back $User</h1>
-						<button
-							onClick={() => {
-								localStorage.removeItem('token');
-								localStorage.removeItem('id');
-								localStorage.removeItem('roomId');
-							}}
-						>
-							LOGOUT
-						</button>
+						<h1>Welcome back {user.username}</h1>
 					</header>
 					<div>
 						<h3>Here's some people we think you'll love!</h3>
@@ -70,12 +59,10 @@ const Home = () => {
 								users.map((user) => {
 									return (
 										<section>
-											<button
+											<Link
+												to='/partner'
 												onClick={() => handleJoinPair(user._id, user.username)}
 											>
-												Send Pair Request
-											</button>
-											<Link to='/partner'>
 												<li key={user._id}>
 													<div>
 														<img
