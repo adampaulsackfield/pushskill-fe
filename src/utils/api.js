@@ -156,3 +156,20 @@ export const declineMatch = (token, user_id, sender_id) => {
 			return err;
 		});
 };
+
+export const addAchievement = (token, achievement, sender_id) => {
+	return pushSkillApi
+		.patch(
+			`/users/${sender_id}/achievements`,
+			{ achievement },
+			{ headers: { Authorization: `Bearer ${token}` } }
+		)
+		.then((res) => {
+			console.log('addAchievement', res.data.user);
+			return res.data.user;
+		})
+		.catch((err) => {
+			console.log('addAchievement', err);
+			return err;
+		});
+};

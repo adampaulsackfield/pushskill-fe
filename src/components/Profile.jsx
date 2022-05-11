@@ -6,7 +6,12 @@ import { toast } from 'react-toastify';
 import { StyledProfile } from '../styles/Profile.style';
 
 // API
-import { getProfile, acceptMatch, declineMatch } from '../utils/api';
+import {
+	getProfile,
+	acceptMatch,
+	declineMatch,
+	addAchievement,
+} from '../utils/api';
 
 // Context
 import { TokenContext } from '../context/TokenContext';
@@ -33,11 +38,24 @@ const Profile = () => {
 	});
 
 	const handleAccept = (sender_id) => {
-		acceptMatch(token, user_id, sender_id).then((room) => {
-			if (room.id) {
-				return toast.success('Successfully paired!');
-			}
-		});
+		acceptMatch(token, user_id, sender_id)
+			.then((room) => {
+				if (room.id) {
+					return toast.success('Successfully paired!');
+				}
+			})
+			.then(() => {
+				addAchievement(
+					{
+						name: 'Partnered',
+						description: 'This is a description',
+						url: '',
+					},
+					sender_id
+				).then((user) => {
+					console.log(user);
+				});
+			});
 	};
 
 	const handleDecline = (sender_id) => {

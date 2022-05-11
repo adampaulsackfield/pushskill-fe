@@ -49,7 +49,7 @@ const Nav = () => {
 							<Link
 								to={`/profile/${userId}`}
 								data-count={
-									user.notifications.length > 0
+									user.notifications && user.notifications.length > 0
 										? user.notifications.length
 										: null
 								}
