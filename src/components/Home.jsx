@@ -22,8 +22,6 @@ const Home = () => {
 		handleSendMatchRequest(token, id, username)
 			.then((res) => {
 				toast.success(`Pair request sent to: ${username}`);
-				// localStorage.setItem('roomId', res.room._id);
-				// navigate('/partner');
 			})
 			.catch((err) => {
 				console.log('handleSendMatchRequest: .catch()', err);
@@ -42,6 +40,8 @@ const Home = () => {
 					console.log('handleGetMatches: .catch()', err);
 					toast.error(err?.message);
 				});
+		} else {
+			navigate('/');
 		}
 	}, [token]);
 

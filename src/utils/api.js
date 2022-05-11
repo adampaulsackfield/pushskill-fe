@@ -40,11 +40,11 @@ export const logUserIn = ({ username, password }) => {
 		});
 };
 
-export const getProfile = (user_id, context) => {
+export const getProfile = (user_id, token) => {
 	return pushSkillApi
 		.get(`/users/${user_id}`, {
 			headers: {
-				Authorization: `Bearer ${context.token}`,
+				Authorization: `Bearer ${token}`,
 			},
 		})
 		.then((res) => {
@@ -99,6 +99,21 @@ export const getRooms = (token) => {
 		})
 		.catch((err) => {
 			console.log('getRooms: .catch()', err);
+			return err;
+		});
+};
+
+export const getMessages = (token, roomId) => {
+	return pushSkillApi
+		.get(`/rooms/${roomId}/messages`, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		})
+		.then((res) => {
+			return res.data.messages;
+		})
+		.catch((err) => {
 			return err;
 		});
 };

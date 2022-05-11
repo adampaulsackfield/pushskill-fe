@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AiFillHome, AiFillInfoCircle } from 'react-icons/ai';
 import { FaUserFriends } from 'react-icons/fa';
 import { MdOutlineHelp } from 'react-icons/md';
@@ -15,18 +16,22 @@ import { StyledNav } from '../styles/Nav.style';
 // Context
 import { UserContext } from '../context/UserContext';
 import { TokenContext } from '../context/TokenContext';
-import { toast } from 'react-toastify';
 
 const Nav = () => {
-	const { userId } = useContext(UserContext);
+	const { userId, user } = useContext(UserContext);
+
 	const { token } = useContext(TokenContext);
 
-	const handleLogoutUser = () => {
+	const handleLogoutUser = async () => {
 		localStorage.removeItem('id');
 		localStorage.removeItem('token');
 		localStorage.removeItem('roomId');
 
 		toast.success('Logout Successful');
+
+		setTimeout(() => {
+			window.location.reload();
+		}, 3000);
 	};
 
 	return (
@@ -41,7 +46,11 @@ const Nav = () => {
 							<Link to='/partner'>
 								<FaUserFriends />
 							</Link>
-							<Link to={`/profile/${userId}`}>
+							<Link
+								to={`/profile/${userId}`}
+								data-count={user.notifications && user.notifications.length}
+								className='badge'
+							>
 								<AiFillHome />
 							</Link>
 							<Link to='#' onClick={handleLogoutUser}>
@@ -53,7 +62,7 @@ const Nav = () => {
 							<Link to='/signup'>
 								<AiOutlineUserAdd />
 							</Link>
-							<Link to={`/login/`}>
+							<Link to={`/login`}>
 								<AiOutlineLogin />
 							</Link>
 						</>
