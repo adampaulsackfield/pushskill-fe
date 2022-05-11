@@ -36,8 +36,6 @@ const Profile = () => {
 		acceptMatch(token, user_id, sender_id).then((room) => {
 			if (room.id) {
 				return toast.success('Successfully paired!');
-			} else {
-				return toast.error('Error with pairing!');
 			}
 		});
 	};
