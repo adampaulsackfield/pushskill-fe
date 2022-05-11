@@ -11,7 +11,7 @@ export const StyledPartner = styled.main`
 	overflow: hidden;
 
 	section {
-		width: 40vw;
+		width: 70vw;
 		height: 80%;
 		background-color: ${({ theme }) => theme.colors.mainAccent};
 		border-radius: ${({ theme }) => theme.borders.borderRadius};
@@ -52,7 +52,7 @@ export const StyledPartner = styled.main`
 	}
 
 	p span {
-		width: 100%;
+		width: auto;
 		display: grid;
 		grid-template-areas: 'left right';
 		grid-template-columns: repeat(2, 1fr);
@@ -63,14 +63,14 @@ export const StyledPartner = styled.main`
 	.left {
 		text-align: left;
 		background-color: green;
-		width: 40%;
+		width: 70%;
 		grid-area: left;
 	}
 
 	.right {
 		text-align: right;
 		background-color: blue;
-		width: 40%;
+		width: 70%;
 		grid-area: right;
 		position: relative;
 		right: -100%;

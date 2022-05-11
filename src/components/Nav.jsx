@@ -1,14 +1,14 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { AiFillHome, AiFillInfoCircle } from 'react-icons/ai';
-import { FaUserFriends } from 'react-icons/fa';
-import { MdOutlineHelp } from 'react-icons/md';
 import {
+	AiFillHome,
+	AiFillInfoCircle,
 	AiOutlineUserAdd,
 	AiOutlineLogin,
-	AiOutlineLogout,
 } from 'react-icons/ai';
+import { FaUserFriends, FaUserGraduate } from 'react-icons/fa';
+import { RiLogoutCircleRFill } from 'react-icons/ri';
 
 // Theme
 import { StyledNav } from '../styles/Nav.style';
@@ -55,10 +55,10 @@ const Nav = () => {
 								}
 								className='badge'
 							>
-								<AiFillHome />
+								<FaUserGraduate />
 							</Link>
 							<Link to='#' onClick={handleLogoutUser}>
-								<AiOutlineLogout />
+								<RiLogoutCircleRFill />
 							</Link>
 						</>
 					) : (
@@ -74,9 +74,6 @@ const Nav = () => {
 
 					<Link to='/about'>
 						<AiFillInfoCircle />
-					</Link>
-					<Link to='/faq'>
-						<MdOutlineHelp />
 					</Link>
 				</div>
 			</nav>

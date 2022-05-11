@@ -106,9 +106,6 @@ const Partner = () => {
 			{/* <h1>{roomId && `Room Name: ${roomId}`}</h1> */}
 			<section>
 				<h1>Messages</h1>
-				{/* <p hidden={!isTyping}>
-					<TiMessageTyping color='green' size='32px' />
-				</p> */}
 				<div>
 					{messages &&
 						messages.map((message) => {
@@ -126,6 +123,9 @@ const Partner = () => {
 						})}
 				</div>
 				<form>
+					<p hidden={!isTyping}>
+						<TiMessageTyping color='green' size='28px' />
+					</p>
 					<input
 						type='text'
 						value={message}
