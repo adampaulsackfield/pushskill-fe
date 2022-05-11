@@ -52,7 +52,8 @@ const Profile = () => {
 						description: 'This is a description',
 						url: '',
 					},
-					sender_id
+					sender_id,
+					{ both: true }
 				).then((user) => {
 					console.log(user);
 				});
@@ -68,6 +69,13 @@ const Profile = () => {
 			.catch((err) => {
 				console.log('Profile.jsx: handleDecline .catch()', err);
 			});
+	};
+
+	const handleGiveAchievement = (achievement, sender_id, both) => {
+		console.log('ran');
+		addAchievement(token, achievement, sender_id, { both }).then((res) => {
+			console.log(res);
+		});
 	};
 
 	return (
@@ -130,6 +138,46 @@ const Profile = () => {
 								);
 							})}
 					</ul>
+				</div>
+				<div className='achievements-container'>
+					<h3>Award Some Achievements</h3>
+					{user.isPaired && (
+						<ul className='achievements add-achievements'>
+							<li
+								key={223242}
+								onClick={() =>
+									handleGiveAchievement(
+										{
+											name: 'Supporter',
+											description: 'Support description to come...',
+											url: '/images/achievements/Supporter.png',
+										},
+										user.partnerId,
+										{ both: true }
+									)
+								}
+							>
+								<img src={`/images/achievements/Supporter.png`} alt={`icon`} />
+							</li>
+
+							<li
+								key={3232323}
+								onClick={() =>
+									handleGiveAchievement(
+										{
+											name: 'Unruly',
+											description: 'Support description to come...',
+											url: '/images/achievements/Unruly.png',
+										},
+										user.partnerId,
+										{ both: true }
+									)
+								}
+							>
+								<img src={`/images/achievements/Unruly.png`} alt={` icon`} />
+							</li>
+						</ul>
+					)}
 				</div>
 			</section>
 		</StyledProfile>

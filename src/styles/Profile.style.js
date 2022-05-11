@@ -35,16 +35,29 @@ export const StyledProfile = styled.main`
 		font-weight: bold;
 	}
 
+	section .achievements-container {
+		width: 50%;
+	}
+
 	section .achievements {
 		display: flex;
 		flex-direction: column;
+		align-items: flex-start;
 		padding: 20px;
-		margin-left: 10px;
+		gap: 10px;
+		overflow: visible;
 	}
 
 	section .achievements img {
 		width: 60px;
 		background-color: ${({ theme }) => theme.colors.mainAccent};
 		padding: 6px;
+	}
+
+	section .add-achievements {
+		flex-direction: row;
+		width: 100%;
+		justify-content: center;
+		align-items: center;
 	}
 `;
