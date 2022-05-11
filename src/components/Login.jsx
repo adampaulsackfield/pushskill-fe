@@ -25,7 +25,7 @@ const Login = () => {
 	const context = useContext(TokenContext);
 	const userContext = useContext(UserContext);
 
-	const handleInputChange = (event) => {
+	const formValidation = (event) => {
 		if (!loginForm.username) {
 			setErrors((prev) => ({
 				...prev,
@@ -49,6 +49,32 @@ const Login = () => {
 				password: null,
 			}));
 		}
+	};
+
+	const handleInputChange = (event) => {
+		// if (!loginForm.username) {
+		// 	setErrors((prev) => ({
+		// 		...prev,
+		// 		username: "User can't be empty",
+		// 	}));
+		// } else {
+		// 	setErrors((prev) => ({
+		// 		...prev,
+		// 		username: null,
+		// 	}));
+		// }
+
+		// if (!loginForm.password) {
+		// 	setErrors((prev) => ({
+		// 		...prev,
+		// 		password: "Password can't be empty",
+		// 	}));
+		// } else {
+		// 	setErrors((prev) => ({
+		// 		...prev,
+		// 		password: null,
+		// 	}));
+		// }
 
 		setLoginForm((prev) => ({
 			...prev,
@@ -87,6 +113,7 @@ const Login = () => {
 					placeholder='Username:'
 					value={loginForm.username}
 					onChange={(e) => handleInputChange(e)}
+					onBlur={(e) => formValidation(e)}
 				/>
 				<p>{errors.username}</p>
 
@@ -97,6 +124,7 @@ const Login = () => {
 					placeholder='Password:'
 					value={loginForm.password}
 					onChange={(e) => handleInputChange(e)}
+					onBlur={(e) => formValidation(e)}
 				/>
 				<p>{errors.password}</p>
 			</form>
