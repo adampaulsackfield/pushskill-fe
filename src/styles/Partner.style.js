@@ -51,16 +51,30 @@ export const StyledPartner = styled.main`
 		border-radius: 6px;
 	}
 
+	p span {
+		width: 100%;
+		display: grid;
+		grid-template-areas: 'left right';
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: auto;
+		height: 100%;
+	}
+
 	.left {
 		text-align: left;
 		background-color: green;
-		width: auto;
+		width: 40%;
+		grid-area: left;
 	}
 
 	.right {
 		text-align: right;
 		background-color: blue;
-		width: auto;
+		width: 40%;
+		grid-area: right;
+		position: relative;
+		right: -100%;
+		transform: translateX(-100%);
 	}
 
 	button {
