@@ -4,18 +4,22 @@ export const StyledHome = styled.main`
 	padding: 20px;
 	margin: 20px;
 	display: flex;
+	flex-wrap: wrap;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 1100px;
-	height: 100%;
-	border-radius: 20px;
+	width: 80vw;
 
 	div {
 		background-color: ${({ theme }) => theme.colors.darkerBg};
 		border-radius: 20px;
 		padding: 60px;
-		max-width: 1100px;
+		/* max-width: 1100px; */
+		width: 1000px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 
 	header h1 {
@@ -48,12 +52,38 @@ export const StyledHome = styled.main`
 		grid-template-columns: 1fr 1fr;
 		gap: 30px;
 		padding: 30px;
+		background-color: ${({ theme }) => theme.colors.mainBg};
+	}
+
+	section div:hover {
 		background-color: ${({ theme }) => theme.colors.mainAccent};
+		font-weight: bold;
+	}
+
+	section div:hover > div {
+		background-color: ${({ theme }) => theme.colors.mainAccent};
+		font-weighboldt
 	}
 
 	section div img {
 		width: 100px;
 		border-radius: 50px;
+	}
+
+	section div div {
+		position: relative;
+	}
+
+	section div div::before {
+		content: '';
+		position: absolute;
+		width: 200px;
+		height: 2px;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -60px);
+		background-color: black;
+		opacity: 0.2;
 	}
 
 	section div span {
@@ -72,11 +102,6 @@ export const StyledHome = styled.main`
 		text-align: center;
 	}
 
-	ul {
-		text-align: center;
-		list-style: none;
-	}
-
 	.h3-title {
 		color: yellow;
 	}
@@ -92,8 +117,8 @@ export const StyledHome = styled.main`
 		transform: scale(1.01);
 	}
 
-	li {
-		height: 100%;
+	ul {
+		overflow: hidden;
 	}
 
 	ul > li {
@@ -105,13 +130,16 @@ export const StyledHome = styled.main`
 		color: ${({ theme }) => theme.colors.mainAccent};
 	}
 
-	@media screen and (max-width: 1000px) {
+	@media screen and (max-width: 1300px) {
 		font-size: 16px;
 		display: flex;
-		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
 
 		h1 {
 			font-size: 26px;
+			text-align: center;
 		}
 
 		div h3 {
@@ -119,15 +147,30 @@ export const StyledHome = styled.main`
 		}
 
 		div {
-			width: 600px;
+			width: 100%;
 			display: flex;
-			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
 		}
 
 		section {
 			display: flex;
-			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
 			width: 600px;
+		}
+
+		section div {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 400px;
+		}
+
+		section span {
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 	}
 `;

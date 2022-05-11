@@ -68,25 +68,24 @@ const Home = () => {
 											<span
 												onClick={() => handleJoinPair(user._id, user.username)}
 											>
-												<li key={user._id}>
+												<div>
+													<img
+														src={
+															'https://avatars.dicebear.com/api/gridy/:seed.svg'
+														}
+														alt={`${user.username}'s avatar`}
+													/>
 													<div>
-														<img
-															src={user.avatarUrl}
-															alt={`${user.username}'s avatar`}
-														/>
-														<span></span>
-														<div>
-															<p>Username: {user.username}</p>
-															<p>Name: {user.firstName}</p>
-														</div>
-														<ul>
-															Traits:{' '}
-															{user.traits.map((trait) => {
-																return <li key={user._id + trait}>{trait}</li>;
-															})}
-														</ul>
+														<p>Username: {user.username}</p>
+														<p>Name: {user.firstName}</p>
 													</div>
-												</li>
+													<ul>
+														Traits:{' '}
+														{user.traits.map((trait) => {
+															return <li key={user._id + trait}>{trait}</li>;
+														})}
+													</ul>
+												</div>
 											</span>
 										</section>
 									);
