@@ -45,6 +45,7 @@ const Partner = () => {
 			room_id: roomId,
 			recipientId: room.creator !== userId ? room.creator : room.member,
 			message,
+			token,
 		});
 
 		setMessages([
@@ -69,7 +70,9 @@ const Partner = () => {
 					return room;
 				})
 				.then((room) => {
-					getMessages(token, roomId);
+					getMessages(token, roomId).then((messages) => {
+						setMessages(messages);
+					});
 				})
 				.catch((err) => {
 					console.log('useEffect: ', err);
