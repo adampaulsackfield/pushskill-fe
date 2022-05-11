@@ -76,13 +76,14 @@ export const StyledHome = styled.main`
 		color: yellow;
 	}
 
-	a {
+	span {
 		text-decoration: none;
 		color: ${({ theme }) => theme.colors.mainText};
 		transition: all 0.4s ease;
+		cursor: pointer;
 	}
 
-	a:hover {
+	span:hover {
 		transform: scale(1.01);
 	}
 

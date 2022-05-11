@@ -59,8 +59,7 @@ const Home = () => {
 								users.map((user) => {
 									return (
 										<section>
-											<Link
-												to='/partner'
+											<span
 												onClick={() => handleJoinPair(user._id, user.username)}
 											>
 												<li key={user._id}>
@@ -84,7 +83,7 @@ const Home = () => {
 														</div>
 													</div>
 												</li>
-											</Link>
+											</span>
 										</section>
 									);
 								})}
