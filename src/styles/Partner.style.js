@@ -13,7 +13,7 @@ export const StyledPartner = styled.main`
 	section {
 		width: 70vw;
 		height: 80%;
-		background-color: ${({ theme }) => theme.colors.mainAccent};
+		background-color: ${({ theme }) => theme.colors.darkerBg};
 		border-radius: ${({ theme }) => theme.borders.borderRadius};
 		display: grid;
 		justify-content: center;
@@ -69,7 +69,7 @@ export const StyledPartner = styled.main`
 
 	.right {
 		text-align: right;
-		background-color: blue;
+		background-color: ${({ theme }) => theme.colors.mainAccent};
 		width: 70%;
 		grid-area: right;
 		position: relative;
@@ -89,13 +89,12 @@ export const StyledPartner = styled.main`
 		align-items: center;
 		transform: rotate(45deg);
 		font-size: 30px;
-		transition: all 0.6s ease;
+		transition: all 0.3s ease;
+		background-color: transparent;
 	}
 
 	button:hover {
-		background-color: ${({ theme }) => theme.colors.mainAccent};
-		color: ${({ theme }) => theme.colors.mainText};
-		transform: rotate(10deg);
+		transform: rotate(20deg) scale(1.3);
 	}
 
 	button:active,

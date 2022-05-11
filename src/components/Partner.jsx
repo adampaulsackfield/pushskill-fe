@@ -105,7 +105,7 @@ const Partner = () => {
 		<StyledPartner>
 			{/* <h1>{roomId && `Room Name: ${roomId}`}</h1> */}
 			<section>
-				<h1>Messages</h1>
+				<h1>What's on the agenda?</h1>
 				<div>
 					{messages &&
 						messages.map((message) => {
@@ -129,7 +129,7 @@ const Partner = () => {
 					<input
 						type='text'
 						value={message}
-						placeholder='say something...'
+						placeholder={`I've come to say hello again`}
 						onChange={(e) => setMessage(e.target.value)}
 						onFocus={handleStartTypingEvent}
 						onBlur={(e) => handleEndTypingEvent(e)}

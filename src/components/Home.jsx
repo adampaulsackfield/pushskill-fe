@@ -18,6 +18,8 @@ const Home = () => {
 	const [users, setUsers] = useState('');
 	const { user } = useContext(UserContext);
 
+	console.log('user:', user);
+
 	const handleJoinPair = (id, username) => {
 		handleSendMatchRequest(token, id, username)
 			.then((res) => {
@@ -45,7 +47,7 @@ const Home = () => {
 		}
 	}, [token]);
 
-	if (users) {
+	if (users && user.isPaired !== true) {
 		return (
 			<StyledHome>
 				<main>
@@ -54,6 +56,10 @@ const Home = () => {
 					</header>
 					<div>
 						<h3>Here's some people we think you'll love!</h3>
+						<p>
+							Why not pair with one of these users and start your new learning
+							journey together!
+						</p>
 						<ul>
 							{users &&
 								users.map((user) => {
@@ -94,6 +100,15 @@ const Home = () => {
 		);
 	} else if (!token) {
 		return <h1>You must login to see this page!</h1>;
+	}
+
+	if (user && user.isPaired) {
+		return (
+			<div>
+				<h1>Being productive today?</h1>
+				<p>Checkout these resources to keep you on track...</p>
+			</div>
+		);
 	}
 };
 
