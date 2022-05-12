@@ -62,6 +62,7 @@ const Partner = () => {
 	};
 
 	useEffect(() => {
+		console.log('ue');
 		if (token && userId) {
 			getRooms(token)
 				.then((room) => {
@@ -100,7 +101,7 @@ const Partner = () => {
 		socket.on('stop_typing', () => {
 			setIsTyping(false);
 		});
-	}, [socket]);
+	});
 
 	// FIXME: broken isTyping
 
