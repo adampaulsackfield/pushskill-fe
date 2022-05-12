@@ -20,10 +20,11 @@ export const signUpUser = (
 				learningInterests: [learningInterests],
 			})
 			.then((data) => {
-				console.log(data);
+				console.log('signup', data);
 				return data;
 			})
 			.catch((err) => {
+				console.log('err', err);
 				return err.response.data;
 			});
 	}
