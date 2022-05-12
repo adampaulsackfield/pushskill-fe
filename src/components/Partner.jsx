@@ -106,11 +106,10 @@ const Partner = () => {
 
 	return (
 		<StyledPartner>
-			{/* <h1>{roomId && `Room Name: ${roomId}`}</h1> */}
 			<section>
 				<h1>What's on the agenda?</h1>
 				<div>
-					{messages &&
+					{messages.length &&
 						messages.map((message) => {
 							return (
 								<p>
