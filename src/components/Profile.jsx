@@ -81,20 +81,22 @@ const Profile = () => {
 	return (
 		<StyledProfile>
 			<section>
-				<img src={user && user.avatarUrl} alt='user avatar' />
+				<img
+					src={user && user.avatarUrl}
+					alt='user avatar'
+					className='avatar'
+				/>
 				<h1>{user && user.username}</h1>
 				<div>
-					<div>
-						<p>
-							<span>Traits: </span>
-							{user.traits && user.traits.map((trait) => trait)}
-						</p>
-						<p>
-							<span>Interests: </span>
-							{user.learningInterests &&
-								user.learningInterests.map((interest) => interest)}
-						</p>
-					</div>
+					<p>
+						<span>Traits: </span>
+						{user.traits && user.traits.map((trait) => trait)}
+					</p>
+					<p>
+						<span>Interests: </span>
+						{user.learningInterests &&
+							user.learningInterests.map((interest) => interest)}
+					</p>
 				</div>
 				<div className='achievements'>
 					<p>
@@ -105,21 +107,20 @@ const Profile = () => {
 							)}
 					</p>
 
-					<div>
-						<ul>
-							{user.achievements &&
-								user.achievements.map((achievement) => {
-									return (
-										<li key={achievement.id}>
-											<img
-												src={`/images/achievements/${achievement.name}.png`}
-												alt={`${achievement.name} icon`}
-											/>
-										</li>
-									);
-								})}
-						</ul>
-					</div>
+					<ul>
+						{user.achievements &&
+							user.achievements.map((achievement) => {
+								return (
+									<li key={achievement.id}>
+										<img
+											className='achievement-img'
+											src={`/images/achievements/${achievement.name}.png`}
+											alt={`${achievement.name} icon`}
+										/>
+									</li>
+								);
+							})}
+					</ul>
 				</div>
 				<div>
 					<ul>
@@ -157,7 +158,11 @@ const Profile = () => {
 									)
 								}
 							>
-								<img src={`/images/achievements/Supporter.png`} alt={`icon`} />
+								<img
+									src={`/images/achievements/Supporter.png`}
+									alt={`icon`}
+									className='achievement-img'
+								/>
 							</li>
 
 							<li
