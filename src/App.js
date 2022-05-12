@@ -25,8 +25,8 @@ import { Global } from './styles/Global';
 
 // Socket IO Client
 import { io } from 'socket.io-client';
-// const socket = io.connect('https://pushskill.herokuapp.com');
-const socket = io.connect('http://localhost:9090');
+const socket = io.connect('https://pushskill.herokuapp.com');
+// const socket = io.connect('http://localhost:9090');
 
 const theme = {
 	colors: {
@@ -75,8 +75,6 @@ function App() {
 							<Routes>
 								<Route path='/' element={<LandingPage />} />
 								<Route path='/home' element={<Home />} />
-								{/* <Route path='/client' element={<Client />} />
-								<Route path='/rooms/:room_name' element={<Room />} /> */}
 								<Route path='/signup' element={<Signup />} />
 								<Route path='/partner' element={<Partner />} />
 								<Route path='/login' element={<Login />} />

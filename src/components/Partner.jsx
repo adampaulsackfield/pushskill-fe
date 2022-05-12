@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { RiSendPlaneFill } from 'react-icons/ri';
-import { toast } from 'react-toastify';
 import { TiMessageTyping } from 'react-icons/ti';
 
 // Theme
@@ -102,8 +101,6 @@ const Partner = () => {
 			setIsTyping(false);
 		});
 	});
-
-	// FIXME: broken isTyping
 
 	return (
 		<StyledPartner>
