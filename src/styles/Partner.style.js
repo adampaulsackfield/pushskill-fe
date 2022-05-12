@@ -95,6 +95,7 @@ export const StyledPartner = styled.main`
 
 	button:hover {
 		transform: rotate(20deg) scale(1.3);
+		background-color: transparent;
 	}
 
 	button:active,

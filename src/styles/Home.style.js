@@ -132,6 +132,7 @@ export const StyledHome = styled.main`
 
 	@media screen and (max-width: 1300px) {
 		font-size: 16px;
+		width: 100vw;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -147,7 +148,7 @@ export const StyledHome = styled.main`
 		}
 
 		div {
-			width: 100%;
+			width: 100vw;
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -168,6 +169,13 @@ export const StyledHome = styled.main`
 		}
 
 		section span {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		div ul section {
+			width: 100%;
 			display: flex;
 			justify-content: center;
 			align-items: center;
