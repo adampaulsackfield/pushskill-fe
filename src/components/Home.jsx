@@ -18,8 +18,6 @@ const Home = () => {
 	const [users, setUsers] = useState('');
 	const { user } = useContext(UserContext);
 
-	console.log('user:', user);
-
 	const handleJoinPair = (id, username) => {
 		handleSendMatchRequest(token, id, username)
 			.then((res) => {

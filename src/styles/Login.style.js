@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const StyledLogin = styled.main`
 	background-color: ${({ theme }) => theme.colors.mainBg};
 	color: ${({ theme }) => theme.colors.mainText};
-	width: 40vw;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -12,7 +11,8 @@ export const StyledLogin = styled.main`
 	background-color: #222;
 	border-radius: 20px;
 	padding: 30px;
-	max-width: 1100px;
+	width: 80vw;
+	max-width: 1300px;
 	position: absolute;
 	top: 50%;
 	left: 50%;

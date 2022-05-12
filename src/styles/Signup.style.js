@@ -3,13 +3,13 @@ import styled from 'styled-components';
 export const StyledSignup = styled.main`
 	background-color: ${({ theme }) => theme.colors.mainBg};
 	color: ${({ theme }) => theme.colors.mainText};
-	width: 40vw;
+	width: 80vw;
 	margin: 0;
 	padding-top: 20px;
 	background-color: #222;
 	border-radius: 20px;
 	padding: 30px;
-	max-width: 1100px;
+	max-width: 1300px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -38,5 +38,11 @@ export const StyledSignup = styled.main`
 	form p {
 		color: red;
 		font-size: 0.75rem;
+	}
+
+	.avatar-label {
+		margin-top: 10px;
+		width: 87%;
+		text-align: left;
 	}
 `;

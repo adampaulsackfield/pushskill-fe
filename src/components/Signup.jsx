@@ -14,8 +14,8 @@ import { UserContext } from '../context/UserContext';
 
 const Signup = () => {
 	const navigate = useNavigate();
-	const [learningInterests, setLearningInterests] = useState('Knitting');
-	const [traits, setTraits] = useState('Supportive');
+	const [learningInterests, setLearningInterests] = useState('Botany');
+	const [traits, setTraits] = useState('Class Clown');
 	const context = useContext(TokenContext);
 	const userContext = useContext(UserContext);
 
@@ -132,6 +132,9 @@ const Signup = () => {
 				/>
 				<p>{errors.confirmPassword}</p>
 
+				<label htmlFor={signUpForm.avatarUrl} className='avatar-label'>
+					Avatar URL
+				</label>
 				<input
 					name='avatarUrl'
 					type='input'
@@ -152,6 +155,7 @@ const Signup = () => {
 						<option value='Life Drawing'>Life Drawing</option>
 						<option value='Podcasting'>Podcasting</option>
 						<option value='Pro Wrestling'>Pro Wrestling</option>
+						<option value='Cow Tipping'>Cow Tipping</option>
 					</select>
 
 					<label>Personal Traits: </label>
