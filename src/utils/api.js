@@ -174,3 +174,20 @@ export const addAchievement = (token, achievement, sender_id, both) => {
 			return err;
 		});
 };
+
+export const handleGiveOG = (token, achievement) => {
+	return pushSkillApi
+		.patch(
+			`/users/achievements`,
+			{ achievement },
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			}
+		)
+		.then((res) => {
+			console.log(res);
+		})
+		.catch((err) => {
+			return err;
+		});
+};
