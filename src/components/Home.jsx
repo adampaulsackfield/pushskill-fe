@@ -10,7 +10,11 @@ import { TokenContext } from '../context/TokenContext';
 import { UserContext } from '../context/UserContext';
 
 // API
-import { handleGetMatches, handleSendMatchRequest } from '../utils/api';
+import {
+	handleGetMatches,
+	handleSendMatchRequest,
+	handleGiveOG,
+} from '../utils/api';
 
 const Home = () => {
 	const navigate = useNavigate();
@@ -40,6 +44,23 @@ const Home = () => {
 					console.log('handleGetMatches: .catch()', err);
 					toast.error(err?.message);
 				});
+
+			if (!user.isOg) {
+				const achievement = {
+					name: 'OG',
+					describe: 'You signed up to .push(skill)',
+					url: '/images/achievements/OG.png',
+				};
+				setTimeout(() => {
+					handleGiveOG(token, achievement)
+						.then((res) => {
+							console.log('OG', res);
+						})
+						.catch((err) => {
+							console.log('OG', err);
+						});
+				}, 15000);
+			}
 		} else {
 			navigate('/');
 		}

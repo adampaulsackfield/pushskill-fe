@@ -151,7 +151,7 @@ const Profile = () => {
 										key={achievement.name}
 										onClick={() =>
 											handleGiveAchievement(achievement, user.partnerId, {
-												both: true,
+												both: false,
 											})
 										}
 									>
