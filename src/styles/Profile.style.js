@@ -159,7 +159,7 @@ export const StyledProfile = styled.main`
 			padding: 6px;
 		}
 
-		section .add-achievements {
+		section .achievements .add-achievements {
 			flex-direction: row;
 			width: 100%;
 			justify-content: center;
