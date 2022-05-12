@@ -28,6 +28,7 @@ Team members:
 - Socket io client
 - Styled components
 - Axios
+- React icons
 
 ---
 
