@@ -100,7 +100,7 @@ const Partner = () => {
 		socket.on('stop_typing', () => {
 			setIsTyping(false);
 		});
-	});
+	}, [socket]);
 
 	// FIXME: broken isTyping
 
@@ -109,7 +109,8 @@ const Partner = () => {
 			<section>
 				<h1>What's on the agenda?</h1>
 				<div>
-					{messages.length &&
+					{messages &&
+						messages.length > 0 &&
 						messages.map((message) => {
 							return (
 								<span key={message._id}>
