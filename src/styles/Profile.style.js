@@ -63,20 +63,24 @@ export const StyledProfile = styled.main`
 
 	section .achievements-container {
 		width: 50%;
-	}
-
-	section .achievements div ul li {
-		width: 300px;
-		height: 150px;
-	}
-
-	section .achievements {
 		display: flex;
+		justify-content: center;
+		align-items: center;
 		flex-direction: column;
-		align-items: flex-start;
-		padding: 20px;
+	}
+
+	section .add-achievements {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: row;
+		width: 100%;
+	}
+
+	section .achievements ul {
+		display: flex;
+		flex-direction: row;
 		gap: 10px;
-		height: 150px;
 		overflow: visible;
 	}
 
@@ -86,11 +90,15 @@ export const StyledProfile = styled.main`
 		padding: 6px;
 	}
 
-	section .add-achievements {
+	/* section .add-achievements {
 		flex-direction: row;
 		width: 100%;
 		justify-content: center;
 		align-items: center;
+	} */
+
+	section .add-achievement-img {
+		border-radius: 50px;
 	}
 
 	@media screen and (max-width: 1300px) {

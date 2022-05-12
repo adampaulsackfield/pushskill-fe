@@ -1,6 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import ReactTooltip from 'react-tooltip';
 
 // Theme
 import { StyledProfile } from '../styles/Profile.style';
@@ -101,10 +102,6 @@ const Profile = () => {
 				<div className='achievements'>
 					<p>
 						<span>Achievements: </span>
-						{user.achievements &&
-							user.achievements.map(
-								(achievement) => achievement.name && achievement.description
-							)}
 					</p>
 
 					<ul>
@@ -116,6 +113,7 @@ const Profile = () => {
 											className='achievement-img'
 											src={`/images/achievements/${achievement.name}.png`}
 											alt={`${achievement.name} icon`}
+											data-tip={'achievement.name'}
 										/>
 									</li>
 								);
@@ -157,7 +155,7 @@ const Profile = () => {
 									>
 										<img
 											src={`${achievement.url}`}
-											alt={`${achievement.name} icon`}
+											alt={`${achievement.name} icon`} className='add-achievement-img'
 										/>
 									</li>
 								);
@@ -165,6 +163,7 @@ const Profile = () => {
 					</ul>
 				</div>
 			</section>
+			<ReactTooltip place="right" type="dark" effect="solid"/>
 		</StyledProfile>
 	);
 };
