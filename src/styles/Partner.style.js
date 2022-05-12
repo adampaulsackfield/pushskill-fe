@@ -45,19 +45,18 @@ export const StyledPartner = styled.main`
 		align-items: center;
 	}
 
-	p {
-		padding: 10px;
-		margin: 5px 0;
-		border-radius: 6px;
-	}
-
-	p span {
+	div span {
 		width: auto;
 		display: grid;
 		grid-template-areas: 'left right';
 		grid-template-columns: repeat(2, 1fr);
 		grid-template-rows: auto;
-		height: 100%;
+	}
+
+	div span p {
+		padding: 10px;
+		margin: 5px 0;
+		border-radius: 6px;
 	}
 
 	.left {

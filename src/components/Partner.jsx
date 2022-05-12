@@ -112,15 +112,11 @@ const Partner = () => {
 					{messages.length &&
 						messages.map((message) => {
 							return (
-								<p>
-									<span key={message._id}>
-										<p
-											className={message.senderId === userId ? 'right' : 'left'}
-										>
-											{message.message}
-										</p>
-									</span>
-								</p>
+								<span key={message._id}>
+									<p className={message.senderId === userId ? 'right' : 'left'}>
+										{message.message}
+									</p>
+								</span>
 							);
 						})}
 				</div>
