@@ -141,43 +141,28 @@ const Profile = () => {
 				</div>
 				<div className='achievements-container'>
 					<h3>Award Some Achievements</h3>
-					{user.isPaired && (
-						<ul className='achievements add-achievements'>
-							<li
-								key={223242}
-								onClick={() =>
-									handleGiveAchievement(
-										{
-											name: 'Supporter',
-											description: 'Support description to come...',
-											url: '/images/achievements/Supporter.png',
-										},
-										user.partnerId,
-										{ both: true }
-									)
-								}
-							>
-								<img src={`/images/achievements/Supporter.png`} alt={`icon`} />
-							</li>
 
-							<li
-								key={3232323}
-								onClick={() =>
-									handleGiveAchievement(
-										{
-											name: 'Unruly',
-											description: 'Support description to come...',
-											url: '/images/achievements/Unruly.png',
-										},
-										user.partnerId,
-										{ both: true }
-									)
-								}
-							>
-								<img src={`/images/achievements/Unruly.png`} alt={` icon`} />
-							</li>
-						</ul>
-					)}
+					<ul className='achievements add-achievements'>
+						{user.isPaired &&
+							user.awardableAchievements &&
+							user.awardableAchievements.map((achievement) => {
+								return (
+									<li
+										key={223242}
+										onClick={() =>
+											handleGiveAchievement(achievement, user.partnerId, {
+												both: true,
+											})
+										}
+									>
+										<img
+											src={`${achievement.url}`}
+											alt={`${achievement.name} icon`}
+										/>
+									</li>
+								);
+							})}
+					</ul>
 				</div>
 			</section>
 		</StyledProfile>
