@@ -170,6 +170,7 @@ const Signup = () => {
 						<option value='Super Violent'>Super Violent</option>
 						<option value='Supportive'>Supportive</option>
 						<option value='Talkative'>Talkative</option>
+						<option value='Tall'>Tall</option>
 					</select>
 				</div>
 
