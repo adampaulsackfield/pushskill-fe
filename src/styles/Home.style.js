@@ -62,7 +62,7 @@ export const StyledHome = styled.main`
 
 	section div:hover > div {
 		background-color: ${({ theme }) => theme.colors.mainAccent};
-		font-weighboldt
+		font-weight: bold;
 	}
 
 	section div img {

@@ -23,7 +23,7 @@ const Signup = () => {
 		username: '',
 		password: '',
 		confirmPassword: '',
-		avatarUrl: '',
+		avatarUrl: 'https://avatars.dicebear.com/api/gridy/:seed.svg',
 	});
 	const [errors, setErrors] = useState({
 		username: null,

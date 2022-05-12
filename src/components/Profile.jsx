@@ -29,7 +29,7 @@ const Profile = () => {
 				setUser(user);
 			});
 		}
-	});
+	}, []);
 
 	useEffect(() => {
 		if (!token) {
@@ -81,16 +81,16 @@ const Profile = () => {
 	return (
 		<StyledProfile>
 			<section>
+				<img src={user && user.avatarUrl} alt='user avatar' />
 				<h1>{user && user.username}</h1>
-				<div className='card'>
-					<img src={user && user.avatarUrl} alt='' />
-					<div className='card-detials'>
+				<div>
+					<div>
 						<p>
-							<span>Traits: </span>{' '}
+							<span>Traits: </span>
 							{user.traits && user.traits.map((trait) => trait)}
 						</p>
 						<p>
-							<span>Interests: </span>{' '}
+							<span>Interests: </span>
 							{user.learningInterests &&
 								user.learningInterests.map((interest) => interest)}
 						</p>
@@ -98,7 +98,7 @@ const Profile = () => {
 				</div>
 				<div className='achievements'>
 					<p>
-						<span>Achievements:</span>{' '}
+						<span>Achievements: </span>
 						{user.achievements &&
 							user.achievements.map(
 								(achievement) => achievement.name && achievement.description
