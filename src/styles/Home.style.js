@@ -148,7 +148,7 @@ export const StyledHome = styled.main`
 		}
 
 		div {
-			width: 100vw;
+			width: 80vw;
 			display: flex;
 			justify-content: center;
 			align-items: center;
