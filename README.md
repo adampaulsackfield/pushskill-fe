@@ -10,7 +10,7 @@ The site allows a user to sign up or log in. Once they have logged in users will
 
 The chat function was facilitated using socket.io. The site was created as a PWA using React and the authentication was achieved using JWT. The styling was written with JSS and API requests were handled with axios.
 
-a hosted version of the app can be found at: [LINK TO COME]()
+a hosted version of the app can be found at: [pushskill](https://pushskill.netlify.app)
 
 Team members:
 
