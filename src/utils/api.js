@@ -20,10 +20,11 @@ export const signUpUser = (
 				learningInterests: [learningInterests],
 			})
 			.then((data) => {
-				console.log(data);
+				console.log('signup', data);
 				return data;
 			})
 			.catch((err) => {
+				console.log('err', err);
 				return err.response.data;
 			});
 	}
@@ -40,11 +41,11 @@ export const logUserIn = ({ username, password }) => {
 		});
 };
 
-export const getProfile = (user_id, context) => {
+export const getProfile = (user_id, token) => {
 	return pushSkillApi
 		.get(`/users/${user_id}`, {
 			headers: {
-				Authorization: `Bearer ${context.token}`,
+				Authorization: `Bearer ${token}`,
 			},
 		})
 		.then((res) => {
@@ -103,6 +104,21 @@ export const getRooms = (token) => {
 		});
 };
 
+export const getMessages = (token, roomId) => {
+	return pushSkillApi
+		.get(`/rooms/${roomId}/messages`, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		})
+		.then((res) => {
+			return res.data.messages;
+		})
+		.catch((err) => {
+			return err;
+		});
+};
+
 // ACCEPT MATCH
 export const acceptMatch = (token, user_id, sender_id) => {
 	return pushSkillApi
@@ -121,6 +137,57 @@ export const acceptMatch = (token, user_id, sender_id) => {
 		})
 		.catch((err) => {
 			console.log('acceptMatch', err);
+			return err;
+		});
+};
+
+export const declineMatch = (token, user_id, sender_id) => {
+	return pushSkillApi
+		.patch(
+			`/users/matches/${user_id}/decline`,
+			{ sender_id },
+			{ headers: { Authorization: `Bearer ${token}` } }
+		)
+		.then((res) => {
+			console.log('declineMatch', res);
+			return res.data.message;
+		})
+		.catch((err) => {
+			console.log('declineMatch', err);
+			return err;
+		});
+};
+
+export const addAchievement = (token, achievement, sender_id, both) => {
+	return pushSkillApi
+		.patch(
+			`/users/${sender_id}/achievements`,
+			{ achievement, both },
+			{ headers: { Authorization: `Bearer ${token}` } }
+		)
+		.then((res) => {
+			console.log('addAchievement', res.data.user);
+			return res.data.user;
+		})
+		.catch((err) => {
+			console.log('addAchievement', err);
+			return err;
+		});
+};
+
+export const handleGiveOG = (token, achievement) => {
+	return pushSkillApi
+		.patch(
+			`/users/achievements`,
+			{ achievement },
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			}
+		)
+		.then((res) => {
+			console.log(res);
+		})
+		.catch((err) => {
 			return err;
 		});
 };

@@ -1,86 +1,124 @@
 import { useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import ReactTooltip from 'react-tooltip';
 
 // Theme
 import { StyledProfile } from '../styles/Profile.style';
 
 // API
-import { acceptMatch, getProfile } from '../utils/api';
+import {
+	getProfile,
+	acceptMatch,
+	declineMatch,
+	addAchievement,
+} from '../utils/api';
 
 // Context
 import { TokenContext } from '../context/TokenContext';
 import { UserContext } from '../context/UserContext';
 
-import { toast } from 'react-toastify';
-
 const Profile = () => {
+	const navigate = useNavigate();
 	const { user_id } = useParams();
-	const context = useContext(TokenContext);
+	const { token } = useContext(TokenContext);
 	const { user, setUser } = useContext(UserContext);
 
 	useEffect(() => {
-		getProfile(user_id, context).then((user) => {
-			setUser(user);
-		});
+		if (user_id && token) {
+			getProfile(user_id, token).then((user) => {
+				setUser(user);
+			});
+		}
 	}, []);
 
-	console.log('text');
+	useEffect(() => {
+		if (!token) {
+			navigate('/');
+		}
+	});
 
 	const handleAccept = (sender_id) => {
-		acceptMatch(context.token, user_id, sender_id).then((room) => {
-			if (room.id) {
-				return toast.success('Successfully paired!');
-			} else {
-				return toast.error('Error with pairing!');
-			}
-		});
+		acceptMatch(token, user_id, sender_id)
+			.then((room) => {
+				if (room.id) {
+					return toast.success('Successfully paired!');
+				}
+			})
+			.then(() => {
+				addAchievement(
+					token,
+					{
+						name: 'Partnered',
+						description: 'This is a description',
+						url: '',
+					},
+					sender_id,
+					{ both: true }
+				).then((user) => {
+					console.log(user);
+				});
+			});
 	};
 
-	// const handleDecline = () => {
-	// 	user.isPaired = true
-	// }npm
+	const handleDecline = (sender_id) => {
+		declineMatch(token, user_id, sender_id)
+			.then((message) => {
+				console.log('mess', message);
+				return toast.success(`${message}`);
+			})
+			.catch((err) => {
+				console.log('Profile.jsx: handleDecline .catch()', err);
+			});
+	};
+
+	const handleGiveAchievement = (achievement, sender_id, both) => {
+		console.log('ran');
+		addAchievement(token, achievement, sender_id, { both }).then((res) => {
+			console.log(res);
+		});
+	};
 
 	return (
 		<StyledProfile>
 			<section>
+				<img
+					src={user && user.avatarUrl}
+					alt='user avatar'
+					className='avatar'
+				/>
 				<h1>{user && user.username}</h1>
-				<div className='card'>
-					<img src={user && user.avatarUrl} alt='' />
-					<div className='card-detials'>
-						<p>
-							<span>Traits: </span>{' '}
-							{user.traits && user.traits.map((trait) => trait)}
-						</p>
-						<p>
-							<span>Interests: </span>{' '}
-							{user.learningInterests &&
-								user.learningInterests.map((interest) => interest)}
-						</p>
-					</div>
+				<div>
+					<p>
+						<span>Traits: </span>
+						{user.traits && user.traits.map((trait) => trait)}
+					</p>
+					<p>
+						<span>Interests: </span>
+						{user.learningInterests &&
+							user.learningInterests.map((interest) => interest)}
+					</p>
 				</div>
 				<div className='achievements'>
 					<p>
-						<span>Achievements:</span>{' '}
-						{user.achievements &&
-							user.achievements.map(
-								(achievement) => achievement.name && achievement.description
-							)}
+						<span>Achievements: </span>
 					</p>
 
-					<div>
-						<ul>
-							{user.achievements &&
-								user.achievements.map((achievement) => {
-									return (
-										<li key={achievement.id}>
-											<img
-												src={`/images/achievements/${achievement.name}.png`}
-											/>
-										</li>
-									);
-								})}
-						</ul>
-					</div>
+					<ul>
+						{user.achievements &&
+							user.achievements.map((achievement) => {
+								return (
+									<li key={achievement.id}>
+										<img
+											className='achievement-img'
+											src={`/images/achievements/${achievement.name}.png`}
+											alt={`${achievement.name} icon`}
+											data-tip={'achievement.name'}
+										/>
+									</li>
+								);
+							})}
+					</ul>
 				</div>
 				<div>
 					<ul>
@@ -92,9 +130,7 @@ const Profile = () => {
 										<button onClick={() => handleAccept(notification.user_id)}>
 											Accept
 										</button>
-										<button
-										// onClick={handleDecline}
-										>
+										<button onClick={() => handleDecline(notification.user_id)}>
 											Decline
 										</button>
 									</li>
@@ -102,7 +138,32 @@ const Profile = () => {
 							})}
 					</ul>
 				</div>
+				<div className='achievements-container'>
+					<h3>Award Some Achievements</h3>
+					<ul className='achievements add-achievements'>
+						{user.isPaired &&
+							user.awardableAchievements &&
+							user.awardableAchievements.map((achievement) => {
+								return (
+									<li
+										key={achievement.name}
+										onClick={() =>
+											handleGiveAchievement(achievement, user.partnerId, {
+												both: false,
+											})
+										}
+									>
+										<img
+											src={`${achievement.url}`}
+											alt={`${achievement.name} icon`} className='add-achievement-img'
+										/>
+									</li>
+								);
+							})}
+					</ul>
+				</div>
 			</section>
+			<ReactTooltip place="right" type="dark" effect="solid"/>
 		</StyledProfile>
 	);
 };

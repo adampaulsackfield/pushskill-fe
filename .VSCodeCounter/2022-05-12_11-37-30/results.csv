@@ -1,0 +1,31 @@
+"filename", "language", "JavaScript React", "JavaScript", "JSON", "Markdown", "HTML", "comment", "blank", "total"
+"/Users/adamsackfield/NorthCoders/pushskill-fe/README.md", "Markdown", 0, 0, 0, 42, 0, 0, 28, 70
+"/Users/adamsackfield/NorthCoders/pushskill-fe/package-lock.json", "JSON", 0, 0, 28352, 0, 0, 0, 1, 28353
+"/Users/adamsackfield/NorthCoders/pushskill-fe/package.json", "JSON", 0, 0, 44, 0, 0, 0, 1, 45
+"/Users/adamsackfield/NorthCoders/pushskill-fe/public/index.html", "HTML", 0, 0, 0, 0, 26, 0, 1, 27
+"/Users/adamsackfield/NorthCoders/pushskill-fe/public/manifest.json", "JSON", 0, 0, 25, 0, 0, 0, 1, 26
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/App.js", "JavaScript", 0, 84, 0, 0, 0, 5, 12, 101
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/components/About.jsx", "JavaScript React", 54, 0, 0, 0, 0, 0, 3, 57
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/components/Home.jsx", "JavaScript React", 118, 0, 0, 0, 0, 3, 11, 132
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/components/LandingPage.jsx", "JavaScript React", 45, 0, 0, 0, 0, 2, 7, 54
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/components/Login.jsx", "JavaScript React", 106, 0, 0, 0, 0, 25, 16, 147
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/components/Nav.jsx", "JavaScript React", 72, 0, 0, 0, 0, 2, 11, 85
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/components/Partner.jsx", "JavaScript React", 120, 0, 0, 0, 0, 4, 23, 147
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/components/Profile.jsx", "JavaScript React", 157, 0, 0, 0, 0, 3, 13, 173
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/components/Signup.jsx", "JavaScript React", 170, 0, 0, 0, 0, 3, 23, 196
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/context/RoomsContext.js", "JavaScript", 0, 2, 0, 0, 0, 0, 2, 4
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/context/SocketContext.js", "JavaScript", 0, 2, 0, 0, 0, 0, 2, 4
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/context/TokenContext.js", "JavaScript", 0, 2, 0, 0, 0, 0, 2, 4
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/context/UserContext.js", "JavaScript", 0, 2, 0, 0, 0, 0, 2, 4
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/index.js", "JavaScript", 0, 10, 0, 0, 0, 0, 2, 12
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/styles/About.style.js", "JavaScript", 0, 47, 0, 0, 0, 0, 8, 55
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/styles/Global.js", "JavaScript", 0, 83, 0, 0, 0, 0, 11, 94
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/styles/Home.style.js", "JavaScript", 0, 157, 0, 0, 0, 1, 27, 185
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/styles/Landing.style.js", "JavaScript", 0, 113, 0, 0, 0, 0, 24, 137
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/styles/Login.style.js", "JavaScript", 0, 38, 0, 0, 0, 0, 5, 43
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/styles/Nav.style.js", "JavaScript", 0, 62, 0, 0, 0, 0, 8, 70
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/styles/Partner.style.js", "JavaScript", 0, 92, 0, 0, 0, 0, 13, 105
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/styles/Profile.style.js", "JavaScript", 0, 146, 0, 0, 0, 0, 24, 170
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/styles/Signup.style.js", "JavaScript", 0, 43, 0, 0, 0, 0, 6, 49
+"/Users/adamsackfield/NorthCoders/pushskill-fe/src/utils/api.js", "JavaScript", 0, 179, 0, 0, 0, 2, 13, 194
+"Total", "-", 842, 1062, 28421, 42, 26, 50, 300, 30743

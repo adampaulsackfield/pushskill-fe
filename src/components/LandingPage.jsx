@@ -1,26 +1,26 @@
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 // Theme
 import { StyledLanding } from '../styles/Landing.style';
 
 // Context
-import { UserContext } from '../context/UserContext';
-
-const onConfirm = () => {
-	if (window.confirm(`Do you want to pair with ...`)) {
-		alert('Thanks for pairing!');
-	}
-};
+import { TokenContext } from '../context/TokenContext';
 
 const LandingPage = () => {
-	const userContext = useContext(UserContext);
+	const navigate = useNavigate();
+	const { token } = useContext(TokenContext);
+
+	useEffect(() => {
+		if (token) {
+			navigate('/home');
+		}
+	}, [token]);
 
 	return (
 		<StyledLanding>
 			<section>
 				<div id='heading'>
-					<button onClick={onConfirm}> TEST </button>
 					<h1>
 						Welcome to <span>.push(skill)</span>
 					</h1>

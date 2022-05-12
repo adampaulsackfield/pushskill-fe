@@ -13,15 +13,69 @@ import { TokenContext } from '../context/TokenContext';
 import { UserContext } from '../context/UserContext';
 
 const Login = () => {
+	const navigate = useNavigate();
 	const [loginForm, setLoginForm] = useState({
 		username: '',
 		password: '',
 	});
-	const navigate = useNavigate();
+	const [errors, setErrors] = useState({
+		username: null,
+		password: null,
+	});
 	const context = useContext(TokenContext);
 	const userContext = useContext(UserContext);
 
+	const formValidation = (event) => {
+		if (!loginForm.username) {
+			setErrors((prev) => ({
+				...prev,
+				username: "User can't be empty",
+			}));
+		} else {
+			setErrors((prev) => ({
+				...prev,
+				username: null,
+			}));
+		}
+
+		if (!loginForm.password) {
+			setErrors((prev) => ({
+				...prev,
+				password: "Password can't be empty",
+			}));
+		} else {
+			setErrors((prev) => ({
+				...prev,
+				password: null,
+			}));
+		}
+	};
+
 	const handleInputChange = (event) => {
+		// if (!loginForm.username) {
+		// 	setErrors((prev) => ({
+		// 		...prev,
+		// 		username: "User can't be empty",
+		// 	}));
+		// } else {
+		// 	setErrors((prev) => ({
+		// 		...prev,
+		// 		username: null,
+		// 	}));
+		// }
+
+		// if (!loginForm.password) {
+		// 	setErrors((prev) => ({
+		// 		...prev,
+		// 		password: "Password can't be empty",
+		// 	}));
+		// } else {
+		// 	setErrors((prev) => ({
+		// 		...prev,
+		// 		password: null,
+		// 	}));
+		// }
+
 		setLoginForm((prev) => ({
 			...prev,
 			[event.target.name]: event.target.value,
@@ -59,7 +113,10 @@ const Login = () => {
 					placeholder='Username:'
 					value={loginForm.username}
 					onChange={(e) => handleInputChange(e)}
+					onBlur={(e) => formValidation(e)}
 				/>
+				<p>{errors.username}</p>
+
 				<input
 					name='password'
 					type='password'
@@ -67,13 +124,21 @@ const Login = () => {
 					placeholder='Password:'
 					value={loginForm.password}
 					onChange={(e) => handleInputChange(e)}
+					onBlur={(e) => formValidation(e)}
 				/>
-
-				{!context.token && !loginForm.password && (
-					<p>enter a valid username and password</p>
-				)}
+				<p>{errors.password}</p>
 			</form>
-			<button onClick={(e) => handleLogin(e)}>LOGIN</button>
+			<button
+				onClick={(e) => handleLogin(e)}
+				disabled={errors.username || errors.password}
+				style={
+					errors.username || errors.password
+						? { cursor: 'not-allowed' }
+						: { cursor: 'pointer' }
+				}
+			>
+				LOGIN
+			</button>
 		</StyledLogin>
 	);
 };

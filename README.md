@@ -2,22 +2,21 @@
 
 ## Description
 
-This app was created as the front end portion of the final project phase of the Northcoders bootcamp.
+This app was created as the Front-End portion of the final project phase on the Northcoders bootcamp.
 
-.push(skill) was created as a platform to allow anyone who wants to self learn a new skill to pair up with someone who can encourage them and hold them accountable to goals they have set themselves. The thinking being that if you have no one to ask you how your learning is going it is easier to let it slip and not complete tasks. Users can also gain achievements as a way of gamifying the learning experience.
+**.push(skill)** was created as a platform to allow anyone who wants to self learn a new skill to pair up with someone who can encourage them and hold them accountable to goals they have set themselves. The thinking being that if you have no one to ask you how your learning is going it is easier to let it slip and not complete tasks. Users can also gain achievements as a way of gamifying the learning experience.
 
-The site allows a user to sign up or log in. Once they have logged in users will see a list of people who have been selected as they share traits with the user. From there the user can select one of these people to become your learning buddy. They can then chat to them in real time. The User can also view their profile and see any achievements they have earned.
+The site allows a user to sign up or log in. Once they have logged in users will see a list of people who have been selected as they share traits with the user. From there the user can select one of these people to become your learning buddy. They can then chat to them in real time. The User can also view their profile, award achievements to their partner and see any achievements they have earned.
 
 The chat function was facilitated using socket.io. The site was created as a PWA using React and the authentication was achieved using JWT. The styling was written with JSS and API requests were handled with axios.
 
-a hosted version of the app can be found at:
+a hosted version of the app can be found at: [LINK TO COME]()
 
 Team members:
 
-Adam Sackfield - github: adampaulsackfield
-Dane Whitfield - github: danewhitfield
-Abdirasak Ahmed - github: abdirasak
-Owen Corrigan - github: ojcorrigan
+- Adam Sackfield - github: [adampaulsackfield](https://github.com/adampaulsackfield)
+- Dane Whitfield - github: [danewhitfield](https://github.com/danewhitfield)
+- Owen Corrigan - github: [ojcorrigan](https://github.com/ojcorrigan)
 
 ---
 
@@ -68,3 +67,15 @@ Owen Corrigan - github: ojcorrigan
 ### Available Scripts
 
 `npm start` - starts the app
+
+### Key Features
+
+- Encrypted passwords using Bcrypt
+- Data persistence using MongoDB
+- Matching system based on user traits
+- Form validation
+- Error messages and error notifications
+- User notifications
+- User pairing
+- Live chat functionality
+- Persistent chat for offline messaging

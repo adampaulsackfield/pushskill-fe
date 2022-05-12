@@ -14,8 +14,8 @@ import { UserContext } from '../context/UserContext';
 
 const Signup = () => {
 	const navigate = useNavigate();
-	const [learningInterests, setLearningInterests] = useState('Knitting');
-	const [traits, setTraits] = useState('Supportive');
+	const [learningInterests, setLearningInterests] = useState('Botany');
+	const [traits, setTraits] = useState('Class Clown');
 	const context = useContext(TokenContext);
 	const userContext = useContext(UserContext);
 
@@ -23,7 +23,12 @@ const Signup = () => {
 		username: '',
 		password: '',
 		confirmPassword: '',
-		avatarUrl: '',
+		avatarUrl: 'https://avatars.dicebear.com/api/gridy/:seed.svg',
+	});
+	const [errors, setErrors] = useState({
+		username: null,
+		password: null,
+		confirmPassword: null,
 	});
 
 	const handleInterests = (e) => {
@@ -35,6 +40,30 @@ const Signup = () => {
 	};
 
 	const handleInputChange = (event) => {
+		if (signUpForm.username.length <= 7) {
+			setErrors((prev) => ({
+				...prev,
+				username: 'Username must be at least 8 characters long',
+			}));
+		} else {
+			setErrors((prev) => ({
+				...prev,
+				username: null,
+			}));
+		}
+
+		if (signUpForm.password.length <= 7) {
+			setErrors((prev) => ({
+				...prev,
+				password: 'Password must be at least 8 characters long',
+			}));
+		} else {
+			setErrors((prev) => ({
+				...prev,
+				password: null,
+			}));
+		}
+
 		setSignUpForm((prev) => ({
 			...prev,
 			[event.target.name]: event.target.value,
@@ -43,29 +72,29 @@ const Signup = () => {
 
 	const handleSignUp = async (e) => {
 		e.preventDefault();
-		if (!signUpForm.username || !signUpForm.password) {
-			return toast.warning('Please complete all required fields');
-		}
 
-		if (signUpForm.password !== signUpForm.confirmPassword) {
-			return toast.warning('Passwords do not match');
-		}
+		if (signUpForm.password === signUpForm.confirmPassword) {
+			const res = await signUpUser(signUpForm, traits, learningInterests);
 
-		const res = await signUpUser(signUpForm, traits, learningInterests);
+			if (res.message) {
+				toast.warning(res.data.user.message);
+			} else {
+				context.setToken(res.data.user.token);
+				userContext.setUser(res.data.user);
+				userContext.setUserId(res.data.user.id);
+				localStorage.setItem('id', res.data.user.id);
+				localStorage.setItem('token', res.data.user.token);
+				localStorage.setItem('roomId', res.data.user?.roomId);
 
-		if (res.message) {
-			toast.warning(res.data.user.message);
+				toast.success(`Hi ${res.data.user.username}`);
+
+				navigate('/home');
+			}
 		} else {
-			context.setToken(res.data.user.token);
-			userContext.setUser(res.data.user);
-			userContext.setUserId(res.data.user.id);
-			localStorage.setItem('id', res.data.user.id);
-			localStorage.setItem('token', res.data.user.token);
-			localStorage.setItem('roomId', res.data.user?.roomId);
-
-			toast.success(`Hi ${res.data.user.username}`);
-
-			navigate('/home');
+			setErrors((prev) => ({
+				...prev,
+				confirmPassword: 'Passwords do not match',
+			}));
 		}
 	};
 
@@ -81,6 +110,8 @@ const Signup = () => {
 					value={signUpForm.username}
 					onChange={(e) => handleInputChange(e)}
 				/>
+				<p>{errors.username}</p>
+
 				<input
 					name='password'
 					type='password'
@@ -89,6 +120,8 @@ const Signup = () => {
 					value={signUpForm.password}
 					onChange={(e) => handleInputChange(e)}
 				/>
+				<p>{errors.password}</p>
+
 				<input
 					name='confirmPassword'
 					type='password'
@@ -97,6 +130,11 @@ const Signup = () => {
 					value={signUpForm.confirmPassword}
 					onChange={(e) => handleInputChange(e)}
 				/>
+				<p>{errors.confirmPassword}</p>
+
+				<label htmlFor={signUpForm.avatarUrl} className='avatar-label'>
+					Avatar URL
+				</label>
 				<input
 					name='avatarUrl'
 					type='input'
@@ -107,18 +145,48 @@ const Signup = () => {
 				<div>
 					<label>Learning interests: </label>
 					<select onChange={handleInterests}>
-						<option value='Knitting'>Knitting</option>
-						<option value='Karate'>Karate</option>
+						<option value='Botany'>Botany</option>
+						<option value='Cooking'>Cooking</option>
+						<option value='Guitar'>Guitar</option>
 						<option value='Interpretive Dance'>Interpretive Dance</option>
+						<option value='JavaScript'>JavaScript</option>
+						<option value='Karate'>Karate</option>
+						<option value='Knitting'>Knitting</option>
+						<option value='Life Drawing'>Life Drawing</option>
+						<option value='Podcasting'>Podcasting</option>
+						<option value='Pro Wrestling'>Pro Wrestling</option>
+						<option value='Cow Tipping'>Cow Tipping</option>
 					</select>
+
 					<label>Personal Traits: </label>
 					<select onChange={handleTraits}>
-						<option value='Supportive'>Supportive</option>
+						<option value='Class Clown'>Class Clown</option>
+						<option value='Disorganised'>Disorganised</option>
 						<option value='Empathetic'>Empathetic</option>
+						<option value='Erratic'>Erratic</option>
+						<option value='Lazy'>Lazy</option>
+						<option value='Sarcastic'>Sarcastic</option>
+						<option value='Shy'>Shy</option>
 						<option value='Super Violent'>Super Violent</option>
+						<option value='Supportive'>Supportive</option>
+						<option value='Talkative'>Talkative</option>
+						<option value='Tall'>Tall</option>
 					</select>
 				</div>
-				<button onClick={(e) => handleSignUp(e)}>Sign Up</button>
+
+				<button
+					onClick={(e) => handleSignUp(e)}
+					disabled={
+						errors.username || errors.password || errors.confirmPassword
+					}
+					style={
+						errors.username || errors.password || errors.confirmPassword
+							? { cursor: 'not-allowed' }
+							: { cursor: 'pointer' }
+					}
+				>
+					Sign Up
+				</button>
 			</form>
 		</StyledSignup>
 	);
